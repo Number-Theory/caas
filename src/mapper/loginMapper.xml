@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="login">
+
+    <!-- 根据用户名+密码登录 -->
+    <select id="queryLoginUser" resultType="map">
+    	select t.*  from tb_caas_user t where (t.`userName` = #{name} or t.`email` = #{name} or t.`mobile` = #{name}) and t.userPwd=#{userPwd}
+    </select>
+    
+    <!-- 查询用户对应的角色+权限 -->
+    <select id="queryLoginUserRoleMenu" resultType="map">
+		select a.menu_priv as menu from tb_caas_role a where 1=1  and a.id = #{roleId}
+	</select>
+	
+	<!-- 根据权限Id判断所属级别 -->
+	<select id="queryMenuRate" resultType="map">
+		select t.id,t.url,t.name,t.super_id,t.`sort` from tb_caas_menu t where t.id = #{id} and t.`status` = '0'
+	</select>
+	
+</mapper> 

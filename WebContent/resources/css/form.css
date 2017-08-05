@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*模拟下拉框*/
+.select_box label,.select_box span { line-height: 28px; color: #4c4c4c; font-size: 14px;}
+.select, .select ul { border: 1px #ccc solid;}
+.select { position: relative; min-width: 98px; cursor: pointer; height: 28px; line-height: 28px;}
+.select span { padding-left: 10px; background: #fff; display: block; position: relative; color: #888;}
+.select span i { background: url("../images/arrow.png") 8px 10px no-repeat; display: inline-block; width: 8px; height: 12px; padding: 8px 10px; position: absolute; top: 0px; right: 0px; /*border-left: 1px #eaeaec solid;*/ }
+.select.focus,.select.focus ul { border-color:#8fc31f; color:#4c4c4c;}
+.select.focus span { color: #4c4c4c;}
+.select.focus span i { background-position: 8px -38px;}
+.select ul { position: absolute; left: -1px; top: 28px; display: none; z-index: 11; background: #fff; max-height: 200px; overflow-x: hidden; overflow-y:scroll;}
+.select ul li { height: 28px; line-height: 28px; font-size: 14px; cursor: pointer; padding-left: 10px; color: #4c4c4c; }
+.select ul li:hover { background: #f5f5f5;}
+.select span.error { positon:absolute; left:240px; top:-40px; padding-left:0px; background:none;}
+
+
+form .edit_box .select,.edit_box form .select{ height: 38px; line-height: 38px; border: 1px #ccc solid; max-width: 228px;}
+form .edit_box .select ul,.edit_box form .select ul { top: 38px;line-height: 38px; border: 1px #ccc solid; left: -1px; display: none;}
+form .edit_box .select ul li,.edit_box form .select ul li { height: 38px; line-height: 38px;}
+form .edit_box .select span i,.edit_box form .select span i { background-position: 8px 14px;}
+form .edit_box .select.focus span i,.edit_box form .select.focus span i { background-position: 8px -34px;}
+form .edit_box .select.focus,.edit_box form .select.focus,form .edit_box .select.focus ul,.edit_box form .select.focus ul { border-color:#8fc31f; color:#4c4c4c;}
+
+.select_type { position: relative;}
+.select_type span.error { position: absolute; top: 10px; left: 238px;}
+
+/*文本框*/
+input[type='text'],input[type='password'] { border: 1px #ccc solid; min-width: 218px; padding-left: 10px; height: 38px; line-height: 38px; background: #fff; color: #888; font-family: 微软雅黑; font-style: 14px;}
+input[type='text']:focus,input[type='password']:focus,input[type='text'].focus,input[type='password'].focus { color: #4c4c4c; border-color: #2fb26a;}
+
+/*文本域*/
+textarea { min-width: 660px; padding: 10px; min-height: 78px; border: 1px #ccc solid; resize:none; background: #fff; color: #888; font-size: 14px; font-family: 微软雅黑;}
+textarea:focus,textarea.focus { color: #4c4c4c; border-color: #8fc31f;}
+
+/*错误提示*/
+span.error { color: #e64141; font-size: 12px; display: inline-block; margin-left: 5px;}
+form span.tips { color: #a3a3a3; font-size: 12px;}
+form span.notice { color: #fe9500; font-size: 12px;}
+form i.star { background: url("../images/star.png") 0 0 no-repeat; width: 5px; height: 6px; display: inline-block; margin-right: 5px; position: relative; top: 15px;}
+form p.error{color: #e64141;}
+.dis-n{display: none;}
+/*按钮*/
+input[type='button'],input[type='submit'] { font-family: 微软雅黑; cursor: pointer;}
+.cancel_btn { border: 1px #ccc solid; background: #fff; width: 78px; height: 32px; line-height: 16px; text-align: center; color: #383838; cursor: pointer;}
+.cancel_btn2 { border: 1px #ccc solid; background: #fff; width: 78px; height: 32px; line-height: 16px; text-align: center; color: #383838; cursor: pointer;}
+.cancel_btn:hover { background: #eeeeee;}
+.confirm_btn { border: 1px #2fb26a solid; background: #2fb26a; width: 120px; height: 32px; line-height: 16px; text-align: center; color: #fff; cursor: pointer;}
+.confirm_btn:hover { background: #40C57C; border-color: #40C57C;}
+.grey_btn,.grey_btn:hover { border: 1px #ccc solid; background: #eeeeee; width: 120px; height: 32px; line-height: 16px; text-align: center; color: #383838; cursor: default;}
+.edit_form .confirm_btn { width: 60px;}
+
+/*模拟上传*/
+.file { position: relative; width:588px;}
+.file input.file_btn { color: #4c4c4c; background: #fff; border:none; cursor: pointer; border-left: 1px #ccc solid; width: 78px; height: 38px; line-height:38px; position: absolute; right: -11px; top: 1px;}
+.file input.file_txt { width: 588px; }
+.file input.file_1 { opacity: 0; filter:alpha(opacity=0); position: absolute; left: 0px; top: 0px; display: inline-block; width: 590px; padding-left:10px; height: 40px; line-height: 40px; position: absolute; text-outline: 0px; left: 0px; }
+
+.file_short,.file_short input.file_txt,.file_short input.file_1 { width: 295px;}
+.file.focus input.file_btn,.file.focus input.file_txt { border-color: #8fc31f;}
+/*.file_short input.file_txt { height: 40px; line-height: 40px;}
+.file_short input.file_btn { right:1px;}*/
+
+.q-arrow-down{background: rgba(0, 0, 0, 0) url("../images/arrow.png") no-repeat scroll 0px -5px;display: inline-block;padding: 8px 10px;width: 8px;vertical-align: middle; margin-left: 4px; position: absolute;top: 50%; right: 0}
+.q-arrow-down.up{background-position: 0 10px}

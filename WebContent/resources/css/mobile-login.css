@@ -1,0 +1,13 @@
+@media screen and (max-width: 750px){
+	.ft_header, .ft_content, .ft_footer{width: 100%;min-width: 100% !important;overflow: hidden;}
+	.ft_log,.ft_nav{display: none;}
+	body.login{min-height: 466px !important;}
+	body.login .login-content{position: absolute !important;width: 90% !important;height: 366px !important;left: 5% !important;top: 80px !important;margin: 0 !important;}
+	.login-content .wraper{position: relative;padding: 4% 6% !important;}
+	.no-footer-content{display: none !important;width: 90% !important;min-width: 90% !important;left: 5% !important;top: 60px !important;text-align: center;}
+	.login-content .row{margin-top: 6% !important;}
+	.icon.check-box, .icon.check-box span{background: url(../images/login/login-icons.png) 0 -63px no-repeat !important;}
+}
+@media screen and (max-width: 350px){
+	.text-wraper{font-size: 12px !important;}
+}

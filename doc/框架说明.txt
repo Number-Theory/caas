@@ -1,0 +1,61 @@
+云之讯UCPaaS管理后台
+
+序号	框架名称		包含的jar包
+------------------------------------------------------------
+1	DBCP		commons-dbcp2-2.0.1.jar
+				commons-pool2-2.2.jar
+
+2	FastDFS		fastdfs_client_v1.22.jar
+
+3	Gson		gson-2.2.4.jar
+
+4	HttpClient	fluent-hc-4.3.4.jar
+				httpclient-4.3.4.jar
+				httpcore-4.3.2.jar
+
+5	joda-time	joda-time-2.3.jar
+
+6	Logback		logback-access-1.1.2.jar
+				logback-classic-1.1.2.jar
+				logback-core-1.1.2.jar
+				slf4j-api-1.7.7.jar
+				javax.mail.jar
+				commons-compiler.jar
+				janino.jar
+
+7	MyBatis		mybatis-3.2.7.jar
+				mybatis-spring-1.2.2.jar
+
+8	MySQL		mysql-connector-java-5.1.30-bin.jar
+
+9	OSCache		oscache-2.4.1.jar
+
+10	SiteMesh	sitemesh-2.4.2.jar
+
+11	Spring		aopalliance-1.0.jar
+				asm-3.3.jar
+				asm-commons-3.3.jar
+				javassist-3.11.0.GA.jar
+				spring-aop-4.0.4.RELEASE.jar
+				spring-beans-4.0.4.RELEASE.jar
+				spring-context-4.0.4.RELEASE.jar
+				spring-context-support-4.0.4.RELEASE.jar
+				spring-core-4.0.4.RELEASE.jar
+				spring-expression-4.0.4.RELEASE.jar
+				spring-jdbc-4.0.4.RELEASE.jar
+				spring-tx-4.0.4.RELEASE.jar
+				spring-web-4.0.4.RELEASE.jar
+
+12	Struts 2	commons-fileupload-1.3.1.jar
+				commons-io-2.4.jar
+				commons-lang3-3.3.2.jar
+				commons-logging-1.1.3.jar
+				freemarker-2.3.19.jar
+				ognl-3.0.6.jar
+				struts2-convention-plugin-2.3.16.3.jar
+				struts2-core-2.3.16.3.jar
+				struts2-spring-plugin-2.3.16.3.jar
+				xwork-core-2.3.16.3.jar
+
+13	UEditor		commons-codec-1.9.jar
+				json.jar

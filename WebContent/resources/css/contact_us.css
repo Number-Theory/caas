@@ -1,0 +1,134 @@
+body{
+	background: #eee;
+}
+.content{
+	height: 640px;
+	padding-left: 5px;
+	background:#e2e2e2;
+	border:1px solid #e2e2e2;
+	border-radius: 10px;
+	--moz-border-radius: 10px;
+	--webkit-border-radius: 10px;
+	padding-right: 5px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.content h1.title_one{
+	height: 50px;
+	color: #555454;
+	font-size: 20px;
+	border-bottom: 1px solid #ccc;
+	background: url(../img/contact_us_title.png) no-repeat left center;
+	letter-spacing: 4px;
+	text-indent: 60px;
+	line-height: 50px;
+}
+.content .kind{
+	width: 309px;
+	border-right: 1px dashed #b8b7b7;
+	float: left;
+	height: auto;
+	margin-right: 8px;
+}
+.content .company_information{
+	margin-right: 0;
+}
+.content .kind h1.title_phone{
+	font-size: 18px;
+	color: #555454;
+	letter-spacing: 2px;
+	height: 35px;
+	line-height: 35px;
+	font-weight: normal;
+}
+/*销售联系方式样式开始*/
+.content .sales_phone{
+	width: 320px;
+}
+.content .sales_phone .sales_cont{
+	width: 320px;
+	color: #666;
+	height: auto;
+	margin-bottom:10px;
+
+}
+.content .sales_phone .sales_cont h1{
+	font-size: 16px;
+	font-weight: normal;
+	height: 35px;
+	line-height: 35px;
+}
+.content .sales_phone .sales_cont p.cont{
+	font-size: 14px;
+}
+/*销售联系方式样式结束*/
+/*技术与支持样式开始*/
+.content .technology{
+	width: 309px;
+	min-height: 350px;
+}
+.content .technology .technology_cont{
+	margin-bottom: 5px;
+}
+.content .technology .technology_cont h2{
+	font-size: 14px;
+	color:#555454;
+	height: 30px;
+	line-height: 30px;
+}
+.content .technology .technology_cont p{
+	color: #666;
+	font-size: 14px;
+	height: 20px;
+	line-height: 20px;
+}
+.content .technology .technology_cont p span{
+	font-size: 16px;
+}
+
+/*技术与支持样式结束*/
+/*团队合作内容开始*/
+.content .team{
+	width: 318px;
+	min-height:590px;
+}
+.content .team .technology_cont{
+	margin-bottom: 40px;
+}
+.content .team .technology_cont h2{
+	font-size: 14px;
+	color:#555454;
+	height: 35px;
+	line-height: 35px;
+}
+.content .team .technology_cont p{
+	color: #666;
+	font-size: 14px;
+	height: auto;
+	line-height:20px;
+}
+.content .team .technology_cont p span{
+	font-size: 16px;
+}
+
+/*团队合作内容结束*/
+/*公司信息样式开始*/
+.content .company_information{
+	border-right: none;
+}
+.content .company_information .company_cont{
+	margin-bottom: 10px;
+}
+.content .company_information .company_cont h2{
+	font-size: 14px;
+	color:#555454;
+	height: 35px;
+	line-height: 35px;
+}
+.content .company_information .company_cont p{
+	color: #666;
+	font-size: 14px;
+	height: auto;
+	line-height:28px;
+}
+/*公司信息样式结束*/

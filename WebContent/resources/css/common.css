@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+.non-li {
+	list-style-type:none; 
+	margin:15px;
+	padding:0px;
+	height:50px;
+	width:200px;
+}
+
+.non-a {
+
+}

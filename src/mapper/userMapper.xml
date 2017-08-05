@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+    <!-- 角色配置管理 -->
+    <select id="userListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*
+		from
+		tb_caas_user n ,
+		(select
+		@i:=#{start} )it where 1=1 and id != '1'
+		<if test="condition != null">
+			and (n.sid like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
+				or n.email like concat('%',#{condition},'%')
+				or n.mobile like concat('%',#{condition},'%')
+			)
+		</if>
+		${limit}
+	</select>
+
+	<select id="userListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_user n 
+		where 1=1 and id != '1'
+		<if test="condition != null">
+			and (n.sid like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
+				or n.email like concat('%',#{condition},'%')
+				or n.mobile like concat('%',#{condition},'%')
+			)
+		</if>
+	</select>
+
+	<delete id="deleteUser">
+		delete from tb_caas_user where id =#{id};
+	</delete>
+
+	<delete id="batchDeleteUser">
+		delete from tb_caas_user where id in (${str});
+	</delete>
+
+	<select id="getUser" resultType="map">
+		select t.* from tb_caas_user t where t.id =#{id} limit 1
+	</select>
+	<select id="getUserByUserName" resultType="map">
+		select t.* from tb_caas_user t where t.userName =#{userName} limit 1
+	</select>
+	<select id="getUserByMobile" resultType="map">
+		select t.* from tb_caas_user t where t.mobile =#{mobile} limit 1
+	</select>
+	<select id="getUserByEmail" resultType="map">
+		select t.* from tb_caas_user t where t.email =#{email} limit 1
+	</select>
+	
+	<select id="getAllUser" resultType="map">
+		select t.* from tb_caas_user t 
+	</select>
+
+	<update id="saveEditUser">
+		update tb_caas_user set mobile=#{mobile},email=#{email},roleId=#{roleId},status=#{status}
+		,userType=#{userType},salesMan=#{salesMan},updateDate=now() where `id`=#{id};
+	</update>
+	
+	<insert id="saveAddUser">
+		INSERT INTO `tb_caas_user` (`sid`, `token`, `userName`, `userPwd`, `email`, `mobile`, `roleId`,
+		`createType`,`status`,`userType`,`salesMan`,`creationUser`,`creationTime`,`updateDate`) VALUES
+		 (#{sid}, #{token}, #{userName}, #{userPwd}, #{email}, #{mobile}, #{roleId},
+		 #{createType}, #{status}, #{userType}, #{salesMan}, #{creationUser}, now(), now());
+	</insert>
+	
+	<update id="updateUserStatus">
+		update tb_caas_user set `status`=#{status} where id=#{id};
+	</update>
+	
+</mapper> 

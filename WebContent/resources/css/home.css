@@ -1,0 +1,156 @@
+/* CSS Document */
+/*初始化信息开始*/
+body,table,th,td,p,h1,h2,ul,li,dl,dd,dt{
+	margin:0;
+	padding:0;
+	font-family:"微软雅黑";
+	font-size:12px;
+	}
+body{
+	width: 100%;
+	margin:0 auto;
+}
+img{
+	border:none;
+	margin:0;
+	padding:0;
+	display:block;
+
+}
+ul,li{list-style:none;}
+a{
+	text-decoration:none;
+}
+a,input{/*去掉链接周边的虚边框*/
+	outline:none;
+}
+.width_980{
+	width:980px;
+	margin:0 auto;
+}
+.width_1024{
+	width: 1024px;
+	margin: 0 auto;
+}
+.clear{
+	clear:both;
+}
+
+/*初始化信息结束*/
+/*头部信息开始*/
+.header{
+	height: 60px;
+	line-height: 60px;
+	position: relative;
+	top: 0;
+	z-index: 4;
+	left: 0;
+	background: #16703c;
+	background: url('../img/nav_bg.png') repeat;
+	width:100%;
+}
+.header .logo{
+	height: 60px;
+	margin: 0 auto;
+	line-height: 60px;
+	position:relative;
+	z-index: 2;
+}
+.header .logo h1.title{
+	width: 300px;
+	float: left;
+	text-align: right;
+	background: url('../img/logo.png') no-repeat left center;
+	font-size: 28px;
+	color: #48c690;
+
+}
+.header .logo .header_nav{
+	float: right;
+	height: 60px;
+	line-height: 60px;
+	width:390px;
+}
+.header .logo .header_nav ul li{
+	height: 60px;
+	line-height: 60px;
+	float: left;
+	font-size: 18px;
+	text-align: center;
+	width: 130px;
+	text-align: center;
+}
+.header .logo .header_nav ul li a{
+	color: #ccc;
+	display: block;
+}
+.header .logo .header_nav ul li.header_selected{/*头部选中的样式*/
+	background: url('../img/header_selected.png') repeat-x;
+	background: #333;
+}
+.header .logo .header_nav ul li.header_selected a{
+	color: #48c690;
+}
+.header .logo .header_nav ul li a:hover{
+	text-decoration: underline;
+}
+.fixed_position{/*设置鼠标滚动的时候导航条的样式，设置为固定定位*/
+	position: fixed;
+	top: 10px;
+	left: 0;
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+}
+.hide{/*当鼠标滚动到一定的地方，隐藏导航条的样式*/
+	display: none;
+}
+/*头部信息结束*/
+.back_top{/*回到顶端按钮样式设置*/
+	color: #fff;
+	width: 60px;
+	position: fixed;
+	bottom:30px;
+	display: none;
+	right: 10px;
+	padding-top: 10px;
+	height: 60px;
+	cursor: pointer;
+	z-index: 5;
+	line-height: 60px;
+	background: url(../img/back_top.png) no-repeat top center;
+	text-align: center;
+}
+*html .back_top{/*回到顶端固定定位兼容ie6*/
+	position: fixed;
+	clip:rect(0 100% 100% 0);
+    _position:absolute;
+	z-index: 5;
+	_top:expression(document.documentElement.scrollTop+document.documentElement.clientHeight-this.clientHeight);
+}
+/*层样式开始*/
+.floor{
+	width: 100%;
+	height: 800px;
+	text-align: center;
+	line-height: 800px;
+}
+/*层样式结束*/
+/*页脚开始*/
+.footer{
+	width: 100%;
+	height: 60px;
+	color: #666;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+	background: #eee;
+}
+.footer a{
+	color: #666;
+	font-size: 14px;
+}
+.footer a:hover{
+	color: #48c690;
+	text-decoration: underline;
+}
+/*页脚结束*/
