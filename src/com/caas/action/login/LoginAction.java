@@ -27,6 +27,7 @@ import com.caas.util.StrutsUtils;
 @Scope("prototype")
 @Results({ @Result(name = "login", location = "/WEB-INF/content/login.jsp"),
 		@Result(name = "index", location = "/WEB-INF/content/index.jsp"),
+		@Result(name = "main", location = "/WEB-INF/content/main.jsp"),
 		@Result(name = "register", location = "/WEB-INF/content/register.jsp"),
 		@Result(name = "home", location = "/WEB-INF/content/home_about.jsp") })
 public class LoginAction extends BaseAction {

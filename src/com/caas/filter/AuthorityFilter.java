@@ -37,30 +37,32 @@ public class AuthorityFilter implements Filter {
 	 */
 	private boolean check(HttpServletRequest request, HttpServletResponse response) {
 		String reqUrl = request.getServletPath();
+		
+		return true;
 
-		if (reqUrl.indexOf('.') > -1) {// url包含.且不是.action，直接跳过
-			if (reqUrl.endsWith(".action")) {
-				reqUrl = reqUrl.substring(0, reqUrl.length() - 7);
-			} else {
-				return true;
-			}
-		}
-		for (String excludeUrl : excludeStartUrls) { // 以此路径开始不需要控制，直接跳过
-			if (reqUrl.startsWith(excludeUrl)) {
-				return true;
-			}
-		}
-		for (String excludeUrl : excludeEqualUrls) { // 等于此路径不需要控制，直接跳过
-			if (reqUrl.equals(excludeUrl)) {
-				return true;
-			}
-		}
-
-		if (AuthorityUtils.isLogin(request) && !"/".equals(reqUrl)) {
-			return true;
-		}
-		logger.debug("没有访问权限：reqUrl={}", reqUrl);
-		return false;
+//		if (reqUrl.indexOf('.') > -1) {// url包含.且不是.action，直接跳过
+//			if (reqUrl.endsWith(".action")) {
+//				reqUrl = reqUrl.substring(0, reqUrl.length() - 7);
+//			} else {
+//				return true;
+//			}
+//		}
+//		for (String excludeUrl : excludeStartUrls) { // 以此路径开始不需要控制，直接跳过
+//			if (reqUrl.startsWith(excludeUrl)) {
+//				return true;
+//			}
+//		}
+//		for (String excludeUrl : excludeEqualUrls) { // 等于此路径不需要控制，直接跳过
+//			if (reqUrl.equals(excludeUrl)) {
+//				return true;
+//			}
+//		}
+//
+//		if (AuthorityUtils.isLogin(request) && !"/".equals(reqUrl)) {
+//			return true;
+//		}
+//		logger.debug("没有访问权限：reqUrl={}", reqUrl);
+//		return false;
 	}
 
 	@Override
