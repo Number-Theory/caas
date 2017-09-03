@@ -1558,13 +1558,13 @@ table.dataTable thead .sorting:after {
 
 .widget {
 	border-radius: 5px;
-	padding: 15px 20px;
+	padding: 1px 20px;
 	margin-bottom: 10px;
-	margin-top: 10px
+	margin-top: 2px
 }
 
 .widget.style1 h2 {
-	font-size: 30px
+	font-size: 18px
 }
 
 .widget h2,.widget h3 {
@@ -1796,7 +1796,8 @@ table.dataTable thead .sorting:after {
 }
 
 .tabs-container .tab-pane .panel-body {
-	border-top: none
+	border-top: none;
+	background: #f0f8fa;
 }
 
 .tabs-container .tabs-left .tab-pane .panel-body,.tabs-container .tabs-right .tab-pane .panel-body {

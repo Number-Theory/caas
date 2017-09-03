@@ -1,7 +1,12 @@
 package com.caas.action;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.caas.model.PageContainer;
 import com.caas.util.Des3Utils;
@@ -15,6 +20,8 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  */
 public class BaseAction extends ActionSupport {
+	private static final Logger logger = LogManager.getLogger(BaseAction.class);
+	
 	private static final long serialVersionUID = -6024322463400978622L;
 
 	/**
@@ -87,6 +94,21 @@ public class BaseAction extends ActionSupport {
 
 	public void setExcelSqlParams(String excelSqlParams) {
 		this.excelSqlParams = excelSqlParams;
+	}
+	
+	//打印后台输出编码
+	protected void printMsg(String code){
+		try {
+			StrutsUtils.getResponse().setContentType("text/html; charset=utf-8");
+			PrintWriter pw = StrutsUtils.getResponse().getWriter();
+			pw.write(code);
+			pw.flush();
+			pw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("--------------------------打印后台输出编码错误----------------------------",e);
+			logger.error(e.getMessage());
+		}
 	}
 
 	public String buildSql(Map<String, Object> map) {

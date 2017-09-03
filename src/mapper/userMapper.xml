@@ -49,6 +49,14 @@
 	<select id="getUserByUserName" resultType="map">
 		select t.* from tb_caas_user t where t.userName =#{userName} limit 1
 	</select>
+	<select id="getUserByUserId" resultType="map">
+		select t.* from tb_caas_user t where t.userId =#{userId} limit 1
+	</select>
+	
+	<select id="getUserAuthenticationByUserId" resultType="map">
+		select t.* from tb_caas_authentication t where t.userId =#{userId} limit 1
+	</select>
+	
 	<select id="getUserByMobile" resultType="map">
 		select t.* from tb_caas_user t where t.mobile =#{mobile} limit 1
 	</select>
@@ -75,5 +83,13 @@
 	<update id="updateUserStatus">
 		update tb_caas_user set `status`=#{status} where id=#{id};
 	</update>
+	
+	<select id="getUserBalance" resultType="long">
+		select t.balance from tb_caas_balance t where t.userId = #{userId}
+	</select>
+	
+	<select id="getUserApp" resultType="map">
+		select * from tb_caas_application t where t.userId = #{userId}
+	</select>
 	
 </mapper> 

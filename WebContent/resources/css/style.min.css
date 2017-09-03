@@ -50,11 +50,16 @@ a:focus {
 }
 
 .nav>li.active>a {
+	color: #fff;
+}
+
+.navbar-default .nav>li>a:focus{
+	background-color: #293846;
 	color: #fff
 }
 
-.navbar-default .nav>li>a:focus,.navbar-default .nav>li>a:hover {
-	background-color: #293846;
+.navbar-default .nav>li>a:hover {
+	background-color: #1ab394;
 	color: #fff
 }
 

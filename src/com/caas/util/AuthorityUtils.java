@@ -153,11 +153,11 @@ public class AuthorityUtils {
 		return name;
 	}
 	
-	public static final Integer getLoginUserIdNew() {
+	public static final String getLoginUserIdNew() {
 		String jsonString = StrutsUtils.getSessionAttribute(LOGIN_USER_ID);
 		Map<String, Object> user = JsonUtil.jsonStrToMap(jsonString);
 
-		Integer user_id = (Integer) user.get("user_id");
+		String user_id = (String) user.get("userId");
 
 		return user_id;
 	}

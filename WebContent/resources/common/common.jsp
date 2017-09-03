@@ -28,24 +28,39 @@
 <link href="<%=path%>/resources/css/animate.min.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/style.min862f.css?v=4.1.0"
 	rel="stylesheet">
-	
-<link href="<%=path%>/resources/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/sweetalert.css">
+
+<link
+	href="<%=path%>/resources/css/plugins/bootstrap-table/bootstrap-table.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/resources/css/sweetalert.css">
 
 
-<link href="<%=path%>/resources/css/plugins/switchery/switchery.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/switchery/switchery.css"
+	rel="stylesheet">
+<link
+	href="<%=path%>/resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"
+	rel="stylesheet">
 
 
-<link href="<%=path%>/resources/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+<link
+	href="<%=path%>/resources/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css"
+	rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/datapicker/datepicker3.css"
+	rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/clockpicker/clockpicker.css"
+	rel="stylesheet">
 
 
-<link href="<%=path%>/resources/css/plugins/iCheck/custom.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/chosen/chosen.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/cropper/cropper.min.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/iCheck/custom.css"
+	rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/chosen/chosen.css"
+	rel="stylesheet">
+<link href="<%=path%>/resources/css/plugins/cropper/cropper.min.css"
+	rel="stylesheet">
+<link
+	href="<%=path%>/resources/css/plugins/jasny/jasny-bootstrap.min.css"
+	rel="stylesheet">
 
 <script src="<%=path%>/resources/js/jquery.min.js?v=2.1.4"></script>
 <script src="<%=path%>/resources/js/bootstrap.min.js?v=3.3.6"></script>
@@ -53,20 +68,26 @@
 <script
 	src="<%=path%>/resources/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="<%=path%>/resources/js/plugins/validate/messages_zh.min.js"></script>
-<script src="<%=path%>/resources/js/demo/form-validate-demo.min.js"></script>
+<%-- <script src="<%=path%>/resources/js/demo/form-validate-demo.min.js"></script> --%>
 <script type="text/javascript"
 	src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 <script type="text/javascript"
 	src="<%=path%>/resources/js/plugins/layer/laydate/laydate.js"></script>
-	
-<script src="<%=path%>/resources/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<%=path%>/resources/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="<%=path%>/resources/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<script
+	src="<%=path%>/resources/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script
+	src="<%=path%>/resources/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script
+	src="<%=path%>/resources/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="<%=path%>/resources/js/demo/bootstrap-table-demo.min.js"></script>
 <script src="<%=path%>/resources/js/bootstrap-table-export.js"></script>
 <script src="<%=path%>/resources/js/tableExport.js"></script>
 <script src="<%=path%>/resources/js/sweetalert.min.js"></script>
-	
+
+<script type="text/javascript"
+	src="<%=path%>/resources/js/contabs.min.js"></script>
+
 <script
 	src="<%=path%>/resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 <script
@@ -107,10 +128,13 @@
 				width : "95%"
 			}
 		};
-		for ( var selector in config)
-			$(selector).chosen(config[selector]);
+		for ( var selector in config) {
+			if ($(selector) != null) {
+				$(selector).chosen(config[selector]);
+			}
+		}
 	});
-	
+
 	function freshdata(obj) {
 		debugger;
 		$("#" + obj).submit();
@@ -156,7 +180,7 @@
 		for (var i = 0; i < str.length; i++) {
 			if (str[i].checked == true) {
 				chestr += count == 0 ? str[i].value : "," + str[i].value;
-				count ++;
+				count++;
 			}
 		}
 		if (count == 0) {
