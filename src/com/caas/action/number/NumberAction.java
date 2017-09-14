@@ -1,5 +1,7 @@
 package com.caas.action.number;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +17,7 @@ import com.caas.dao.CaasDao;
 import com.caas.model.PageContainer;
 import com.caas.model.PageModel;
 import com.caas.service.number.NumberService;
+import com.caas.util.AuthorityUtils;
 import com.caas.util.StrutsUtils;
 
 /**
@@ -24,12 +27,16 @@ import com.caas.util.StrutsUtils;
  */
 @Controller
 @Results({ @Result(name = "numberList", location = "/WEB-INF/content/number/listNumber.jsp"),
+		@Result(name = "applyNumberList", location = "/WEB-INF/content/number/listApplyNumber.jsp"),
 		@Result(name = "addNumber", location = "/WEB-INF/content/number/addNumber.jsp"),
 		@Result(name = "editNumber", location = "/WEB-INF/content/number/editNumber.jsp"),
 		@Result(name = "roleList", location = "/WEB-INF/content/number/listRole.jsp"),
 		@Result(name = "addRole", location = "/WEB-INF/content/number/addRole.jsp"),
 		@Result(name = "editRole", location = "/WEB-INF/content/number/editRole.jsp"),
-		@Result(name = "numberRate", location = "/WEB-INF/content/number/numberRate.jsp") })
+		@Result(name = "numberRate", location = "/WEB-INF/content/number/numberRate.jsp"),
+		@Result(name = "applyNumber", location = "/WEB-INF/content/number/applyNumber.jsp")
+
+})
 public class NumberAction extends BaseAction {
 
 	/**
@@ -45,12 +52,21 @@ public class NumberAction extends BaseAction {
 	@Autowired
 	private CaasDao dao;
 
+	private List<Map<String, Object>> feeMap = new ArrayList<Map<String, Object>>();
+
+	private List<Map<String, Object>> cityMap = new ArrayList<Map<String, Object>>();
+
 	/*
 	 * 菜单管理
 	 */
 	@Action("/number/numberList")
 	public String numberList() {
 		data = StrutsUtils.getFormData();
+		if (!data.containsKey("userId")) {
+			data.put("userId", AuthorityUtils.getLoginUserIdNew());
+		}
+		String authStatus = dao.getOneInfo("number.getUserAuthStatus", data) ;
+		data.put("authStatus", authStatus);
 		return "numberList";
 	}
 
@@ -125,15 +141,48 @@ public class NumberAction extends BaseAction {
 		return "numberRate";
 	}
 
+	@Action("/number/applyNumber")
 	public String applyNumber() {
 		data = StrutsUtils.getFormData();
-		// TODO
+		feeMap = dao.selectList("number.getFeeMap", data);
+		cityMap = dao.selectList("number.getAllCity", null);
 		return "applyNumber";
+	}
+
+	@Action("/number/addApplyNumber")
+	public String addApplyNumber() {
+		data = StrutsUtils.getFormData();
+		try {
+			System.out.println(data);
+			data.put("userId", AuthorityUtils.getLoginUserIdNew());
+			service.applyNumber(data);
+			feeMap = dao.selectList("number.getFeeMap", data);
+			cityMap = dao.selectList("number.getAllCity", null);
+			data.put("msg", "申请成功");
+		} catch (Exception e) {
+			data.put("msg", "申请失败");
+		}
+		return "applyNumber";
+	}
+
+	@Action("/number/applyNumberListData")
+	public void applyNumberListData() {
+		
+		deal("number.applyNumberListData", "number.applyNumberListDataCount");
+	}
+
+	@Action("/number/applyNumberList")
+	public String applyNumberList() {
+		data = StrutsUtils.getFormData();
+		return "applyNumberList";
 	}
 
 	// 处理表格
 	public void deal(String sqlData, String sqlDataCount) {
 		Map<String, Object> map = StrutsUtils.getFormData();
+		if (!map.containsKey("userId")) {
+			map.put("userId", AuthorityUtils.getLoginUserIdNew());
+		}
 		PageContainer page = service.csmData(map, sqlData, sqlDataCount);
 
 		PageModel pageModel = new PageModel();
@@ -142,4 +191,21 @@ public class NumberAction extends BaseAction {
 
 		StrutsUtils.renderJson(pageModel);
 	}
+
+	public List<Map<String, Object>> getFeeMap() {
+		return feeMap;
+	}
+
+	public void setFeeMap(List<Map<String, Object>> feeMap) {
+		this.feeMap = feeMap;
+	}
+
+	public List<Map<String, Object>> getCityMap() {
+		return cityMap;
+	}
+
+	public void setCityMap(List<Map<String, Object>> cityMap) {
+		this.cityMap = cityMap;
+	}
+
 }

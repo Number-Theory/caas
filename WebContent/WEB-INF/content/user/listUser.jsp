@@ -57,7 +57,7 @@
 											<div class="row">
 												<div class="col-md-3">
 													<input type="text" name="condition" id="condition"
-														value="${param.condition }" placeholder="目录名称"
+														value="${param.condition }" placeholder="用户名/用户ID/邮箱/手机号"
 														class="form-control">
 												</div>
 												<div class="col-md-1">
@@ -78,7 +78,7 @@
 											<th></th>
 											<th data-field="rownum">序号</th>
 											<th data-field="userName">用户名</th>
-											<th data-field="sid">SID</th>
+											<th data-field="sid">UserId</th>
 											<th data-field="token">Token</th>
 											<th data-field="mobile">手机号码</th>
 											<th data-field="email">邮箱</th>
@@ -137,7 +137,7 @@
 								striped : true, // 是否显示行间隔色
 								cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 								pagination : true, // 是否显示分页（*）
-								sortable : false, // 是否启用排序
+								sortable : true, // 是否启用排序
 								sortOrder : "asc",
 								queryParamsType : "limit", // 参数格式,发送标准的RESTFul类型的参数请求
 								// //排序方式,如果为"",则获取的参数为pageSize，pageNumber
@@ -171,7 +171,7 @@
 											field : 'userName',
 										},
 										{
-											field : 'sid',
+											field : 'userId',
 										},
 										{
 											field : 'token',

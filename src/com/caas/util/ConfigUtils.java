@@ -39,6 +39,8 @@ public class ConfigUtils {
 	
 	public static String send_message_url;
 	
+	public static String auth_pic;
+	
 	public static Integer request_infos_timeout;
 
 	@PostConstruct

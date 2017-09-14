@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 public class FileUtil {
 	private static final String[] IMG_TYPE_LIST = {"jpg", "jpeg","gif","png"};
 	private static Logger logger = LoggerFactory.getLogger(FileUtil.class);
+	
+	public static final long SYS_PIC_MAXSIZE=2*1024*1024;
 
 	//创建文件并写入内容
 	public static void createFile(String dirName, String fileName,

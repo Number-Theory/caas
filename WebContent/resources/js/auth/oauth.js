@@ -75,6 +75,7 @@ $(function() {
 
 	$("#company_oauth_confirm_btn").click(function() {
 		var result = "1";
+		debugger;
 		// 普通企业证件
 		if ($("#cerType").val() == 1) {
 			if (!oauth_frm_company.companyName()) {
@@ -298,10 +299,10 @@ var oauth_frm_company = {
 	isBsnum : function() {
 		var isBsnum = $("#bsnumFile").val();
 		if (isBsnum == "") {
-			$("#bsnumFile").parent(".file").siblings("p").fadeIn();
+			$("#bsnumFile").siblings("p").fadeIn();
 			return false;
 		}
-		$("#bsnumFile").parent(".file").siblings("p").hide();
+		$("#bsnumFile").siblings("p").hide();
 		return true;
 	},
 	picType1 : function() {

@@ -1,6 +1,7 @@
 package com.caas.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 
 import com.caas.dao.CaasDao;
 import com.caas.util.AuthorityUtils;
+import com.caas.util.DateUtil;
+import com.caas.util.StrutsUtils;
 
 @Controller
 @Scope("prototype")
@@ -33,6 +36,8 @@ public class MainAction extends BaseAction {
 	private Map<String, Object> monthConsume = new HashMap<String, Object>();
 
 	private Map<String, Object> yesterdayConsume = new HashMap<String, Object>();
+	
+	private List<Map<String, Object>> lastFiveDayConsume = new ArrayList<Map<String,Object>>();
 
 	@Autowired
 	private CaasDao dao;
@@ -53,19 +58,55 @@ public class MainAction extends BaseAction {
 			user.put("balance", 0);
 		}
 
-		userHasApp = dao.selectList("getUserApp", user);
+		userHasApp = dao.selectList("user.getUserApp", user);
 
 		for (Map<String, Object> app : userHasApp) {
 			userHasAppFlag.put("app" + (String) app.get("productType"), app.get("status"));
 		}
 
-		// TODO
-		yesterdayConsume.put("smsCount", 50000.10);
-		yesterdayConsume.put("total", 50000.10);
-		yesterdayConsume.put("verify_fee", 50000.10);
-		yesterdayConsume.put("notice_fee", 50000.10);
-		yesterdayConsume.put("waihu_fee", 50000.10);
-		yesterdayConsume.put("center_fee", 50000.10);
+		data = StrutsUtils.getFormData();
+		data.put("userId", AuthorityUtils.getLoginUserIdNew());
+		data.put("startDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), 1) + " 00:00:00", "yyyy-MM-dd HH:mm:ss"));
+		data.put("endDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), 1) + " 23:59:59", "yyyy-MM-dd HH:mm:ss"));
+		yesterdayConsume.put("total", dao.getOneInfo("user.getUserDaySumConsume", data));
+		data.put("productType", "4");
+		yesterdayConsume.put("voiceNotify", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "3");
+		yesterdayConsume.put("voiceCode", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "2");
+		yesterdayConsume.put("callback", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "0");
+		yesterdayConsume.put("safetyCall", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "1");
+		yesterdayConsume.put("minNum", dao.getOneInfo("user.getUserDayConsume", data));
+		
+		data.clear();
+		data.put("userId", AuthorityUtils.getLoginUserIdNew());
+		data.put("startDate", DateUtil.strToDate(DateUtil.dateToStr(new Date(), "yyyy-MM") + "-01 00:00:00", "yyyy-MM-dd HH:mm:ss"));
+//		data.put("endDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), 30) + "23:59:59", "yyyy-MM-dd HH:mm:ss"));
+		monthConsume.put("total", dao.getOneInfo("user.getUserDaySumConsume", data));
+		data.put("productType", "4");
+		monthConsume.put("voiceNotify", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "3");
+		monthConsume.put("voiceCode", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "2");
+		monthConsume.put("callback", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "0");
+		monthConsume.put("safetyCall", dao.getOneInfo("user.getUserDayConsume", data));
+		data.put("productType", "1");
+		monthConsume.put("minNum", dao.getOneInfo("user.getUserDayConsume", data));
+		
+		data.clear();
+		for(int i = 0 ; i <= 5 ; i ++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			data = StrutsUtils.getFormData();
+			data.put("startDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), i) + " 00:00:00", "yyyy-MM-dd HH:mm:ss"));
+			data.put("endDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), i) + " 23:59:59", "yyyy-MM-dd HH:mm:ss"));
+			data.put("userId", AuthorityUtils.getLoginUserIdNew());
+			map.put("total", dao.getOneInfo("user.getUserDaySumConsume", data));
+			map.put("consumeDate", DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), i));
+			lastFiveDayConsume.add(map);
+		}
 
 		return "main";
 	}
@@ -153,5 +194,14 @@ public class MainAction extends BaseAction {
 	public void setYesterdayConsume(Map<String, Object> yesterdayConsume) {
 		this.yesterdayConsume = yesterdayConsume;
 	}
+
+	public List<Map<String, Object>> getLastFiveDayConsume() {
+		return lastFiveDayConsume;
+	}
+
+	public void setLastFiveDayConsume(List<Map<String, Object>> lastFiveDayConsume) {
+		this.lastFiveDayConsume = lastFiveDayConsume;
+	}
+	
 
 }

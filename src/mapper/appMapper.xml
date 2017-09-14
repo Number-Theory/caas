@@ -11,6 +11,13 @@
 		update tb_caas_application set ipWhiteList=#{ipWhiteList}, statusUrl=#{statusUrl}, hangupUrl=#{hangupUrl}, recordUrl=#{recordUrl}, updateDate=now() where id=#{id}
 	</update>
 	
+	<insert id="addAppInfo">
+		INSERT INTO `tb_caas_application` (`userId`, `appName`, `productType`, `status`, `ipWhiteList`, 
+		`recodeStoragePeriod`, `statusUrl`, `hangupUrl`, `recordUrl`, `createDate`, `updateDate`, `remark`)
+		 VALUES (#{userId}, #{appName},#{productType},'0', #{ipWhiteList}, #{recodeStoragePeriod}, #{statusUrl}, 
+		 #{hangupUrl}, #{recordUrl}, now(), now(), #{remark});
+	</insert>
+	
 	<select id="getAppConsume" resultType="map">
 		
 	</select>

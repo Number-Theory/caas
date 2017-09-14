@@ -26,4 +26,6 @@ public interface NumberService {
 	void saveEditNumber(Map<String, Object> map);
 
 	void updateNumberStatus(Map<String, Object> map);
+
+	void applyNumber(Map<String, Object> data);
 }

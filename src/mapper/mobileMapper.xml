@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mobile">
+
+    <select id="mobileListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*,f.*
+		from 
+		tb_caas_phoneNumber n left join tb_caas_fee f on n.rateId = f.id ,
+		(select @i:=#{start} )it where 1=1
+		<if test="condition != null">
+			and (n.sid like concat('%',#{condition},'%')
+				or n.mobileName like concat('%',#{condition},'%')
+				or n.email like concat('%',#{condition},'%')
+				or n.mobile like concat('%',#{condition},'%')
+			)
+		</if>
+		${limit}
+	</select>
+
+	<select id="mobileListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_phoneNumber n 
+		where 1=1 and id != '1'
+		<if test="condition != null">
+			and (n.sid like concat('%',#{condition},'%')
+				or n.mobileName like concat('%',#{condition},'%')
+				or n.email like concat('%',#{condition},'%')
+				or n.mobile like concat('%',#{condition},'%')
+			)
+		</if>
+	</select>
+
+	<delete id="deleteMobile">
+		delete from tb_caas_phoneNumber where id =#{id};
+	</delete>
+
+	<delete id="batchDeleteMobile">
+		delete from tb_caas_phoneNumber where id in (${str});
+	</delete>
+
+	<select id="getMobile" resultType="map">
+		select t.*,f.* from tb_caas_phoneNumber t left join tb_caas_fee f on  t.rateId = f.id where t.id =#{id} limit 1
+	</select>
+	
+	<select id="getAllMobile" resultType="map">
+		select t.*,f.* from tb_caas_phoneNumber t left join tb_caas_fee f on t.rateId = f.id
+	</select>
+
+	<update id="saveEditMobile">
+		update tb_caas_phoneNumber set phoneNumber=#{phoneNumber},city=#{city},cityCode=#{cityCode},operator=#{operator}
+		,numberType=#{numberType},provider=#{provider},applyDate=#{applyDate},serverProduct=#{serverProduct},frequency=#{frequency}
+		,cycleTime=#{cycleTime},frequencyNumber=#{frequencyNumber},releaseTime=#{releaseTime},attribute=#{attribute}
+		,status=#{status},remark=#{remark},allotStatus=#{allotStatus} where `id`=#{id};
+	</update>
+	
+	<insert id="saveAddMobile">
+		INSERT INTO `tb_caas_phoneNumber` (`phoneNumber`, `city`, `cityCode`, `operator`, `numberType`, `provider`, `applyDate`,
+		`serverProduct`,`frequency`,`cycleTime`,`frequencyNumber`,`releaseTime`,`attribute`,`status`,`remark`,`allotStatus`) VALUES
+		 (#{phoneNumber}, #{city}, #{cityCode}, #{operator}, #{numberType}, #{provider}, #{applyDate},
+		 #{serverProduct}, #{frequency}, #{cycleTime}, #{frequencyNumber}, #{releaseTime}, #{attribute}, #{status}, #{remark}, #{allotStatus});
+	</insert>
+	
+	<update id="updateMobileStatus">
+		update tb_caas_phoneNumber set `status`=#{status} where id=#{id};
+	</update>
+	
+</mapper> 
