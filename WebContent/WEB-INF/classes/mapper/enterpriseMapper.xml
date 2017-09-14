@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="enterprise">
+
+    <!-- 企业列表 -->
+    <select id="enterpriseListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*
+		from
+		tb_caas_authentication n ,
+		(select
+		@i:=#{start} )it where AuthenticationType = 0 and id != '1'
+		<if test="condition != null">
+			and (n.attribute like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
+				or n.legalPerson like concat('%',#{condition},'%')
+				or n.legalPersonId like concat('%',#{condition},'%')
+				or n.webSite like concat('%',#{condition},'%')
+			)
+		</if>
+		${limit}
+	</select>
+
+	<select id="enterpriseListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_authentication n 
+		where AuthenticationType = 0 and id != '1'
+		<if test="condition != null">
+			and (n.attribute like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
+				or n.legalPerson like concat('%',#{condition},'%')
+				or n.legalPersonId like concat('%',#{condition},'%')
+				or n.webSite like concat('%',#{condition},'%')
+			)
+		</if>
+	</select>
+
+	<update id="updateEnterpriseStatus">
+		update tb_caas_authentication set `status`=#{status} where id=#{id};
+	</update>
+	
+</mapper> 
