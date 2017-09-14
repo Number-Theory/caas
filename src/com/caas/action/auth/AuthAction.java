@@ -15,6 +15,8 @@ import com.caas.action.BaseAction;
 import com.caas.dao.CaasDao;
 import com.caas.service.user.UserService;
 import com.caas.util.AuthorityUtils;
+import com.caas.util.ConfigUtils;
+import com.caas.util.FileUtil;
 import com.caas.util.StrUtil;
 import com.caas.util.StrutsUtils;
 
@@ -160,20 +162,31 @@ public class AuthAction extends BaseAction {
 		return "accountCertify";
 	}
 
+	@Action("/user/checkCompanyName")
+	public void checkCompanyName() {
+		data = StrutsUtils.getFormData();
+		int count = dao.getOneInfo("user.checkCompanyName", data);
+		StrutsUtils.renderJson(count);
+	}
+
+	@Action("/user/ckIDNumEnable")
+	public void ckIDNumEnable() {
+		data = StrutsUtils.getFormData();
+		int count = dao.getOneInfo("user.ckIDNumEnable", data);
+		StrutsUtils.renderJson(count);
+	}
+
 	/*------------------------------------------------企业认证--------------------------------------*/
 	@Action("/user/oAuthCompany")
 	public String oAuthCompany() {
 		getUserInfo();
+		oauth = StrutsUtils.getFormData(oauth);
 		boolean boo = checkComp(oauth);
 		if (!boo) {
 			StrUtil.writeMsg(StrutsUtils.getResponse(), "认证信息不合法，请检查后重试.", null);
 			return null;
 		}
 		String result = null;
-		// if (existCompanyName(oauth)) {
-		// StrUtil.writeMsg(StrutsUtils.getResponse(), "【该认证名称已被使用】", null);
-		// return null;
-		// }
 
 		// 普通企业认证
 		result = authComNormal();
@@ -191,6 +204,50 @@ public class AuthAction extends BaseAction {
 
 	/*---------------------------------企业普通认证------------------------------*/
 	public String authComNormal() {
+		if(bsnumFile==null){
+			return "认证证件图片不能为空" ;
+		}
+		
+		if(checkPic(bsnumFile)==null){
+			return null;
+		}
+		String suffix = bsnumFileFileName.substring(bsnumFileFileName.lastIndexOf(".")+1);
+		String userId = AuthorityUtils.getLoginUserIdNew();
+		Map<String, Object> temp = dao.getOneInfo("user.getUserAuthenticationByUserId", userId);
+		if(temp != null && temp.containsKey("enterpriseMaterial")) {
+			FileUtil.deleteFile((String)temp.get("enterpriseMaterial"));
+			dao.delete("user.deleteUserAuthentication", userId);
+		}
+		String fileName = FileUtil.upload(bsnumFile, userId, ConfigUtils.auth_pic, suffix);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.putAll(oauth);
+		params.put("userId", userId);
+		params.put("authenticationType", "2");
+		params.put("enterpriseMaterial", fileName);
+		params.put("status", "1");
+		
+		
+		dao.insert("user.oAuthCompany", params);
+		
+		return "success";
+	}
+	
+	private String checkPic(File file){
+		//验证图片大小
+		String result = FileUtil.checkFile(file,FileUtil.SYS_PIC_MAXSIZE);
+		if(result!=null){
+			return result;
+		}
+		//验证图片格式
+		boolean imgType = FileUtil.checkImgType(file);
+		if(!imgType){
+			return "图片格式不正确";
+		}
+		if(!FileUtil.isImageByWidthHeight(file)){
+			return "无法获取图片宽度高度";
+		}
 		return "success";
 	}
 
@@ -221,4 +278,37 @@ public class AuthAction extends BaseAction {
 	public void setOauth(Map<String, Object> oauth) {
 		this.oauth = oauth;
 	}
+
+	public File getIdCardFile() {
+		return idCardFile;
+	}
+
+	public void setIdCardFile(File idCardFile) {
+		this.idCardFile = idCardFile;
+	}
+
+	public String getIdCardFileFileName() {
+		return idCardFileFileName;
+	}
+
+	public void setIdCardFileFileName(String idCardFileFileName) {
+		this.idCardFileFileName = idCardFileFileName;
+	}
+
+	public File getBsnumFile() {
+		return bsnumFile;
+	}
+
+	public void setBsnumFile(File bsnumFile) {
+		this.bsnumFile = bsnumFile;
+	}
+
+	public String getBsnumFileFileName() {
+		return bsnumFileFileName;
+	}
+
+	public void setBsnumFileFileName(String bsnumFileFileName) {
+		this.bsnumFileFileName = bsnumFileFileName;
+	}
+
 }

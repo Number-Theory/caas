@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="template">
+	
+	<!-- 菜单配置管理 -->
+    <select id="templateListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*
+		from
+		tb_caas_template n ,
+		(select
+		@i:=#{start} )it where 1=1
+		<if test="condition != null">
+			and (n.userId like concat('%',#{condition},'%') 
+			or n.insideCode like concat('%',#{condition},'%')
+			or n.externalCode  like concat('%',#{condition},'%')
+			or n.status like concat('%',#{condition},'%'))
+		</if>
+		${limit}
+	</select>
+
+	<select id="templateListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_template n
+		where 1=1
+		<if test="condition != null">
+			and (n.userId like concat('%',#{condition},'%') 
+			or n.insideCode like concat('%',#{condition},'%')
+			or n.externalCode  like concat('%',#{condition},'%')
+			or n.status like concat('%',#{condition},'%'))
+		</if>
+	</select>
+
+	<delete id="deleteTemplate">
+		delete from tb_caas_template where id =#{id};
+	</delete>
+
+	<delete id="batchDeleteTemplate">
+		delete from tb_caas_template where id in (${str});
+	</delete>
+
+	<select id="getTemplate" resultType="map">
+		select t.* from tb_caas_template t where t.id =#{id} limit 1
+	</select>
+	
+	<select id="getAllTemplate" resultType="map">
+		select t.* from tb_caas_template t 
+	</select>
+
+	<update id="saveEditTemplate">
+		update tb_caas_template set userId=#{userId},insideCode=#{insideCode},externalCode=#{externalCode},templateType=#{templateType},
+		templateName=#{templateName},templateContent=#{templateContent},status=#{status} where `id`=#{id};
+	</update>
+	
+	<insert id="saveAddTemplate">
+		INSERT INTO `tb_caas_template` (`userId`, `insideCode`, `externalCode`, `templateType`, `templateName`, `templateContent`, `status`, `createTime`)
+		VALUES (#{userId}, #{insideCode}, #{externalCode}, #{templateType}, #{templateName}, #{templateContent}, #{status},now());
+	</insert>
+	
+	<update id="updateTemplateStatus">
+		update tb_caas_template set status=#{status} where id=#{id};
+	</update>
+	
+</mapper> 

@@ -104,14 +104,15 @@ public class StrUtil {
 			url = "location.href=\""+url+"\"" ;
 		}
 		StringBuilder sb = new StringBuilder();
-		String host = ip;
+		String host = getUnixIP();
+		String port = "8080"; //TODO
 		sb.append("<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>");
 		sb.append("<html xmlns='http://www.w3.org/1999/xhtml'>");
 		sb.append("<head>");
 		sb.append("<title>提示</title>");
-		sb.append("<link rel='stylesheet' type='text/css' href='http://"+host+"/page/controlPage/css/style.css' />");
-		sb.append("<script type='text/javascript' href='http://"+host+"/page/controlPage/js/common.js' ></script>");
-		sb.append("<script type='text/javascript' href='http://"+host+"/cjs/jquery-1.7.2.js' ></script>");
+		sb.append("<link rel='stylesheet' type='text/css' href='http://"+host+":"+port+"/resources/css/main/style.css' />");
+		sb.append("<script type='text/javascript' href='http://"+host+":"+port+"/resources/js/main/common.js' ></script>");
+		sb.append("<script type='text/javascript' href='http://"+host+":"+port+"/resources/js/jquery-1.7.2.js' ></script>");
 		sb.append("</head>");
 		sb.append("<body>");
 		sb.append("<div class='dialog-bg' style='display:block'>&nbsp;</div>");

@@ -4,7 +4,7 @@
 
 <mapper namespace="number">
 
-	<!-- 菜单配置管理 -->
+	<!-- 号码管理 -->
 	<select id="numberListData" resultType="map">
 		select (@i:=@i+1)
 		rownum,n.*,m.rateName
@@ -14,7 +14,7 @@
 		<if test="phoneNumber != null">
 			and n.phoneNumber like concat('%',#{phoneNumber},'%')
 		</if>
-		<if test="userId != null">
+		<if test="userId != null and userId != '0'.toString()">
 			and n.userId = #{userId}
 		</if>
 		<if test="productType != null">
@@ -36,7 +36,7 @@
 		<if test="phoneNumber != null">
 			and n.phoneNumber like concat('%',#{phoneNumber},'%')
 		</if>
-		<if test="userId != null">
+		<if test="userId != null and userId != '0'.toString()">
 			and n.userId = #{userId}
 		</if>
 		<if test="productType != null">
@@ -94,5 +94,55 @@
 	<select id="getNumberRate" resultType="map">
 		select * from tb_caas_fee t where t.id = #{rateId}
 	</select>
+	
+	<select id="getFeeMap" resultType="map">
+		select * from tb_caas_fee t where t.productType=#{productType} and t.rateType='0'
+	</select>
+	
+	<insert id="applyNumber">
+		INSERT INTO `tb_caas_number_apply` (`userId`, `productType`, `numberCount`, `numberCityId`, `numberCityName`, 
+		`rateId`, `status`, `context`, `createDate`) VALUES (#{userId}, #{productType}, #{numberCount}, #{numberCityId},
+		 #{numberCityName}, #{feeId}, '0', #{context}, now());
+	</insert>
+	
+	<select id="getAllCity" resultType="Map">
+		select city_id as cityId, city_name as cityName from tb_caas_city
+	</select>
 
+	<select id="applyNumberListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*,m.rateName
+		from
+		tb_caas_number_apply n left join tb_caas_fee m on n.rateId=m.id,
+		(select @i:=#{start} )it where 1=1
+		<if test="status != null">
+			and n.status = #{status}
+		</if>
+		<if test="productType != null">
+			and n.productType = #{productType}
+		</if>
+		<if test="userId != null and userId != '0'.toString()">
+			and n.userId = #{userId}
+		</if>
+		${limit}
+	</select>
+
+	<select id="applyNumberListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_number_apply n
+		where 1=1
+		<if test="status != null">
+			and n.status = #{status}
+		</if>
+		<if test="productType != null">
+			and n.productType = #{productType}
+		</if>
+		<if test="userId != null and userId != '0'.toString()">
+			and n.userId = #{userId}
+		</if>
+	</select>
+	
+	<select id="getUserAuthStatus" resultType="string">
+		select status from tb_caas_authentication where userId=#{userId}; 
+	</select>
 </mapper> 

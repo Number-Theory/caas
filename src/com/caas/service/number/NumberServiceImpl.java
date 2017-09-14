@@ -68,4 +68,9 @@ public class NumberServiceImpl implements NumberService {
 	public void updateNumberStatus(Map<String, Object> map) {
 		dao.update("number.updateNumberStatus", map);
 	}
+
+	@Override
+	public void applyNumber(Map<String, Object> data) {
+		dao.insert("number.applyNumber", data);
+	}
 }

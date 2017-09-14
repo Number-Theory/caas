@@ -151,6 +151,19 @@ public class StrutsUtils {
 		LOGGER.debug("\n\nformData-------------------------" + formData + "\n");
 		return formData;
 	}
+	
+	public static Map<String, Object> getFormData(Map<String, Object> data) {
+		Map<String, Object> formData = new HashMap<String, Object>();
+		String value;
+		for (Map.Entry<String, Object> map : data.entrySet()) {
+			value = StringUtils.join((String[])map.getValue(), ",").trim();
+			if (StringUtils.isNotBlank(value)) {
+				formData.put(map.getKey(), value);
+			}
+		}
+		LOGGER.debug("\n\nformData-------------------------" + formData + "\n");
+		return formData;
+	}
 
 	public static Map<String, Object> getFormDataObj() {
 		Map<String, Object> formData = new HashMap<String, Object>();

@@ -77,7 +77,7 @@ h2 {
 									<div class="ibox-content">
 										<h2 class="no-margins">${data.totalConsume }</h2>
 										<div class="stat-percent font-bold text-success">
-											98% <i class="fa fa-level-up"></i>
+<!-- 											98% <i class="fa fa-level-up"></i> -->
 										</div>
 										<small>当月消耗</small>
 									</div>
@@ -92,7 +92,7 @@ h2 {
 									<div class="ibox-content">
 										<h2 class="no-margins">${data.totalRequest }</h2>
 										<div class="stat-percent font-bold text-success">
-											98% <i class="fa fa-level-up"></i>
+<!-- 											98% <i class="fa fa-level-up"></i> -->
 										</div>
 										<small>当月总请求数</small>
 									</div>
@@ -119,7 +119,7 @@ h2 {
 									<div class="ibox-content">
 										<h2 class="no-margins">${data.todayConsume }</h2>
 										<div class="stat-percent font-bold text-navy">
-											44% <i class="fa fa-level-up"></i>
+<!-- 											44% <i class="fa fa-level-up"></i> -->
 										</div>
 										<small>今日消耗</small>
 									</div>
@@ -134,7 +134,7 @@ h2 {
 									<div class="ibox-content">
 										<h2 class="no-margins">${data.todayRequest }</h2>
 										<div class="stat-percent font-bold text-success">
-											98% <i class="fa fa-level-up"></i>
+<!-- 											98% <i class="fa fa-level-up"></i> -->
 										</div>
 										<small>今日总请求数</small>
 									</div>
@@ -155,6 +155,8 @@ h2 {
 									aria-expanded="false">应用管理</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-3"
 									aria-expanded="false">号码管理</a></li>
+								<li class=""><a data-toggle="tab" href="#tab-6"
+									aria-expanded="false">号码申请记录</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-4"
 									aria-expanded="false">消耗分析</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-5"
@@ -196,6 +198,13 @@ h2 {
 									<div class="panel-body">
 										<iframe width="100%" height="800px"
 											src="<%=path%>/number/numberList?productType=0"
+											frameborder="0" seamless></iframe>
+									</div>
+								</div>
+								<div id="tab-6" class="tab-pane">
+									<div class="panel-body">
+										<iframe width="100%" height="800px"
+											src="<%=path%>/number/applyNumberList?productType=0"
 											frameborder="0" seamless></iframe>
 									</div>
 								</div>

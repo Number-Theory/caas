@@ -143,6 +143,10 @@
 	function adddata(url) {
 		window.location.href = url;
 	}
+	
+	function flushPage(url) {
+		parent.location.href = url;
+	}
 
 	function editdata(url) {
 		var chestr = "";

@@ -10,18 +10,18 @@
 <head>
 <%@include file="/resources/common/common.jsp"%>
 
-<title>号码信息</title>
+<title>申请号码记录</title>
 </head>
 
 <body class="gray-bg">
-	<div class="modal inmodal" id="rateModal" tabindex="-1" role="dialog"
-		aria-hidden="true">
+	<div class="modal inmodal" id="rateApplyModal" tabindex="-1"
+		role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">号码费率</h4>
+					<h4 class="modal-title">申请号码记录</h4>
 				</div>
-				<div id="rateModalItemBox" class="modal-body ibox-content"
+				<div id="rateItemBox" class="modal-body ibox-content"
 					style="height: 300px;"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
@@ -37,49 +37,36 @@
 					<div class="col-sm-12">
 						<!-- Example Events -->
 						<div class="example-wrap">
-							<h4 class="example-title">号码列表</h4>
+							<h4 class="example-title">申请号码记录</h4>
 							<div class="example">
 								<p>
-									<c:if test="${data.authStatus == 0 }">
-										<div class="col-md-1">
-										<button class="btn btn-success" type="button"
-											onclick="adddata('/number/applyNumber?productType=${data.productType }')">
-											<i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">申请号码
-											</span>
-										</button>
-										</div>
-									</c:if>
-									<c:if test="${data.authStatus != 0 }">
-									<div id="authButton" class="col-md-1">
-										<button class="btn btn-success " type="button"
-											onclick="flushPage('/user/accountCertify')">
-											<i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">申请号码
-											</span>
-										</button>
-										</div>
-									</c:if>
-									&nbsp;&nbsp;
 									<button class="btn btn-primary " type="button"
-										onclick="freshdata('formNumber')">
+										onclick="freshdata('formApplyNumber')">
 										<i class="fa fa-check"></i>&nbsp;&nbsp;刷新
 									</button>
 									&nbsp;&nbsp;
 								</p>
 								<div class="alert alert-success alert-dismissable"
 									id="operateNote"></div>
-								<form action="<%=path%>/number/numberList" method="post"
-									id="formNumber">
+								<form action="<%=path%>/number/applyNumberList" method="post"
+									id="formApplyNumber">
 									<div class="form-group">
 										<div class="col-sm-10">
 											<div class="row">
 												<div class="col-md-3">
-													<input type="text" name="phoneNumber" id="phoneNumber"
-														value="${data.phoneNumber }" placeholder="电话号码"
-														class="form-control"> <input type="hidden"
-														name=productType id="productType"
-														value="${data.productType }" placeholder="业务类型"
-														class="form-control">
+													<select id="status" name="status" data-placeholder="申请状态"
+														class="chosen-select" style="width: 230px;" tabindex="2">
+														<option value="" hassubinfo="true">申请状态</option>
+														<option value="0" hassubinfo="true"
+															<c:if test="${data.status == 0}">selected="selected"</c:if>>申请中</option>
+														<option value="1" hassubinfo="true"
+															<c:if test="${data.status == 1}">selected="selected"</c:if>>申请成功</option>
+														<option value="2" hassubinfo="true"
+															<c:if test="${data.status == 2}">selected="selected"</c:if>>申请失败</option>
+													</select>
 												</div>
+												<input id="productType" name="productType"
+													value="${data.productType }" type="hidden">
 												<div class="col-md-1">
 													<span class="input-group-btn"><button type="submit"
 															class="btn btn-primary">搜索</button></span>
@@ -87,7 +74,6 @@
 											</div>
 										</div>
 									</div>
-
 								</form>
 								<table id="tableDemo" class="table table-hover"
 									data-show-columns="true" data-search="false"
@@ -95,17 +81,15 @@
 									data-pagination="true" data-height="900">
 									<thead>
 										<tr>
-											<th></th>
 											<th data-field="rownum">序号</th>
-											<th data-field="phoneNumber">号码</th>
-											<th data-field="city">城市ID</th>
-											<th data-field="cityCode">区号</th>
-											<th data-field="ratisUnit">套餐内计费单元</th>
-											<th data-field="employUnit">已产生计费单元</th>
-											<th data-field="reSidueUnit">套餐剩余计费单元</th>
-											<th data-field="applyDate">开号日期</th>
-											<th data-field="rateName">套餐</th>
-											<th data-field="">操作</th>
+											<th data-field="numberCityName">城市名称</th>
+											<th data-field="numberCityId">城市ID</th>
+											<th data-field="numberCount">申请数量</th>
+											<th data-field="numberCount">分配数量</th>
+											<th data-field="rateName">套餐名称</th>
+											<th data-field="rateName">申请状态</th>
+											<th data-field="context">备注</th>
+											<th data-field="createDate">创建日期</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -134,20 +118,10 @@
 		p.innerHTML = "加载完成";
 
 		setTimeout("codefans()", 3000);// 3秒
-		
-		$("#authButton").mouseover(function(){
-			$(this).find("button").removeClass("btn-success").addClass("btn-danger");
-			$(this).find("button span").html("申请认证");
-		}) 
-		$("#authButton").mouseout(function(){
-			$(this).find("button").removeClass("btn-danger").addClass("btn-success");
-			$(this).find("button span").html("申请号码");
-		}) 
-		
 	});
 
 	function showRate(rateId, number) {
-		$("#rateModalItemBox").html("");
+		$("#rateItemBox").html("");
 		$.ajax({
 			url : '/number/numberRate',
 			type : "post",
@@ -157,7 +131,7 @@
 			},
 			dataType : "text",
 			success : function(data) {
-				$("#rateModalItemBox").html(data);
+				$("#rateItemBox").html(data);
 			}
 		});
 	}
@@ -170,7 +144,7 @@
 			$('#tableDemo')
 					.bootstrapTable(
 							{
-								url : '/number/numberListData', // 请求后台的URL（*）
+								url : '/number/applyNumberListData', // 请求后台的URL（*）
 								method : 'post', // 请求方式（*）
 								contentType : "application/x-www-form-urlencoded",
 								dataType : "json",
@@ -199,42 +173,23 @@
 								// 'selected'.
 								columns : [
 										{
-											formatter : function(value, row,
-													index) {
-												return "<input name='box' type='checkbox' value='"
-													+ row.id + "'>";
-											}
-										},
-										{
 											field : 'rownum',
 											width : "20%"
 										},
 										{
-											field : 'phoneNumber',
+											field : 'numberCityName',
 											width : "20%"
 										},
 										{
-											field : 'city',
+											field : 'numberCityId',
 											width : "20%"
 										},
 										{
-											field : 'cityCode',
+											field : 'numberCount',
 											width : "20%"
 										},
 										{
-											field : 'ratisUnit',
-											width : "20%"
-										},
-										{
-											field : 'employUnit',
-											width : "20%"
-										},
-										{
-											field : 'reSidueUnit',
-											width : "20%"
-										},
-										{
-											field : 'applyDate',
+											field : 'applyCount',
 											width : "20%"
 										},
 										{
@@ -243,27 +198,32 @@
 													index) {
 												var oper = '<a type="button" data-toggle="modal" onclick="showRate(\''
 														+ row.rateId
-														+ '\', \''
-														+ row.phoneNumber
-														+ '\')" data-target="#rateModal">'
+														+ '\', \'\')" data-target="#rateApplyModal">'
 														+ value + '</a>';
 												return oper;
 											},
 											width : "20%"
 										},
 										{
-											field : '#',
-											title : '操作',
-											align : 'center',
+											field : 'status',
 											formatter : function(value, row,
 													index) {
-												var edit = "/number/editNumber?id="
-														+ row.id;
-												var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;';
-												return d;
+												if (row.status == 0) {
+													return "申请中";
+												} else if (row.status == 1) {
+													return "申请成功";
+												} else if (row.status == 2) {
+													return "申请失败";
+												}
 											},
 											width : "20%"
-										}, ]
+										}, {
+											field : 'context',
+											width : "20%"
+										}, {
+											field : 'createDate',
+											width : "20%"
+										} ]
 							});
 		};
 
@@ -272,7 +232,7 @@
 			var temp = { // 这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 				length : params.limit, // 页面选择的显示行数
 				start : params.offset, // 页码
-				phoneNumber : $('#phoneNumber').val(),
+				status : $('#status').val(),
 				productType : $('#productType').val()
 			};
 			return temp;

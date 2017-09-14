@@ -20,12 +20,12 @@
 				</div>
 				<div class="group clearfix">
 					<ul class="clearfix">
-						<li class="item1"><span class="icon"></span>
-							<h6>个人开发者</h6>
-							<div>
-								<a class="btn-style4" href="<%=path%>/user/updatePerson">申请个人认证</a>
-							</div>
-							<p>* 可申请应用上线，正式商用产品</p></li>
+<%-- 						<li class="item1"><span class="icon"></span> --%>
+<!-- 							<h6>个人开发者</h6> -->
+<!-- 							<div> -->
+<%-- 								<a class="btn-style4" href="<%=path%>/user/updatePerson">申请个人认证</a> --%>
+<!-- 							</div> -->
+<!-- 							<p>* 可申请应用上线，正式商用产品</p></li> -->
 						<li class="item2"><span class="icon"></span>
 							<h6>企业开发者</h6>
 							<div>
@@ -41,90 +41,87 @@
 		</div>
 	</s:if>
 	<!-- 个人开发者 -->
-	<s:if test="oauth!=null && oauth.authenticationType==1">
-		<div class="person-cert">
-			<dl class="clearfix">
-				<div class="btn-r">
-					<s:if test="oauth.authenticationStatus==0">
-						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a>
-					</s:if>
-					<s:elseif test="oauth.authenticationStatus==1">
-						<a class="btn-style4" href="<%=path%>/user/updatePerson">重新个人认证</a>
-						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a>
-					</s:elseif>
-					<s:if test="oauth.authenticationStatus==2">
-						<a class="btn-style4" href="<%=path%>/user/updatePerson">重新个人认证</a>
-						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a>
-					</s:if>
-				</div>
-				<div class="group group1 clearfix">
-					<dt>认证类型</dt>
-					<dd>
-						<span class="pass-icon"></span>个人开发者
-						<s:elseif test="oauth.authenticationStatus==1">
-							<a class="fail btn-style4" href="javascript:void(0)">待审核</a>
-						</s:elseif>
-						<s:elseif test="oauth.authenticationStatus==0">
-							<a class="btn-style4" href="javascript:void(0)">认证成功</a>
-						</s:elseif>
-						<s:elseif test="oauth.authenticationStatus==2">
-							<a class="fail btn-style4" href="javascript:void(0)">审核未通过</a>
-						</s:elseif>
-					</dd>
-				</div>
-				<div class="group clearfix">
-					<dt>真实姓名</dt>
-					<dd>${oauth.legalPerson }</dd>
-				</div>
-				<div class="group clearfix">
-					<dt>证件类型</dt>
-					<dd>身份证</dd>
-				</div>
-				<div class="group clearfix">
-					<dt>证件号码</dt>
-					<dd>
-						<span class="txt">${oauth.legalPersonId}</span>
-					</dd>
-				</div>
-				<div class="group clearfix">
-					<dt>证件照片</dt>
-					<dd>
-						<img
-							src="<%=path%>/file/viewFast?remotePath=<u:des3 value='${oauth.legalPersonMeterial}'/>"
-							alt="证件照片" />
-					</dd>
-				</div>
-			</dl>
-		</div>
-	</s:if>
+<%-- 	<s:if test="oauth!=null && oauth.authenticationType==1"> --%>
+<!-- 		<div class="person-cert"> -->
+<!-- 			<dl class="clearfix"> -->
+<!-- 				<div class="btn-r"> -->
+<%-- 					<s:if test="oauth.status==0"> --%>
+<%-- 						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a> --%>
+<%-- 					</s:if> --%>
+<%-- 					<s:elseif test="oauth.status==1"> --%>
+<%-- 						<a class="btn-style4" href="<%=path%>/user/updatePerson">重新个人认证</a> --%>
+<%-- 						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a> --%>
+<%-- 					</s:elseif> --%>
+<%-- 					<s:if test="oauth.status==2"> --%>
+<%-- 						<a class="btn-style4" href="<%=path%>/user/updatePerson">重新个人认证</a> --%>
+<%-- 						<a class="btn-style4" href="<%=path%>/user/updateCompany">企业开发者认证</a> --%>
+<%-- 					</s:if> --%>
+<!-- 				</div> -->
+<!-- 				<div class="group group1 clearfix"> -->
+<!-- 					<dt>认证类型</dt> -->
+<!-- 					<dd> -->
+<%-- 						<span class="pass-icon"></span>个人开发者 --%>
+<%-- 						<s:elseif test="oauth.status==1"> --%>
+<!-- 							<a class="fail btn-style4" href="javascript:void(0)">待审核</a> -->
+<%-- 						</s:elseif> --%>
+<%-- 						<s:elseif test="oauth.status==0"> --%>
+<!-- 							<a class="btn-style4" href="javascript:void(0)">认证成功</a> -->
+<%-- 						</s:elseif> --%>
+<%-- 						<s:elseif test="oauth.status==2"> --%>
+<!-- 							<a class="fail btn-style4" href="javascript:void(0)">审核未通过</a> -->
+<%-- 						</s:elseif> --%>
+<!-- 					</dd> -->
+<!-- 				</div> -->
+<!-- 				<div class="group clearfix"> -->
+<!-- 					<dt>真实姓名</dt> -->
+<%-- 					<dd>${oauth.legalPerson }</dd> --%>
+<!-- 				</div> -->
+<!-- 				<div class="group clearfix"> -->
+<!-- 					<dt>证件类型</dt> -->
+<!-- 					<dd>身份证</dd> -->
+<!-- 				</div> -->
+<!-- 				<div class="group clearfix"> -->
+<!-- 					<dt>证件号码</dt> -->
+<!-- 					<dd> -->
+<%-- 						<span class="txt">${oauth.legalPersonId}</span> --%>
+<!-- 					</dd> -->
+<!-- 				</div> -->
+<!-- 				<div class="group clearfix"> -->
+<!-- 					<dt>证件照片</dt> -->
+<!-- 					<dd> -->
+<!-- 						<img -->
+<%-- 							src="<%=path%>/file/viewFast?remotePath=<u:des3 value='${oauth.legalPersonMeterial}'/>" --%>
+<!-- 							alt="证件照片" /> -->
+<!-- 					</dd> -->
+<!-- 				</div> -->
+<!-- 			</dl> -->
+<!-- 		</div> -->
+<%-- 	</s:if> --%>
 	<!-- 企业开发者 -->
 	<s:if test="oauth!=null && oauth.authenticationType==2">
 		<div class="company-cert">
 			<dl class="clearfix">
 				<div class="btn-r">
-					<s:if test="oauth.authenticationStatus==0">
-						<a class="btn-style4" href="<%=path%>/user/updatePerson">个人开发者认证</a>
+					<s:if test="oauth.status==0">
 					</s:if>
-					<s:if test="oauth.authenticationStatus==1">
+					<s:if test="oauth.status==1">
 						<a class="btn-style4" href="<%=path%>/user/updateCompany">重新企业认证</a>
-						<a class="btn-style4" href="<%=path%>/user/updatePerson">个人开发者认证</a>
 					</s:if>
-					<s:if test="oauth.authenticationStatus==2">
+					<s:if test="oauth.status==2">
 						<a class="btn-style4" href="<%=path%>/user/updateCompany">重新企业认证</a>
-						<a class="btn-style4" href="<%=path%>/user/updatePerson">个人开发者认证</a>
 					</s:if>
 				</div>
 				<div class="group group1 clearfix">
 					<dt>认证类型</dt>
 					<dd>
 						<span class="pass-icon"></span> 企业开发者
-						<s:elseif test="oauth.authenticationStatus==1">
+						<s:elseif test="oauth.status==1">
 							<a class="fail btn-style4" href="javascript:void(0)">待审核</a>
 						</s:elseif>
-						<s:elseif test="oauth.authenticationStatus==0">
+						<s:elseif test="oauth.status==0">
 							<a class="btn-style4" href="javascript:void(0)">认证成功</a>
 						</s:elseif>
-						<s:elseif test="oauth.authenticationStatus==2">
+						<s:elseif test="oauth.status==2">
 							<a class="fail btn-style4" href="javascript:void(0)">审核未通过</a>
 						</s:elseif>
 					</dd>
@@ -153,7 +150,7 @@
 				<div class="group clearfix">
 					<dd>
 						<img
-							src="<%=path%>/file/viewFast?remotePath=<u:des3 value='${oauth.enterpriseMaterial}'/>" />
+							src="/img/${oauth.enterpriseMaterial}" />
 					</dd>
 				</div>
 				<!-- 普通证件  -->
