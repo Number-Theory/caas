@@ -10,7 +10,7 @@
 <head>
 <%@include file="/resources/common/common.jsp"%>
 
-<title>企业审核</title>
+<title>套餐信息</title>
 </head>
 
 <body class="gray-bg">
@@ -22,37 +22,68 @@
 					<div class="col-sm-12">
 						<!-- Example Events -->
 						<div class="example-wrap">
-							<h4 class="example-title">企业列表</h4>
+							<h4 class="example-title">套餐列表</h4>
 							<div class="example">
 								<p>
 									<button class="btn btn-primary " type="button"
-										onclick="freshdata('formEnterprise')">
+										onclick="freshdata('formFee')">
 										<i class="fa fa-check"></i>&nbsp;&nbsp;刷新
 									</button>
 									&nbsp;&nbsp;
+									<button class="btn btn-success " type="button"
+										onclick="adddata('/fee/addFee')">
+										<i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">新增
+										</span>
+									</button>
+									&nbsp;&nbsp;
+									<button class="btn btn-info " type="button"
+										onclick="editdata('/fee/editFee')">
+										<i class="fa fa-paste"></i>&nbsp;&nbsp;编辑
+									</button>
+									&nbsp;&nbsp;
+									<button class="btn btn-warning " type="button"
+										onclick="deldata('/fee/batchDeleteFee')">
+										<i class="fa fa-warning"></i>&nbsp;&nbsp;<span class="bold">删除</span>
+									</button>
+									&nbsp;&nbsp;
+
 								</p>
 								<div class="alert alert-success alert-dismissable"
 									id="operateNote"></div>
-								<form action="<%=path%>/enterprise" method="post"
-									id="formEnterprise">
+								<form action="<%=path%>/fee/feeList" method="post" id="formFee">
 									<div class="form-group">
 										<div class="col-sm-10">
 											<div class="row">
 												<div class="col-md-3">
 													<input type="text" name="condition" id="condition"
-														value="${param.condition }" placeholder="企业名称/用户ID"
+														value="${data.condition }" placeholder="套餐名称"
 														class="form-control">
 												</div>
 												<div class="col-md-3">
-													<select id="status" name="status" data-placeholder="认证状态"
+													<select id="status" name="status" data-placeholder="号码状态"
 														class="chosen-select" style="width: 230px;" tabindex="2">
-														<option value="" hassubinfo="true">认证状态</option>
+														<option value="" hassubinfo="true">号码状态</option>
 														<option value="0" hassubinfo="true"
-															<c:if test="${data.status == 0}">selected="selected"</c:if>>认证通过</option>
+															<c:if test="${data.status == 0}">selected="selected"</c:if>>正常</option>
 														<option value="1" hassubinfo="true"
-															<c:if test="${data.status == 1}">selected="selected"</c:if>>待审核</option>
+															<c:if test="${data.status == 1}">selected="selected"</c:if>>禁用</option>
+													</select>
+												</div>
+												<div class="col-md-3">
+													<select id="productType" name="productType"
+														data-placeholder="业务类型" class="chosen-select"
+														style="width: 230px;" tabindex="2">
+														<option value="" hassubinfo="true">业务类型</option>
+														<option value="0" hassubinfo="true"
+															<c:if test="${data.productType == 0}">selected="selected"</c:if>>隐号业务</option>
+														<option value="1" hassubinfo="true"
+															<c:if test="${data.productType == 1}">selected="selected"</c:if>>小号业务</option>
 														<option value="2" hassubinfo="true"
-															<c:if test="${data.status == 1}">selected="selected"</c:if>>审核不通过</option>
+															<c:if test="${data.productType == 2}">selected="selected"</c:if>>回拨业务</option>
+														<option value="3" hassubinfo="true"
+															<c:if test="${data.productType == 3}">selected="selected"</c:if>>语音验证码</option>
+														<option value="4" hassubinfo="true"
+															<c:if test="${data.productType == 4}">selected="selected"</c:if>>语音通知</option>
 													</select>
 												</div>
 												<div class="col-md-1">
@@ -72,13 +103,26 @@
 										<tr>
 											<th></th>
 											<th data-field="rownum">序号</th>
-											<th data-field="userId">用户ID</th>
-											<th data-field="userName">企业名称</th>
-											<th data-field="webSite">企业注册地址</th>
-											<th data-field="enterpriseMaterial">企业认证资料</th>
-											<th data-field="enterpriseMaterialId">企业营业执照ID</th>
-											<th data-field="checkTime">审核时间</th>
-											<th data-field="status">认证状态</th>
+											<th data-field="id">套餐ID</th>
+											<th data-field="rateName">套餐名称</th>
+											<th data-field="productType">业务类型</th>
+											<th data-field="rateType">费率类型</th>
+											<th data-field="monthlyRent">月租</th>
+											<th data-field="mininumCharge">低消</th>
+											<th data-field="billingType">计费方式</th>
+											<th data-field="billingUnit">计费周期</th>
+											<th data-field="gratisUnit">免费计费单元</th>
+											<th data-field="localPrice">A路市话价格</th>
+											<th data-field="dddPrice">A路长途价</th>
+											<th data-field="iddPrice">A路国际价</th>
+											<th data-field="localPriceB">B路市话价格</th>
+											<th data-field="dddPriceB">B路长途价</th>
+											<th data-field="iddPriceB">B路国际价</th>
+											<th data-field="recordPrice">录音价</th>
+											<th data-field="oncePrice">条/次价格</th>
+											<th data-field="status">套餐状态</th>
+											<th data-field="creationTime">创建时间</th>
+											<th data-field="remark">备注</th>
 											<th data-field="#">操作</th>
 										</tr>
 									</thead>
@@ -119,7 +163,7 @@
 			$('#tableDemo')
 					.bootstrapTable(
 							{
-								url : '/enterprise/list', // 请求后台的URL（*）
+								url : '/fee/feeListData', // 请求后台的URL（*）
 								method : 'post', // 请求方式（*）
 								contentType : "application/x-www-form-urlencoded",
 								dataType : "json",
@@ -158,42 +202,106 @@
 											field : 'rownum',
 										},
 										{
-											field : 'userId',
-											width : "20%"
+											field : 'id',
 										},
 										{
-											field : 'userName',
-											width : "20%"
+											field : 'rateName',
 										},
 										{
-											field : 'webSite',
-											width : "20%"
+											field : 'productType',
+											formatter : function(value, row,
+													index) {
+												if (row.productType == 0) {
+													return "隐号业务";
+												} else if (row.productType == 1) {
+													return "小号业务";
+												} else if (row.productType == 2) {
+													return "回拨业务";
+												} else if (row.productType == 3) {
+													return "语音验证码";
+												} else if (row.productType == 4) {
+													return "语音通知";
+												}
+											}
 										},
 										{
-											field : 'enterpriseMaterial',
-											width : "20%"
+											field : 'rateType',
+											formatter : function(value, row,
+													index) {
+												if (row.rateType == 0) {
+													return "公告套餐";
+												} else if (row.rateType == 1) {
+													return "独立套餐";
+												}
+											}
 										},
 										{
-											field : 'enterpriseMaterialId',
-											width : "20%"
+											field : 'monthlyRent',
+										},
+										{
+											field : 'mininumCharge',
+										},
+										{
+											field : 'billingType',
+											formatter : function(value, row,
+													index) {
+												if (row.billingType == 0) {
+													return "A路开始计费";
+												} else if (row.billingType == 1) {
+													return "B路开始计费";
+												} else if (row.billingType == 2) {
+													return "单路呼出计费";
+												} else if (row.billingType == 3) {
+													return "条/次计费";
+												}
+											}
+										},
+										{
+											field : 'billingUnit',
+										},
+										{
+											field : 'gratisUnit',
+										},
+										{
+											field : 'localPrice',
+										},
+										{
+											field : 'dddPrice',
+										},
+										{
+											field : 'iddPrice',
+										},
+										{
+											field : 'localPriceB',
+										},
+										{
+											field : 'dddPriceB',
+										},
+										{
+											field : 'iddPriceB',
+										},
+										{
+											field : 'recordPrice',
+										},
+										{
+											field : 'oncePrice',
 										},
 										{
 											field : 'status',
 											formatter : function(value, row,
 													index) {
 												if (row.status == 0) {
-													return "已认证";
+													return "启用";
 												} else if (row.status == 1) {
-													return "待审核";
-												} else if (row.status == 2) {
-													return "审核失败";
+													return "停用";
 												}
-											},
-											width : "20%"
+											}
 										},
 										{
-											field : 'checkTime',
-											width : "20%"
+											field : 'creationTime',
+										},
+										{
+											field : 'remark',
 										},
 										{
 											field : '#',
@@ -201,13 +309,9 @@
 											align : 'center',
 											formatter : function(value, row,
 													index) {
-												var edit = "/enterprise/auth?id=" + row.id;
-												var d = '';
-												if (row.status == 0 || row.status == 2) {
-													d = '<a href="' + edit + '" >查看</a> &nbsp;&nbsp;'
-												} else if (row.status == 1) {
-													d = '<a href="' + edit + '" >认证</a> &nbsp;&nbsp;'
-												} 
+												var edit = "/fee/editFee?id="
+														+ row.id;
+												var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;';
 												return d;
 											}
 										}, ]
@@ -220,7 +324,8 @@
 				length : params.limit, // 页面选择的显示行数
 				start : params.offset, // 页码
 				condition : $('#condition').val(),
-				status :$('status').val()
+				status : $('#status').val(),
+				productType : $('#productType').val()
 			};
 			return temp;
 		};

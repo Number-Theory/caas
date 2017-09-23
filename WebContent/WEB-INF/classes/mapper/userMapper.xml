@@ -57,6 +57,10 @@
 		select t.* from tb_caas_authentication t where t.userId =#{userId} limit 1
 	</select>
 	
+	<select id="getUserAuthenticationById" resultType="map">
+		select t.* from tb_caas_authentication t where t.id =#{id} limit 1
+	</select>
+	
 	<delete id="deleteUserAuthentication">
 		delete from tb_caas_authentication where userId=#{userId}
 	</delete>

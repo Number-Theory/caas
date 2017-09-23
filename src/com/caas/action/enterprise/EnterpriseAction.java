@@ -1,8 +1,6 @@
 package com.caas.action.enterprise;
 
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,8 +15,6 @@ import com.caas.dao.CaasDao;
 import com.caas.model.PageContainer;
 import com.caas.model.PageModel;
 import com.caas.service.enterprise.EnterpriseService;
-import com.caas.util.AuthorityUtils;
-import com.caas.util.MD5Util;
 import com.caas.util.StrutsUtils;
 
 /**
@@ -26,7 +22,8 @@ import com.caas.util.StrutsUtils;
  * @author hexinqi 2017-09-11 企业信息列表
  */
 @Controller
-@Results({ @Result(name = "enterpriseList", location = "/WEB-INF/content/enterprise/listEnterprise.jsp"), })
+@Results({ @Result(name = "enterpriseList", location = "/WEB-INF/content/enterprise/listEnterprise.jsp"),
+		@Result(name = "enterpriseUser", location = "/WEB-INF/content/enterprise/enterpriseUser.jsp") })
 public class EnterpriseAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +32,9 @@ public class EnterpriseAction extends BaseAction {
 
 	@Autowired
 	private EnterpriseService service;
+
+	@Autowired
+	private CaasDao dao;
 
 	/*
 	 * 待认证企业页面
@@ -51,12 +51,25 @@ public class EnterpriseAction extends BaseAction {
 	public void enterpriseListData() {
 		deal("enterprise.enterpriseListData", "enterprise.enterpriseListDataCount");
 	}
-	
+
 	@Action("/enterprise/auth")
 	public String authAnterprise() {
-		String id = StrutsUtils.getParameter("id");
-		System.out.println(id);
-		return "enterpriseList";
+		data = StrutsUtils.getFormData();
+		Map<String, Object> oauth = dao.getOneInfo("user.getUserAuthenticationById", data);
+		StrutsUtils.setAttribute("oauth", oauth);
+		return "enterpriseUser";
+	}
+
+	@Action("/enterprise/update")
+	public void updateAnterprise() {
+		data = StrutsUtils.getFormData();
+		try {
+			service.updateEnterpriseStatus(data);
+			StrutsUtils.renderJson("true");
+		} catch (Exception e) {
+			logger.error("审核失败：", e);
+			StrutsUtils.renderJson("false");
+		}
 	}
 
 	// 处理表格

@@ -92,7 +92,7 @@ public class UserAction extends BaseAction {
 	@Action("/user/saveAddUser")
 	public void saveAddUser() {
 		Map<String, Object> map = StrutsUtils.getFormDataObj();
-		map.put("sid", UUID.randomUUID().toString().replaceAll("-", ""));
+		map.put("userId", UUID.randomUUID().toString().replaceAll("-", ""));
 		map.put("token", UUID.randomUUID().toString().replaceAll("-", ""));
 		map.put("createType", "1");
 		map.put("userPwd", MD5Util.string2MD5("123456").toUpperCase());

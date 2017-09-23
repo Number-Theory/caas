@@ -10,7 +10,7 @@
 <head>
 <%@include file="/resources/common/common.jsp"%>
 
-<title>申请号码记录</title>
+<title>号码审核</title>
 </head>
 
 <body class="gray-bg">
@@ -19,7 +19,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">申请号码记录</h4>
+					<h4 class="modal-title">号码审核</h4>
 				</div>
 				<div id="rateItemBox" class="modal-body ibox-content"
 					style="height: 300px;"></div>
@@ -48,7 +48,7 @@
 								</p>
 								<div class="alert alert-success alert-dismissable"
 									id="operateNote"></div>
-								<form action="<%=path%>/number/applyNumberList" method="post"
+								<form action="<%=path%>/mobile/mobileExamine" method="post"
 									id="formApplyNumber">
 									<div class="form-group">
 										<div class="col-sm-10">
@@ -65,10 +65,27 @@
 															<c:if test="${data.status == 2}">selected="selected"</c:if>>申请失败</option>
 													</select>
 												</div>
-												<input id="userId" name="userId"
-													value="${data.userId }" type="hidden">
-												<input id="productType" name="productType"
-													value="${data.productType }" type="hidden">
+												<div class="col-md-3">
+													<input id="userId" name="userId" value="${data.userId }"
+														placeholder="用户ID" class="form-control">
+												</div>
+												<div class="col-md-3">
+													<select id="productType" name="productType"
+														data-placeholder="业务类型" class="chosen-select"
+														style="width: 230px;" tabindex="2">
+														<option value="" hassubinfo="true">业务类型</option>
+														<option value="0" hassubinfo="true"
+															<c:if test="${data.productType == 0}">selected="selected"</c:if>>隐号业务</option>
+														<option value="1" hassubinfo="true"
+															<c:if test="${data.productType == 1}">selected="selected"</c:if>>小号业务</option>
+														<option value="2" hassubinfo="true"
+															<c:if test="${data.productType == 2}">selected="selected"</c:if>>回拨业务</option>
+														<option value="3" hassubinfo="true"
+															<c:if test="${data.productType == 3}">selected="selected"</c:if>>语音验证码</option>
+														<option value="4" hassubinfo="true"
+															<c:if test="${data.productType == 4}">selected="selected"</c:if>>语音通知</option>
+													</select>
+												</div>
 												<div class="col-md-1">
 													<span class="input-group-btn"><button type="submit"
 															class="btn btn-primary">搜索</button></span>
@@ -84,14 +101,17 @@
 									<thead>
 										<tr>
 											<th data-field="rownum">序号</th>
+											<th data-field="userId">用户ID</th>
 											<th data-field="numberCityName">城市名称</th>
 											<th data-field="numberCityId">城市ID</th>
+											<th data-field="numberCount">业务类型</th>
 											<th data-field="numberCount">申请数量</th>
 											<th data-field="numberCount">分配数量</th>
 											<th data-field="rateName">套餐名称</th>
 											<th data-field="rateName">申请状态</th>
 											<th data-field="context">备注</th>
 											<th data-field="createDate">创建日期</th>
+											<th data-field="#">操作</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -179,11 +199,33 @@
 											width : "20%"
 										},
 										{
+											field : 'userId',
+											width : "20%"
+										},
+										{
 											field : 'numberCityName',
 											width : "20%"
 										},
 										{
 											field : 'numberCityId',
+											width : "20%"
+										},
+										{
+											field : 'productType',
+											formatter : function(value, row,
+													index) {
+												if (row.productType == 0) {
+													return "隐号业务";
+												} else if (row.productType == 1) {
+													return "小号业务";
+												} else if (row.productType == 2) {
+													return "回拨业务";
+												} else if (row.productType == 3) {
+													return "语音验证码";
+												} else if (row.productType == 4) {
+													return "语音通知";
+												}
+											},
 											width : "20%"
 										},
 										{
@@ -219,11 +261,28 @@
 												}
 											},
 											width : "20%"
-										}, {
+										},
+										{
 											field : 'context',
 											width : "20%"
-										}, {
+										},
+										{
 											field : 'createDate',
+											width : "20%"
+										},
+										{
+											field : '#',
+											formatter : function(value, row,
+													index) {
+												var edit = '';
+												var d = ''
+												if (row.status == 0) {
+													return d = '<a href="' + edit + '" >分配号码</a> &nbsp;&nbsp;';
+												} else if (row.status == 1) {
+													return d = '<a href="' + edit + '" >查看分配</a> &nbsp;&nbsp;';
+													;
+												}
+											},
 											width : "20%"
 										} ]
 							});

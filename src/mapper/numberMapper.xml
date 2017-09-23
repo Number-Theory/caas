@@ -14,7 +14,7 @@
 		<if test="phoneNumber != null">
 			and n.phoneNumber like concat('%',#{phoneNumber},'%')
 		</if>
-		<if test="userId != null and userId != '0'.toString()">
+		<if test="userId != null">
 			and n.userId = #{userId}
 		</if>
 		<if test="productType != null">
@@ -36,7 +36,7 @@
 		<if test="phoneNumber != null">
 			and n.phoneNumber like concat('%',#{phoneNumber},'%')
 		</if>
-		<if test="userId != null and userId != '0'.toString()">
+		<if test="userId != null">
 			and n.userId = #{userId}
 		</if>
 		<if test="productType != null">
@@ -121,7 +121,7 @@
 		<if test="productType != null">
 			and n.productType = #{productType}
 		</if>
-		<if test="userId != null and userId != '0'.toString()">
+		<if test="userId != null">
 			and n.userId = #{userId}
 		</if>
 		${limit}
@@ -137,7 +137,7 @@
 		<if test="productType != null">
 			and n.productType = #{productType}
 		</if>
-		<if test="userId != null and userId != '0'.toString()">
+		<if test="userId != null">
 			and n.userId = #{userId}
 		</if>
 	</select>

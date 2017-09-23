@@ -28,7 +28,7 @@ public class MobileServiceImpl implements MobileService {
 	}
 
 	/*
-	 * 用户管理(non-Javadoc)
+	 * 号码管理(non-Javadoc)
 	 * 
 	 * @see com.caas.service.mobile.MobileService#deleteMobile(java.util.Map)
 	 */
@@ -49,7 +49,7 @@ public class MobileServiceImpl implements MobileService {
 			Map<String, Object> mobile = dao.getOneInfo("mobile.getMobileByMobile", map);
 			if(mobile != null && !mobile.isEmpty()) {
 				result.put("result", "false");
-				result.put("msg", ",号码已被注册");
+				result.put("msg", ",号码已存在");
 				return result;
 			}
 			

@@ -129,19 +129,25 @@ var TableInit = function() {
 										}
 									}, {
 										field : 'rownum',
+										width : "20%"
 									}, {
 										field : 'name',
+										width : "20%"
 									}, {
 										field : 'url',
+										width : "20%"
 									}, {
 										field : 'super_name',
+										width : "20%"
 									}, {
 										field : 'sort',
+										width : "20%"
 									}, {
 										field : 'status',
 										formatter : function(value, row, index) {
 											return row.status == 0 ? '启用' : '停用';
-										}
+										},
+										width : "20%"
 									}, {
 										field : '#',
 										title : '操作',
@@ -150,7 +156,8 @@ var TableInit = function() {
 											var edit = "/menu/editMenu?id=" + row.id;
 											var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;';
 											return d;
-										}
+										},
+										width : "20%"
 									}, ]
 						});
 	};

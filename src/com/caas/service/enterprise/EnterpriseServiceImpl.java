@@ -70,6 +70,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
 	@Override
 	public void updateEnterpriseStatus(Map<String, Object> map) {
-		dao.update("user.updateUserStatus", map);
+		dao.update("enterprise.updateEnterpriseStatus", map);
 	}
 }

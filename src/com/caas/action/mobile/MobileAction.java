@@ -2,7 +2,6 @@ package com.caas.action.mobile;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,6 @@ import com.caas.dao.CaasDao;
 import com.caas.model.PageContainer;
 import com.caas.model.PageModel;
 import com.caas.service.mobile.MobileService;
-import com.caas.util.MD5Util;
 import com.caas.util.StrutsUtils;
 
 /**
@@ -28,7 +26,8 @@ import com.caas.util.StrutsUtils;
 @Controller
 @Results({ @Result(name = "mobileList", location = "/WEB-INF/content/mobile/listMobile.jsp"),
 	@Result(name = "addMobile", location = "/WEB-INF/content/mobile/addMobile.jsp"),
-	@Result(name = "editMobile", location = "/WEB-INF/content/mobile/editMobile.jsp") })
+	@Result(name = "editMobile", location = "/WEB-INF/content/mobile/editMobile.jsp"),
+	@Result(name = "mobileExamine", location = "/WEB-INF/content/mobile/mobileExamine.jsp") })
 public class MobileAction extends BaseAction {
 
 	/**
@@ -49,6 +48,7 @@ public class MobileAction extends BaseAction {
 	 */
 	@Action("/mobile/mobileList")
 	public String mobileList() {
+		data = StrutsUtils.getFormData();
 		return "mobileList";
 	}
 
@@ -59,9 +59,9 @@ public class MobileAction extends BaseAction {
 
 	@Action("/mobile/deleteMobile")
 	public void deleteMobile() {
-		Map<String, Object> param = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.deleteMobile(param);
+			service.deleteMobile(data);
 			StrutsUtils.renderJson(true);
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -71,9 +71,9 @@ public class MobileAction extends BaseAction {
 
 	@Action("/mobile/batchDeleteMobile")
 	public void batchDeleteMobile() {
-		Map<String, Object> param = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.batchDeleteMobile(param);
+			service.batchDeleteMobile(data);
 			StrutsUtils.renderJson(true);
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -83,44 +83,46 @@ public class MobileAction extends BaseAction {
 
 	@Action("/mobile/addMobile")
 	public String addMobile() {
-		List<Map<String, Object>> roleMap = dao.selectList("menu.getAllRole", null);
-		StrutsUtils.getRequest().setAttribute("roleMap", roleMap);
+		List<Map<String, Object>> cityMap = dao.selectList("number.getAllCity", null);
+		StrutsUtils.getRequest().setAttribute("cityMap", cityMap);
 		return "addMobile";
 	}
 
 	@Action("/mobile/saveAddMobile")
 	public void saveAddMobile() {
-		Map<String, Object> map = StrutsUtils.getFormDataObj();
-		map.put("sid", UUID.randomUUID().toString().replaceAll("-", ""));
-		map.put("token", UUID.randomUUID().toString().replaceAll("-", ""));
-		map.put("createType", "1");
-		map.put("mobilePwd", MD5Util.string2MD5("123456").toUpperCase());
-		Object obj = service.saveAddMobile(map);
+		data = StrutsUtils.getFormDataObj();
+		Object obj = service.saveAddMobile(data);
 		StrutsUtils.renderJson(obj);
 	}
 
 	@Action("/mobile/editMobile")
 	public String editMobile() {
-		Map<String, Object> map = StrutsUtils.getFormDataObj();
-		Map<String, Object> returnMap = service.getMobile(map);
-		List<Map<String, Object>> roleMap = dao.selectList("menu.getAllRole", null);
-		StrutsUtils.getRequest().setAttribute("roleMap", roleMap);
+		data = StrutsUtils.getFormDataObj();
+		Map<String, Object> returnMap = service.getMobile(data);
+		List<Map<String, Object>> rateMap = dao.selectList("mobile.getAllRate", null);
+		StrutsUtils.getRequest().setAttribute("rateMap", rateMap);
 		StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 		return "editMobile";
 	}
 
 	@Action("/mobile/saveEditMobile")
 	public void saveEditMobile() {
-		Map<String, Object> map = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.saveEditMobile(map);
-			Map<String, Object> returnMap = service.getMobile(map);
+			service.saveEditMobile(data);
+			Map<String, Object> returnMap = service.getMobile(data);
 			StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 			StrutsUtils.renderText("true");
 		} catch (Exception e) {
 			logger.error("{}", e);
 			StrutsUtils.renderText("false");
 		}
+	}
+	
+	@Action("/mobile/mobileExamine")
+	public String mobileExamine() {
+		data = StrutsUtils.getFormData();
+		return "mobileExamine";
 	}
 
 	// 处理表格

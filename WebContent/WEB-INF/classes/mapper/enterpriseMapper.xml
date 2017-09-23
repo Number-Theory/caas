@@ -11,14 +11,14 @@
 		from
 		tb_caas_authentication n ,
 		(select
-		@i:=#{start} )it where AuthenticationType = 0 and id != '1'
+		@i:=#{start} )it where 1=1 
 		<if test="condition != null">
-			and (n.attribute like concat('%',#{condition},'%')
-				or n.userName like concat('%',#{condition},'%')
-				or n.legalPerson like concat('%',#{condition},'%')
-				or n.legalPersonId like concat('%',#{condition},'%')
-				or n.webSite like concat('%',#{condition},'%')
+			and (n.userName like concat('%',#{condition},'%')
+				or n.userId like concat('%',#{condition},'%')
 			)
+		</if>
+		<if test="status != null">
+			and n.status = #{condition}
 		</if>
 		${limit}
 	</select>
@@ -26,19 +26,19 @@
 	<select id="enterpriseListDataCount" resultType="map">
 		select count(0) as totalCount
 		from tb_caas_authentication n 
-		where AuthenticationType = 0 and id != '1'
+		where 1 = 1 
 		<if test="condition != null">
-			and (n.attribute like concat('%',#{condition},'%')
-				or n.userName like concat('%',#{condition},'%')
-				or n.legalPerson like concat('%',#{condition},'%')
-				or n.legalPersonId like concat('%',#{condition},'%')
-				or n.webSite like concat('%',#{condition},'%')
+			and (n.userName like concat('%',#{condition},'%')
+				or n.userId like concat('%',#{condition},'%')
 			)
+		</if>
+		<if test="status != null">
+			and n.status = #{condition}
 		</if>
 	</select>
 
 	<update id="updateEnterpriseStatus">
-		update tb_caas_authentication set `status`=#{status} where id=#{id};
+		update tb_caas_authentication set `status`=#{status},checkTime=now() where id=#{id};
 	</update>
 	
 </mapper> 

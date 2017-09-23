@@ -174,15 +174,16 @@ public class NumberAction extends BaseAction {
 	@Action("/number/applyNumberList")
 	public String applyNumberList() {
 		data = StrutsUtils.getFormData();
+		data.put("userId", AuthorityUtils.getLoginUserIdNew());
 		return "applyNumberList";
 	}
 
 	// 处理表格
 	public void deal(String sqlData, String sqlDataCount) {
 		Map<String, Object> map = StrutsUtils.getFormData();
-		if (!map.containsKey("userId")) {
-			map.put("userId", AuthorityUtils.getLoginUserIdNew());
-		}
+//		if (!map.containsKey("userId")) {
+//			map.put("userId", AuthorityUtils.getLoginUserIdNew());
+//		}
 		PageContainer page = service.csmData(map, sqlData, sqlDataCount);
 
 		PageModel pageModel = new PageModel();

@@ -21,7 +21,7 @@
 				<div class="row row-lg">
 					<div class="col-sm-12">
 						<table class="table table-hover no-margins">
-							<c:if test="${data.phoneNumber != null || data.phoneNumber != '' }">
+							<c:if test="${data.phoneNumber != null && data.phoneNumber != '' }">
 								<tr>
 									<td style="background: #e0e0e0;"><small>号码</small></td>
 									<td>${data.phoneNumber }</td>

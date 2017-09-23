@@ -57,8 +57,34 @@
 											<div class="row">
 												<div class="col-md-3">
 													<input type="text" name="condition" id="condition"
-														value="${param.condition }" placeholder="搜索条件"
+														value="${data.condition }" placeholder="电话号码/分配用户名"
 														class="form-control">
+												</div>
+												<div class="col-md-3">
+													<select id="status" name="status" data-placeholder="号码状态"
+														class="chosen-select" style="width: 230px;" tabindex="2">
+														<option value="" hassubinfo="true">号码状态</option>
+														<option value="0" hassubinfo="true"
+															<c:if test="${data.status == 0}">selected="selected"</c:if>>正常</option>
+														<option value="1" hassubinfo="true"
+															<c:if test="${data.status == 1}">selected="selected"</c:if>>禁用</option>
+													</select>
+												</div>
+												<div class="col-md-3">
+													<select id="serverProduct" name="serverProduct" data-placeholder="业务类型"
+														class="chosen-select" style="width: 230px;" tabindex="2">
+														<option value="" hassubinfo="true">业务类型</option>
+														<option value="0" hassubinfo="true"
+															<c:if test="${data.serverProduct == 0}">selected="selected"</c:if>>隐号业务</option>
+														<option value="1" hassubinfo="true"
+															<c:if test="${data.serverProduct == 1}">selected="selected"</c:if>>小号业务</option>
+														<option value="2" hassubinfo="true"
+															<c:if test="${data.serverProduct == 2}">selected="selected"</c:if>>回拨业务</option>
+														<option value="3" hassubinfo="true"
+															<c:if test="${data.serverProduct == 3}">selected="selected"</c:if>>语音验证码</option>
+														<option value="4" hassubinfo="true"
+															<c:if test="${data.serverProduct == 4}">selected="selected"</c:if>>语音通知</option>
+													</select>
 												</div>
 												<div class="col-md-1">
 													<span class="input-group-btn"><button type="submit"
@@ -77,20 +103,36 @@
 										<tr>
 											<th></th>
 											<th data-field="rownum">序号</th>
-											<th data-field="phoneNumber">用户名</th>
-											<th data-field="operator">SID</th>
-											<th data-field="numberType">Token</th>
-											<th data-field="provider">手机号码</th>
-											<th data-field="applyDate">邮箱</th>
-											<th data-field="serverProduct">角色名称</th>
-											<th data-field="frequency">状态</th>
-											<th data-field="cycleTime">开户类型</th>
-											<th data-field="frequencyNumber">付费模式</th>
-											<th data-field="releaseTime">商务经理</th>
-											<th data-field="attribute">创建人</th>
-											<th data-field="status">创建时间</th>
-											<th data-field="remark">创建人</th>
-											<th data-field="allotStatus">创建时间</th>
+											<th data-field="phoneNumber">号码</th>
+											<th data-field="city">城市名称</th>
+											<th data-field="cityCode">城市ID</th>
+											<th data-field="operator">运营商</th>
+											<th data-field="numberType">号码类型</th>
+											<th data-field="applyDate">开号日期</th>
+											<th data-field="serverProduct">业务类型</th>
+											<th data-field="attribute">号码属性</th>
+											<th data-field="status">号码状态</th>
+											<th data-field="remark">备注</th>
+											<th data-field="allotStatus">是否分配</th>
+											<th data-field="userName">所属用户</th>
+											<th data-field="userId">所属用户ID</th>
+											<th data-field="rateId">套餐ID</th>
+											<th data-field="rateName">套餐名称</th>
+											<th data-field="ratisUnit">套餐包含计费单元</th>
+											<th data-field="employUnit">以产生计费单元</th>
+											<th data-field="reSidueUnit">剩余计费单元</th>
+											<th data-field="checkTime">分配时间</th>
+											<th data-field="monthlyRent">月租</th>
+											<th data-field="mininumCharge">低消</th>
+											<th data-field="billingUnit">计费周期</th>
+											<th data-field="localPrice">A路市话价格</th>
+											<th data-field="dddPrice">A路长途价</th>
+											<th data-field="iddPrice">A路国际价</th>
+											<th data-field="localPriceB">B路市话价格</th>
+											<th data-field="dddPriceB">B路长途价</th>
+											<th data-field="iddPriceB">B路国际价</th>
+											<th data-field="recordPrice">录音价</th>
+											<th data-field="oncePrice">条/次价格</th>
 											<th data-field="#">操作</th>
 										</tr>
 									</thead>
@@ -185,42 +227,32 @@
 											field : 'numberType',
 											formatter : function(value, row,
 													index) {
-												if (row.attribute == 0) {
+												if (row.numberType == 0) {
 													return "API资源";
-												} else if (row.attribute == 1) {
+												} else if (row.numberType == 1) {
 													return "线路资源";
 												}
 											}
-										},
-										{
-											field : 'provider',
 										},
 										{
 											field : 'applyDate',
 										},
 										{
 											field : 'serverProduct',
-										},
-										{
-											field : 'frequency',
 											formatter : function(value, row,
 													index) {
-												if (row.frequency == 0) {
-													return "无";
-												} else if (row.frequency == 1) {
-													return "有";
+												if (row.serverProduct == 0) {
+													return "隐号业务";
+												} else if (row.serverProduct == 1) {
+													return "小号业务";
+												} else if (row.serverProduct == 2) {
+													return "回拨业务";
+												} else if (row.serverProduct == 3) {
+													return "语音验证码";
+												} else if (row.serverProduct == 4) {
+													return "语音通知";
 												}
 											}
-											
-										},
-										{
-											field : 'cycleTime',
-										},
-										{
-											field : 'frequencyNumber',
-										},
-										{
-											field : 'releaseTime',
 										},
 										{
 											field : 'attribute',
@@ -259,6 +291,63 @@
 											}
 										},
 										{
+											field : 'userName',
+										},
+										{
+											field : 'userId',
+										},
+										{
+											field : 'rateId',
+										},
+										{
+											field : 'rateName',
+										},
+										{
+											field : 'ratisUnit',
+										},
+										{
+											field : 'employUnit',
+										},
+										{
+											field : 'reSidueUnit',
+										},
+										{
+											field : 'checkTime',
+										},
+										{
+											field : 'monthlyRent',
+										},
+										{
+											field : 'mininumCharge',
+										},
+										{
+											field : 'billingUnit',
+										},
+										{
+											field : 'localPrice',
+										},
+										{
+											field : 'dddPrice',
+										},
+										{
+											field : 'iddPrice',
+										},
+										{
+											field : 'localPriceB',
+										},
+										{
+											field : 'dddPriceB',
+										},
+										{
+											field : 'iddPriceB',
+										},
+										{
+											field : 'recordPrice',
+										},
+										{
+											field : 'oncePrice',
+										},
+										{
 											field : '#',
 											title : '操作',
 											align : 'center',
@@ -278,7 +367,9 @@
 			var temp = { // 这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
 				length : params.limit, // 页面选择的显示行数
 				start : params.offset, // 页码
-				condition : $('#condition').val()
+				condition : $('#condition').val(),
+				status : $('#status').val(),
+				serverProduct : $('serverProduct').val()
 			};
 			return temp;
 		};

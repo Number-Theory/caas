@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fee">
+
+    <select id="feeListData" resultType="map">
+		select (@i:=@i+1)
+		rownum,n.*
+		from 
+		tb_caas_fee n ,
+		(select @i:=#{start} )it where 1=1
+		<if test="condition != null">
+			and (n.rateName like concat('%',#{condition},'%')
+			   or n.id = #{condition}
+			)
+		</if>
+		<if test="productType != null">
+			and n.productType = #{productType}
+		</if>
+		<if test="status != null">
+			and n.status = #{status}
+		</if>
+		${limit}
+	</select>
+
+	<select id="feeListDataCount" resultType="map">
+		select count(0) as totalCount
+		from tb_caas_fee n 
+		where 1=1
+		<if test="condition != null">
+			and (n.rateName like concat('%',#{condition},'%')
+			   or n.id = #{condition}
+			)
+		</if>
+		<if test="productType != null">
+			and n.productType = #{productType}
+		</if>
+		<if test="status != null">
+			and n.status = #{status}
+		</if>
+	</select>
+
+	<delete id="deleteFee">
+		delete from tb_caas_fee where id =#{id};
+	</delete>
+
+	<delete id="batchDeleteFee">
+		delete from tb_caas_fee where id in (${str});
+	</delete>
+
+	<select id="getFee" resultType="map">
+		select t.* from tb_caas_fee t where t.id =#{id} limit 1
+	</select>
+	
+	<select id="getAllFee" resultType="map">
+		select t.* from tb_caas_fee t
+	</select>
+
+	<update id="saveEditFee">
+		update tb_caas_fee set rateName=#{rateName},productType=#{productType},rateType=#{rateType},monthlyRent=#{monthlyRent},mininumCharge=#{mininumCharge}
+		,billingType=#{billingType},billingUnit=#{billingUnit},gratisUnit=#{gratisUnit},localPrice=#{localPrice},dddPrice=#{dddPrice},iddPrice=#{iddPrice}
+		,localPriceB=#{localPriceB},dddPriceB=#{dddPriceB},iddPriceB=#{iddPriceB},recordPrice=#{recordPrice}
+		,oncePrice=#{oncePrice},status=#{status},remark=#{remark} where `id`=#{id};
+	</update>
+	
+	<insert id="saveAddFee">
+		INSERT INTO `tb_caas_fee` (`rateName`, `productType`, `rateType`, `monthlyRent`, `mininumCharge`,
+		`billingType`, `billingUnit`, `gratisUnit`, `localPrice`, `dddPrice`, `iddPrice`, `localPriceB`,
+		`dddPriceB`, `iddPriceB`, `recordPrice`, `oncePrice`, `status`, `creationTime`, `remark`) 
+		VALUES (#{rateName}, #{productType}, #{rateType}, #{monthlyRent}, #{mininumCharge}, #{billingType}, #{billingUnit},
+		#{gratisUnit}, #{localPrice}, #{dddPrice}, #{iddPrice}, #{localPriceB}, #{dddPriceB}, #{iddPriceB},
+		#{recordPrice}, #{oncePrice}, #{status}, now(), #{remark});
+	</insert>
+	
+	<update id="updateFeeStatus">
+		update tb_caas_fee set `status`=#{status} where id=#{id};
+	</update>
+</mapper> 

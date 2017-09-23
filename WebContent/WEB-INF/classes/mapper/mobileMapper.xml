@@ -11,11 +11,15 @@
 		tb_caas_phoneNumber n left join tb_caas_fee f on n.rateId = f.id ,
 		(select @i:=#{start} )it where 1=1
 		<if test="condition != null">
-			and (n.sid like concat('%',#{condition},'%')
-				or n.mobileName like concat('%',#{condition},'%')
-				or n.email like concat('%',#{condition},'%')
-				or n.mobile like concat('%',#{condition},'%')
+			and (n.phoneNumber like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
 			)
+		</if>
+		<if test="serverProduct != null">
+			and n.serverProduct = #{serverProduct}
+		</if>
+		<if test="status != null">
+			and n.status = #{status}
 		</if>
 		${limit}
 	</select>
@@ -23,13 +27,17 @@
 	<select id="mobileListDataCount" resultType="map">
 		select count(0) as totalCount
 		from tb_caas_phoneNumber n 
-		where 1=1 and id != '1'
+		where 1=1
 		<if test="condition != null">
-			and (n.sid like concat('%',#{condition},'%')
-				or n.mobileName like concat('%',#{condition},'%')
-				or n.email like concat('%',#{condition},'%')
-				or n.mobile like concat('%',#{condition},'%')
+			and (n.phoneNumber like concat('%',#{condition},'%')
+				or n.userName like concat('%',#{condition},'%')
 			)
+		</if>
+		<if test="serverProduct != null">
+			and n.serverProduct = #{serverProduct}
+		</if>
+		<if test="status != null">
+			and n.status = #{status}
 		</if>
 	</select>
 
@@ -42,29 +50,35 @@
 	</delete>
 
 	<select id="getMobile" resultType="map">
-		select t.*,f.* from tb_caas_phoneNumber t left join tb_caas_fee f on  t.rateId = f.id where t.id =#{id} limit 1
+		select t.* from tb_caas_phoneNumber t where t.id =#{id} limit 1
+	</select>
+	
+	<select id="getMobileByMobile" resultType="map">
+		select t.* from tb_caas_phoneNumber t where t.phoneNumber =#{phoneNumber} limit 1
 	</select>
 	
 	<select id="getAllMobile" resultType="map">
-		select t.*,f.* from tb_caas_phoneNumber t left join tb_caas_fee f on t.rateId = f.id
+		select t.* from tb_caas_phoneNumber t
 	</select>
 
 	<update id="saveEditMobile">
-		update tb_caas_phoneNumber set phoneNumber=#{phoneNumber},city=#{city},cityCode=#{cityCode},operator=#{operator}
-		,numberType=#{numberType},provider=#{provider},applyDate=#{applyDate},serverProduct=#{serverProduct},frequency=#{frequency}
-		,cycleTime=#{cycleTime},frequencyNumber=#{frequencyNumber},releaseTime=#{releaseTime},attribute=#{attribute}
-		,status=#{status},remark=#{remark},allotStatus=#{allotStatus} where `id`=#{id};
+		update tb_caas_phoneNumber set numberType=#{numberType},attribute=#{attribute}
+		,status=#{status},remark=#{remark},rateId=#{rateId} where `id`=#{id};
 	</update>
 	
 	<insert id="saveAddMobile">
-		INSERT INTO `tb_caas_phoneNumber` (`phoneNumber`, `city`, `cityCode`, `operator`, `numberType`, `provider`, `applyDate`,
-		`serverProduct`,`frequency`,`cycleTime`,`frequencyNumber`,`releaseTime`,`attribute`,`status`,`remark`,`allotStatus`) VALUES
-		 (#{phoneNumber}, #{city}, #{cityCode}, #{operator}, #{numberType}, #{provider}, #{applyDate},
-		 #{serverProduct}, #{frequency}, #{cycleTime}, #{frequencyNumber}, #{releaseTime}, #{attribute}, #{status}, #{remark}, #{allotStatus});
+		INSERT INTO `tb_caas_phoneNumber` (`phoneNumber`, `city`, `cityCode`, `operator`, `numberType`, `applyDate`,
+		`serverProduct`,`attribute`,`status`,`remark`,`allotStatus`) VALUES
+		 (#{phoneNumber}, #{city}, #{cityCode}, #{operator}, #{numberType}, now(),
+		 #{serverProduct}, #{attribute}, #{status}, #{remark}, '0');
 	</insert>
 	
 	<update id="updateMobileStatus">
 		update tb_caas_phoneNumber set `status`=#{status} where id=#{id};
 	</update>
+	
+	<select id="getAllRate" resultType="map">
+		select n.id,n.rateName from tb_caas_fee n where n.status = '0'
+	</select>
 	
 </mapper> 
