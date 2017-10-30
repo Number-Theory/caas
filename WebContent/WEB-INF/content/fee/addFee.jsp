@@ -69,7 +69,7 @@
 								<label class="col-sm-4 control-label">月租：</label>
 								<div class="col-sm-3">
 									<input id="monthlyRent" name="monthlyRent"
-										value="${returnMap.monthlyRent }" minlength="1" type="text"
+										value="${returnMap.monthlyRent / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 								<label class="col-sm-4 control-label">低消：</label>
 								<div class="col-sm-3">
 									<input id="mininumCharge" name="mininumCharge"
-										value="${returnMap.mininumCharge }" minlength="1" type="text"
+										value="${returnMap.mininumCharge / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -118,7 +118,7 @@
 								<label class="col-sm-4 control-label">A路市话价格：</label>
 								<div class="col-sm-3">
 									<input id="localPrice" name="localPrice"
-										value="${returnMap.localPrice }" minlength="1" type="text"
+										value="${returnMap.localPrice / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -126,7 +126,7 @@
 								<label class="col-sm-4 control-label">A路长途价：</label>
 								<div class="col-sm-3">
 									<input id="dddPrice" name="dddPrice"
-										value="${returnMap.dddPrice }" minlength="1" type="text"
+										value="${returnMap.dddPrice / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -134,7 +134,7 @@
 								<label class="col-sm-4 control-label">A路国际价格：</label>
 								<div class="col-sm-3">
 									<input id="iddPrice" name="iddPrice"
-										value="${returnMap.localPrice }" minlength="1" type="text"
+										value="${returnMap.localPrice / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -142,7 +142,7 @@
 								<label class="col-sm-4 control-label">B路市话价格：</label>
 								<div class="col-sm-3">
 									<input id="localPriceB" name="localPriceB"
-										value="${returnMap.localPriceB }" minlength="1" type="text"
+										value="${returnMap.localPriceB / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -150,7 +150,7 @@
 								<label class="col-sm-4 control-label">B路长途价：</label>
 								<div class="col-sm-3">
 									<input id="dddPriceB" name="dddPriceB"
-										value="${returnMap.dddPriceB }" minlength="1" type="text"
+										value="${returnMap.dddPriceB / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -158,7 +158,7 @@
 								<label class="col-sm-4 control-label">B路国际价格：</label>
 								<div class="col-sm-3">
 									<input id="iddPriceB" name="iddPriceB"
-										value="${returnMap.localPriceB }" minlength="1" type="text"
+										value="${returnMap.localPriceB / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -166,7 +166,7 @@
 								<label class="col-sm-4 control-label">录音价格：</label>
 								<div class="col-sm-3">
 									<input id="recordPrice" name="recordPrice"
-										value="${returnMap.recordPrice }" minlength="1" type="text"
+										value="${returnMap.recordPrice / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 								<label class="col-sm-4 control-label">条/次价格：</label>
 								<div class="col-sm-3">
 									<input id="oncePrice" name="oncePrice"
-										value="${returnMap.oncePrice }" minlength="1" type="text"
+										value="${returnMap.oncePrice / 1000000 }" minlength="1" type="text"
 										class="form-control" required="" aria-required="true">
 								</div>
 							</div>

@@ -32,12 +32,12 @@
 									<div class="clearfix">
 										<dt>注册手机</dt>
 										<dd>${user.mobile }
-											<a href="javascript:void(0)" class="green ft-r js-show-dialog" data-dialog="js-addnum_box">更换手机</a>
+<!-- 											<a href="javascript:void(0)" class="green ft-r js-show-dialog" data-dialog="js-addnum_box">更换手机</a> -->
 										</dd>
 									</div>
 									<div class="clearfix">
 										<dt>登录密码</dt>
-										<dd>******<a href="javascript:void(0)" class="green ft-r js-show-dialog" data-dialog="js-modify_secret">修改密码</a></dd>
+										<dd>******<!-- <a href="javascript:void(0)" class="green ft-r js-show-dialog" data-dialog="js-modify_secret">修改密码</a> --></dd>
 									</div>
 								</dl>
 							</div>

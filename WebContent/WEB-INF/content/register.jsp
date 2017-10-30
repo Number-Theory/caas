@@ -37,7 +37,7 @@
 
 <script src="<%=path%>/resources/js/login/login.js"></script>
 
-<title>VBOSSCloud平台</title>
+<title>欢迎使用云掌互联</title>
 <!--给title添加一个小图标-->
 <link rel="Shortcut Icon" href="<%=path%>/resources/img/title.ico"
 	type="/image/x-icon" />
@@ -53,11 +53,11 @@
 	<!--头部信息开始-->
 	<div class="header">
 		<div class="logo width_980">
-			<h1 class="title">VBOSSCloud平台</h1>
+			<h1 class="title">云掌互联云平台</h1>
 			<div class="header_nav">
 				<ul>
-					<li><a href="<%=path%>/">概览</a></li>
-					<li><a href="<%=path%>/home/about">联系我们</a></li>
+<%-- 					<li><a href="<%=path%>/">概览</a></li> --%>
+<%-- 					<li><a href="<%=path%>/home/about">联系我们</a></li> --%>
 					<li class="header_selected"><a href="<%=path%>/login">立即登录</a></li>
 				</ul>
 			</div>
@@ -74,13 +74,13 @@
 	</script>
 	<div class="content width_980" onkeydown="keyLogin()">
 		<div>
-			<h3>欢迎使用云之讯</h3>
+			<h3>欢迎使用云掌互联</h3>
 			<div class="reg-wrap">
 				<div class="reg-con">
 					<div class="reg-info">
 						<h1></h1>
 						<div class="reg-det">
-							<h1 style="text-align: center; font-size: 2.2rem;">注册云之讯账号</h1>
+							<h1 style="text-align: center; font-size: 2.2rem;">注册云掌互联账号</h1>
 							<form action="<%=path%>/user/simpleReg" id="userInfoFrm"
 								name="userInfoFrm" method="post">
 								<div class="group">
@@ -125,8 +125,8 @@
 									<div class="txt">
 										<input type="checkbox" id="reg_checked" name="is_agreement"
 											value="1" onclick="validateButton()" />阅读并同意<a
-											href="/about/items.html" style="color: #2ea967;"
-											target="_blank">《云之讯融合通讯开放平台用户使用协议》</a>及相关服务条款
+											href="#" style="color: #2ea967;"
+											target="_blank">《云掌互联云平台用户使用协议》</a>及相关服务条款
 									</div>
 									<span id="checked_error" class="error1" style="display: none;">请同意协议并勾选!</span>
 									<input type="hidden" id="checked_error_flag" value="0" /> <a

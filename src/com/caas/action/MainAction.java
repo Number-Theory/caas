@@ -97,7 +97,7 @@ public class MainAction extends BaseAction {
 		monthConsume.put("minNum", dao.getOneInfo("user.getUserDayConsume", data));
 		
 		data.clear();
-		for(int i = 0 ; i <= 5 ; i ++) {
+		for(int i = 0 ; i < 5 ; i ++) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			data = StrutsUtils.getFormData();
 			data.put("startDate", DateUtil.strToDate(DateUtil.getDate(DateUtil.dateToStr(new Date(), "yyyy-MM-dd"), i) + " 00:00:00", "yyyy-MM-dd HH:mm:ss"));

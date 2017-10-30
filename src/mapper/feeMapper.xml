@@ -58,19 +58,19 @@
 	</select>
 
 	<update id="saveEditFee">
-		update tb_caas_fee set rateName=#{rateName},productType=#{productType},rateType=#{rateType},monthlyRent=#{monthlyRent},mininumCharge=#{mininumCharge}
-		,billingType=#{billingType},billingUnit=#{billingUnit},gratisUnit=#{gratisUnit},localPrice=#{localPrice},dddPrice=#{dddPrice},iddPrice=#{iddPrice}
-		,localPriceB=#{localPriceB},dddPriceB=#{dddPriceB},iddPriceB=#{iddPriceB},recordPrice=#{recordPrice}
-		,oncePrice=#{oncePrice},status=#{status},remark=#{remark} where `id`=#{id};
+		update tb_caas_fee set rateName=#{rateName},productType=#{productType},rateType=#{rateType},monthlyRent=#{monthlyRent} * 1000000,mininumCharge=#{mininumCharge} * 1000000
+		,billingType=#{billingType},billingUnit=#{billingUnit},gratisUnit=#{gratisUnit},localPrice=#{localPrice} * 1000000,dddPrice=#{dddPrice} * 1000000,iddPrice=#{iddPrice} * 1000000
+		,localPriceB=#{localPriceB} * 1000000,dddPriceB=#{dddPriceB} * 1000000,iddPriceB=#{iddPriceB} * 1000000,recordPrice=#{recordPrice} * 1000000
+		,oncePrice=#{oncePrice} * 1000000,status=#{status},remark=#{remark} where `id`=#{id};
 	</update>
 	
 	<insert id="saveAddFee">
 		INSERT INTO `tb_caas_fee` (`rateName`, `productType`, `rateType`, `monthlyRent`, `mininumCharge`,
 		`billingType`, `billingUnit`, `gratisUnit`, `localPrice`, `dddPrice`, `iddPrice`, `localPriceB`,
 		`dddPriceB`, `iddPriceB`, `recordPrice`, `oncePrice`, `status`, `creationTime`, `remark`) 
-		VALUES (#{rateName}, #{productType}, #{rateType}, #{monthlyRent}, #{mininumCharge}, #{billingType}, #{billingUnit},
-		#{gratisUnit}, #{localPrice}, #{dddPrice}, #{iddPrice}, #{localPriceB}, #{dddPriceB}, #{iddPriceB},
-		#{recordPrice}, #{oncePrice}, #{status}, now(), #{remark});
+		VALUES (#{rateName}, #{productType}, #{rateType}, #{monthlyRent} * 1000000, #{mininumCharge} * 1000000, #{billingType}, #{billingUnit},
+		#{gratisUnit}, #{localPrice} * 1000000, #{dddPrice} * 1000000, #{iddPrice} * 1000000, #{localPriceB} * 1000000, #{dddPriceB} * 1000000, #{iddPriceB} * 1000000,
+		#{recordPrice} * 1000000, #{oncePrice} * 1000000, #{status}, now(), #{remark});
 	</insert>
 	
 	<update id="updateFeeStatus">

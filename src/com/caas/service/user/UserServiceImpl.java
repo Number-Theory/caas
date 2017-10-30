@@ -46,27 +46,31 @@ public class UserServiceImpl implements UserService {
 	public Object saveAddUser(Map<String, Object> map) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			Map<String, Object> user = dao.getOneInfo("user.getUserByUserName", map);;
-			if(user != null && !user.isEmpty()) {
+			Map<String, Object> user = dao.getOneInfo("user.getUserByUserName", map);
+			;
+			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
 				result.put("msg", ",用户名已存在");
 				return result;
 			}
 			user = dao.getOneInfo("user.getUserByMobile", map);
-			if(user != null && !user.isEmpty()) {
+			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
 				result.put("msg", ",号码已被注册");
 				return result;
 			}
-			
+
 			user = dao.getOneInfo("user.getUserByEmail", map);
-			if(user != null && !user.isEmpty()) {
+			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
 				result.put("msg", ",邮箱已被注册");
 				return result;
 			}
-			
+
 			dao.insert("user.saveAddUser", map);
+
+			dao.insert("user.saveAddUserBalance", map);
+
 			result.put("result", "true");
 		} catch (Exception e) {
 			logger.error("增加角色错误：", e);

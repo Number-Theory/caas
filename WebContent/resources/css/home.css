@@ -60,7 +60,7 @@ a,input{/*去掉链接周边的虚边框*/
 	width: 300px;
 	float: left;
 	text-align: right;
-	background: url('../img/logo.png') no-repeat left center;
+/* 	background: url('../img/logo.png') no-repeat left center; */
 	font-size: 28px;
 	color: #48c690;
 

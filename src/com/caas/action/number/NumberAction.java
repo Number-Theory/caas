@@ -167,7 +167,6 @@ public class NumberAction extends BaseAction {
 
 	@Action("/number/applyNumberListData")
 	public void applyNumberListData() {
-		
 		deal("number.applyNumberListData", "number.applyNumberListDataCount");
 	}
 
@@ -177,7 +176,6 @@ public class NumberAction extends BaseAction {
 		data.put("userId", AuthorityUtils.getLoginUserIdNew());
 		return "applyNumberList";
 	}
-
 	// 处理表格
 	public void deal(String sqlData, String sqlDataCount) {
 		Map<String, Object> map = StrutsUtils.getFormData();

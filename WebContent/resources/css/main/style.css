@@ -57,7 +57,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{color: #516472;font-family: "microsoft yahei";font-size: 14px;}
 ::-ms-clear, ::-ms-reveal{display: none;}
 /*--------公共部分----------*/
-.wrap{width: 100%;min-width: 1360px;height: 100%;/*overflow: hidden;*/position: relative;}
+.wrap{width: 100%;height: 100%;/*overflow: hidden;*/position: relative;}
 .sidebar{width: 200px;position: fixed;height: 100%;left: 0;top: 0;background-color: #28323c;z-index: 100;}
 #main{position: relative;height: 100%;margin-left:0px;background-color: #f0f1f2;}
 #main .top{width: 100%;height: 56px;line-height: 56px;margin-left: -200px;position: fixed;top: 0;left: 200px;background-color: #fff;z-index: 99;}

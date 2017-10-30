@@ -274,14 +274,10 @@
 											field : '#',
 											formatter : function(value, row,
 													index) {
-												var edit = '';
-												var d = ''
-												if (row.status == 0) {
-													return d = '<a href="' + edit + '" >分配号码</a> &nbsp;&nbsp;';
-												} else if (row.status == 1) {
-													return d = '<a href="' + edit + '" >查看分配</a> &nbsp;&nbsp;';
-													;
-												}
+												var edit = '/devide/devideMobile?id='
+														+ row.id;
+												var d = '<a href="' + edit + '" >分配号码</a> &nbsp;&nbsp;';
+												return d;
 											},
 											width : "20%"
 										} ]

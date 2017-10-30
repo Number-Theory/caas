@@ -65,8 +65,7 @@
 										</span>
 									</div>
 									<div class="standard">
-										资费配置：<span class="green" onclick="returnFeeConfig()"
-											style="cursor: pointer">标准档</span>
+										资费配置：<span class="green">标准档</span>
 									</div>
 								</div>
 							</div>
@@ -87,33 +86,33 @@
 											<li class="item item1"><span><i></i></span>
 												<p class="txt">总共花费</p>
 												<p class="price">
-													<b>${yesterdayConsume.total == null ? '0.00' : yesterdayConsume.total}</b>元
+													<b>${yesterdayConsume.total == null ? '0.00' : yesterdayConsume.total / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<s:set var="voiceNotify" value="0" />
 											<li class="item item2 msg"><span><i></i></span>
 												<p class="txt">语音通知</p>
 												<p class="price">
-													<b>${yesterdayConsume.voiceNotify == null ? '0.00' : yesterdayConsume.voiceNotify}</b>元
+													<b>${yesterdayConsume.voiceNotify == null ? '0.00' : yesterdayConsume.voiceNotify / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-valid"><span><i></i></span>
 												<p class="txt">语音验证</p>
 												<p class="price">
-													<b>${yesterdayConsume.voiceCode == null ? '0.00' : yesterdayConsume.voiceCode}</b>元
+													<b>${yesterdayConsume.voiceCode == null ? '0.00' : yesterdayConsume.voiceCode / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-notice"><span><i></i></span>
 												<p class="txt">隐号通话</p>
 												<p class="price">
-													<b>${yesterdayConsume.safetyCall == null ? '0.00' : yesterdayConsume.safetyCall}</b>元
+													<b>${yesterdayConsume.safetyCall == null ? '0.00' : yesterdayConsume.safetyCall / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-out"><span><i></i></span>
 												<p class="txt">虚拟小号</p>
 												<p class="price">
-													<b>${yesterdayConsume.minNum == null ? '0.00' : yesterdayConsume.minNum}</b>元
+													<b>${yesterdayConsume.minNum == null ? '0.00' : yesterdayConsume.minNum / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-out"><span><i></i></span>
 												<p class="txt">双向外呼</p>
 												<p class="price">
-													<b>${yesterdayConsume.callback == null ? '0.00' : yesterdayConsume.callback}</b>元
+													<b>${yesterdayConsume.callback == null ? '0.00' : yesterdayConsume.callback / 1000000}</b>元
 												</p></li>
 										</ul>
 									</s:if>
@@ -128,33 +127,33 @@
 											<li class="item item1"><span><i></i></span>
 												<p class="txt">总共花费</p>
 												<p class="price">
-													<b>${monthConsume.total == null ? '0.0000' : monthConsume.total}</b>元
+													<b>${monthConsume.total == null ? '0.0000' : monthConsume.total / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<s:set var="voiceNotify" value="1" />
 											<li class="item item2 msg"><span><i></i></span>
 												<p class="txt">语音通知</p>
 												<p class="price">
-													<b>${monthConsume.voiceNotify == null ? '0.00' : monthConsume.voiceNotify}</b>元
+													<b>${monthConsume.voiceNotify == null ? '0.00' : monthConsume.voiceNotify / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-valid"><span><i></i></span>
 												<p class="txt">语音验证</p>
 												<p class="price">
-													<b>${monthConsume.voiceCode == null ? '0.00' : monthConsume.voiceCode}</b>元
+													<b>${monthConsume.voiceCode == null ? '0.00' : monthConsume.voiceCode / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-notice"><span><i></i></span>
 												<p class="txt">隐号通话</p>
 												<p class="price">
-													<b>${monthConsume.safetyCall == null ? '0.00' : monthConsume.safetyCall}</b>元
+													<b>${monthConsume.safetyCall == null ? '0.00' : monthConsume.safetyCall / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-out"><span><i></i></span>
 												<p class="txt">虚拟小号</p>
 												<p class="price">
-													<b>${monthConsume.minNum == null ? '0.00' : monthConsume.minNum}</b>元
+													<b>${monthConsume.minNum == null ? '0.00' : monthConsume.minNum / 1000000}</b>元
 												</p> <b class="line-v"></b></li>
 											<li class="item item3 voice-out"><span><i></i></span>
 												<p class="txt">双向外呼</p>
 												<p class="price">
-													<b>${monthConsume.callback == null ? '0.00' : monthConsume.callback}</b>元
+													<b>${monthConsume.callback == null ? '0.00' : monthConsume.callback / 1000000}</b>元
 												</p></li>
 										</ul>
 									</s:if>
@@ -174,18 +173,18 @@
 								<div class="right" style="margin-left: 10px; padding: 5px;">
 									<div></div>
 									<div class="rest">
-										钱包余额：<span> <s:property value="user.balance" />
+										钱包余额：<span> ${user.balance / 1000000 }
 										</span>元
 									</div>
 									<div class="rest">
 										透支能力：<span> 未开启 </span>
 									</div>
 
-									<div class="btn-div" style="padding: 10px 0 0 0;">
-										<a href="<%=path%>/pay/newOrder" class="btn-style1 recharge">充值</a>
-										<a class="btn-style5 js-show-dialog" data-dialog="js-reminder"
-											href="javascript:void(0)">余额提醒</a>
-									</div>
+<!-- 									<div class="btn-div" style="padding: 10px 0 0 0;"> -->
+<%-- 										<a href="<%=path%>/pay/newOrder" class="btn-style1 recharge">充值</a> --%>
+<!-- 										<a class="btn-style5 js-show-dialog" data-dialog="js-reminder" -->
+<!-- 											href="javascript:void(0)">余额提醒</a> -->
+<!-- 									</div> -->
 								</div>
 
 								<ul class="tab-ul clearfix" style="margin: 10px 10px 10px 10px">

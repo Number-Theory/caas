@@ -24,7 +24,7 @@ import com.caas.util.StrutsUtils;
 @Controller
 @Results({ @Result(name = "templateList", location = "/WEB-INF/content/template/listTemplate.jsp"),
 		@Result(name = "addTemplate", location = "/WEB-INF/content/template/addTemplate.jsp"),
-		@Result(name = "editTemplate", location = "/WEB-INF/content/template/editTemplate.jsp")})
+		@Result(name = "editTemplate", location = "/WEB-INF/content/template/editTemplate.jsp") })
 public class TemplateAction extends BaseAction {
 
 	/**
@@ -52,9 +52,9 @@ public class TemplateAction extends BaseAction {
 
 	@Action("/template/deleteTemplate")
 	public void deleteTemplate() {
-		Map<String, Object> param = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.deleteTemplate(param);
+			service.deleteTemplate(data);
 			StrutsUtils.renderJson(true);
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -64,9 +64,9 @@ public class TemplateAction extends BaseAction {
 
 	@Action("/template/batchDeleteTemplate")
 	public void batchDeleteTemplate() {
-		Map<String, Object> param = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.batchDeleteTemplate(param);
+			service.batchDeleteTemplate(data);
 			StrutsUtils.renderJson(true);
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -81,25 +81,25 @@ public class TemplateAction extends BaseAction {
 
 	@Action("/template/saveAddTemplate")
 	public void saveAddTemplate() {
-		Map<String, Object> map = StrutsUtils.getFormDataObj();
-		String obj = service.saveAddTemplate(map);
+		data = StrutsUtils.getFormDataObj();
+		String obj = service.saveAddTemplate(data);
 		StrutsUtils.renderJson(obj);
 	}
 
 	@Action("/template/editTemplate")
 	public String editTemplate() {
-		Map<String, Object> map = StrutsUtils.getFormDataObj();
-		Map<String, Object> returnMap = service.getTemplate(map);
+		data = StrutsUtils.getFormDataObj();
+		Map<String, Object> returnMap = service.getTemplate(data);
 		StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 		return "editTemplate";
 	}
 
 	@Action("/template/saveEditTemplate")
 	public void saveEditTemplate() {
-		Map<String, Object> map = StrutsUtils.getFormData();
+		data = StrutsUtils.getFormData();
 		try {
-			service.saveEditTemplate(map);
-			Map<String, Object> returnMap = service.getTemplate(map);
+			service.saveEditTemplate(data);
+			Map<String, Object> returnMap = service.getTemplate(data);
 			StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 			StrutsUtils.renderText("true");
 		} catch (Exception e) {
@@ -110,8 +110,8 @@ public class TemplateAction extends BaseAction {
 
 	// 处理表格
 	public void deal(String sqlData, String sqlDataCount) {
-		Map<String, Object> map = StrutsUtils.getFormData();
-		PageContainer page = service.csmData(map, sqlData, sqlDataCount);
+		data = StrutsUtils.getFormData();
+		PageContainer page = service.csmData(data, sqlData, sqlDataCount);
 
 		PageModel pageModel = new PageModel();
 		pageModel.setTotal(page.getTotalCount());

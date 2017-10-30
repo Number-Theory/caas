@@ -42,6 +42,7 @@ public class ConfigUtils {
 	public static String auth_pic;
 	
 	public static Integer request_infos_timeout;
+	
 
 	@PostConstruct
 	public void init() {

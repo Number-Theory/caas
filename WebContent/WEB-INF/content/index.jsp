@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<title>VBOSS控制台 - 主页</title>
+<title>云掌互联云平台 - 主页</title>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -50,7 +50,7 @@
 	src="<%=path%>/resources/js/contabs.min.js"></script>
 <!-- 第三方插件 -->
 <script src="<%=path%>/resources/js/plugins/pace/pace.min.js"></script>
-<title>VBOSS控制台 - 主页</title>
+<title>云掌互联云平台 - 主页</title>
 
 <script src="<%=path%>/resources/js/login/login.js"></script>
 <style>

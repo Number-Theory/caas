@@ -105,6 +105,20 @@
 		 #{numberCityName}, #{feeId}, '0', #{context}, now());
 	</insert>
 	
+	<update id="updateDevideStatus">
+		update tb_caas_number_apply t set t.applyCount = t.applyCount + #{applyCount}, t.status='1' where t.id = #{id};
+	</update>
+	
+	<update id="devideMobileToUser">
+		update tb_caas_phonenumber t set t.allotStatus='1', t.userName=#{userName}, t.userId=#{userId}, t.productType = #{productType},
+		t.rateId = #{rateId}, t.ratisUnit = #{ratisUnit}, t.employUnit = 0, t.reSidueUnit = #{ratisUnit} where t.id = #{mobileId}
+	</update>
+	
+	<select id="getDevideRateAndUserInfo" resultType="map">
+		select t.*, m.userName, n.gratisUnit as ratisUnit from tb_caas_number_apply t left join tb_caas_user m 
+		on t.userId = m.userId left join tb_caas_fee n on t.rateId = n.id where t.id = #{id}
+	</select>
+	
 	<select id="getAllCity" resultType="Map">
 		select city_id as cityId, city_name as cityName from tb_caas_city
 	</select>
@@ -125,6 +139,10 @@
 			and n.userId = #{userId}
 		</if>
 		${limit}
+	</select>
+	
+	<select id="getOneApplyInfo" resultType="map">
+		select t.*, m.userName from tb_caas_number_apply t left join tb_caas_user m on t.userId = m.userId where t.id = #{id}
 	</select>
 
 	<select id="applyNumberListDataCount" resultType="map">

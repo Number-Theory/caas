@@ -5,18 +5,19 @@ function loginSubmit() {
 		return false;
 	}
 
-	var checkCode = $("#checkCode").val();
-
-	$.post(getPath() + "/checkCodeValid", {
-		code : checkCode
-	}, function(data) {
-		if (data == false) {
-			alert("验证码错误");
-			return false;
-		} else {
-			$('#form-login').submit();
-		}
-	});
+//	var checkCode = $("#checkCode").val();
+//
+//	$.post(getPath() + "/checkCodeValid", {
+//		code : checkCode
+//	}, function(data) {
+//		if (data == false) {
+//			alert("验证码错误");
+//			return false;
+//		} else {
+//			$('#form-login').submit();
+//		}
+//	});
+	$('#form-login').submit();
 }
 
 function getPath() {
@@ -37,11 +38,11 @@ var user_login = {
 			alert('密码不为空');
 			return false;
 		}
-		var checkCode = $('#checkCode').val();
-		if (checkCode == null || checkCode == '') {
-			alert('验证码不为空');
-			return false;
-		}
+//		var checkCode = $('#checkCode').val();
+//		if (checkCode == null || checkCode == '') {
+//			alert('验证码不为空');
+//			return false;
+//		}
 
 		return true;
 	}

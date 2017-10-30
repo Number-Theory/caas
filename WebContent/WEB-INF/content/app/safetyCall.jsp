@@ -75,7 +75,7 @@ h2 {
 										<h5>消耗</h5>
 									</div>
 									<div class="ibox-content">
-										<h2 class="no-margins">${data.totalConsume }</h2>
+										<h2 class="no-margins">${data.totalConsume / 1000000 }</h2>
 										<div class="stat-percent font-bold text-success">
 <!-- 											98% <i class="fa fa-level-up"></i> -->
 										</div>
@@ -117,7 +117,7 @@ h2 {
 										<h5>消耗</h5>
 									</div>
 									<div class="ibox-content">
-										<h2 class="no-margins">${data.todayConsume }</h2>
+										<h2 class="no-margins">${data.todayConsume / 1000000 }</h2>
 										<div class="stat-percent font-bold text-navy">
 <!-- 											44% <i class="fa fa-level-up"></i> -->
 										</div>
@@ -149,45 +149,45 @@ h2 {
 						style="padding-right: 20px; margin-left: -6px; margin-top: 20px;">
 						<div class="tabs-container">
 							<ul class="nav nav-tabs" style="margin-bottom: 0px;">
-								<li class="active"><a data-toggle="tab" href="#tab-1"
-									aria-expanded="true">产品介绍</a></li>
-								<li class=""><a data-toggle="tab" href="#tab-2"
+<!-- 								<li class="active"><a data-toggle="tab" href="#tab-1" -->
+<!-- 									aria-expanded="true">产品介绍</a></li> -->
+								<li class="active"><a data-toggle="tab" href="#tab-2"
 									aria-expanded="false">应用管理</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-3"
 									aria-expanded="false">号码管理</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-6"
 									aria-expanded="false">号码申请记录</a></li>
-								<li class=""><a data-toggle="tab" href="#tab-4"
-									aria-expanded="false">消耗分析</a></li>
-								<li class=""><a data-toggle="tab" href="#tab-5"
-									aria-expanded="false">接口说明</a></li>
+<!-- 								<li class=""><a data-toggle="tab" href="#tab-4" -->
+<!-- 									aria-expanded="false">消耗分析</a></li> -->
+<!-- 								<li class=""><a data-toggle="tab" href="#tab-5" -->
+<!-- 									aria-expanded="false">接口说明</a></li> -->
 							</ul>
 							<div class="tab-content">
-								<div id="tab-1" class="tab-pane active">
-									<div class="panel-body">
-										<div class="col-sm-4">
-											<img alt="" src="/resources/img/u3027.png"
-												style="height: 400px;">
-										</div>
-										<div class="col-sm-8">
-											<p>
-												<span>&nbsp;Lorem ipsum dolor sit amet, consectetur
-													adipiscing elit. Aenean euismod bibendum laoreet. Proin
-													gravIDa dolor sit amet lacus accumsan et viverra justo
-													commodo. Proin sodales pulvinar tempor. Cum sociis natoque
-													penatibus et magnis dis parturient montes, nascetur
-													rIDiculus mus. Nam fermentum, nulla luctus pharetra
-													vulputate, felis tellus mollis orci, sed rhoncus sapien
-													nunc eget.</span>
-											</p>
+<!-- 								<div id="tab-1" class="tab-pane active"> -->
+<!-- 									<div class="panel-body"> -->
+<!-- 										<div class="col-sm-4"> -->
+<!-- 											<img alt="" src="/resources/img/u3027.png" -->
+<!-- 												style="height: 400px;"> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-sm-8"> -->
+<!-- 											<p> -->
+<%-- 												<span>&nbsp;Lorem ipsum dolor sit amet, consectetur --%>
+<!-- 													adipiscing elit. Aenean euismod bibendum laoreet. Proin -->
+<!-- 													gravIDa dolor sit amet lacus accumsan et viverra justo -->
+<!-- 													commodo. Proin sodales pulvinar tempor. Cum sociis natoque -->
+<!-- 													penatibus et magnis dis parturient montes, nascetur -->
+<!-- 													rIDiculus mus. Nam fermentum, nulla luctus pharetra -->
+<!-- 													vulputate, felis tellus mollis orci, sed rhoncus sapien -->
+<%-- 													nunc eget.</span> --%>
+<!-- 											</p> -->
 
-											<div style="">
-												<img alt="" src="/resources/img/u3031.png">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="tab-2" class="tab-pane">
+<!-- 											<div style=""> -->
+<!-- 												<img alt="" src="/resources/img/u3031.png"> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								<div id="tab-2" class="tab-pane active">
 									<div class="panel-body">
 										<iframe width="100%" height="800px"
 											src="<%=path%>/app/editAppInfo?productType=0" frameborder="0"
@@ -208,24 +208,24 @@ h2 {
 											frameborder="0" seamless></iframe>
 									</div>
 								</div>
-								<div id="tab-4" class="tab-pane">
-									<div class="panel-body">
-										<strong>移动设备优先</strong>
-										<p>在 Bootstrap 2 中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在 Bootstrap
-											3
-											中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说，Bootstrap
-											是移动设备优先的。针对移动设备的样式融合进了框架的每个角落，而不是增加一个额外的文件。</p>
-									</div>
-								</div>
-								<div id="tab-5" class="tab-pane">
-									<div class="panel-body">
-										<strong>移动设备优先</strong>
-										<p>在 Bootstrap 2 中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在 Bootstrap
-											3
-											中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说，Bootstrap
-											是移动设备优先的。针对移动设备的样式融合进了框架的每个角落，而不是增加一个额外的文件。</p>
-									</div>
-								</div>
+<!-- 								<div id="tab-4" class="tab-pane"> -->
+<!-- 									<div class="panel-body"> -->
+<%-- 										<strong>移动设备优先</strong> --%>
+<!-- 										<p>在 Bootstrap 2 中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在 Bootstrap -->
+<!-- 											3 -->
+<!-- 											中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说，Bootstrap -->
+<!-- 											是移动设备优先的。针对移动设备的样式融合进了框架的每个角落，而不是增加一个额外的文件。</p> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div id="tab-5" class="tab-pane"> -->
+<!-- 									<div class="panel-body"> -->
+<%-- 										<strong>移动设备优先</strong> --%>
+<!-- 										<p>在 Bootstrap 2 中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在 Bootstrap -->
+<!-- 											3 -->
+<!-- 											中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说，Bootstrap -->
+<!-- 											是移动设备优先的。针对移动设备的样式融合进了框架的每个角落，而不是增加一个额外的文件。</p> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 							</div>
 						</div>
 

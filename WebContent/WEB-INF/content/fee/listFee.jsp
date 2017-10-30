@@ -237,9 +237,17 @@
 										},
 										{
 											field : 'monthlyRent',
+											formatter : function(value, row,
+													index) {
+												return row.monthlyRent / 1000000;
+											}
 										},
 										{
 											field : 'mininumCharge',
+											formatter : function(value, row,
+													index) {
+												return row.mininumCharge / 1000000;
+											}
 										},
 										{
 											field : 'billingType',
@@ -264,27 +272,59 @@
 										},
 										{
 											field : 'localPrice',
+											formatter : function(value, row,
+													index) {
+												return row.localPrice / 1000000;
+											}
 										},
 										{
 											field : 'dddPrice',
+											formatter : function(value, row,
+													index) {
+												return row.dddPrice / 1000000;
+											}
 										},
 										{
 											field : 'iddPrice',
+											formatter : function(value, row,
+													index) {
+												return row.iddPrice / 1000000;
+											}
 										},
 										{
 											field : 'localPriceB',
+											formatter : function(value, row,
+													index) {
+												return row.localPriceB / 1000000;
+											}
 										},
 										{
 											field : 'dddPriceB',
+											formatter : function(value, row,
+													index) {
+												return row.dddPriceB / 1000000;
+											}
 										},
 										{
 											field : 'iddPriceB',
+											formatter : function(value, row,
+													index) {
+												return row.iddPriceB / 1000000;
+											}
 										},
 										{
 											field : 'recordPrice',
+											formatter : function(value, row,
+													index) {
+												return row.recordPrice / 1000000;
+											}
 										},
 										{
 											field : 'oncePrice',
+											formatter : function(value, row,
+													index) {
+												return row.oncePrice / 1000000;
+											}
 										},
 										{
 											field : 'status',

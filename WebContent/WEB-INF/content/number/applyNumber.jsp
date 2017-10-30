@@ -62,7 +62,7 @@
 							<c:forEach items="${feeMap }" var="fee">
 								<div id="${fee.id }" class="col-sm-1 package-select">
 									<input class="btn btn-danger" style="width: 80px" type="button"
-										value="${fee.mininumCharge }/月" class="form-control">
+										value="${fee.mininumCharge / 1000000 }/月" class="form-control">
 								</div>
 							</c:forEach>
 							<input id="feeId" name="feeId" value="${data.feeId }" type="hidden">
@@ -75,11 +75,11 @@
 									<table class="table table-hover no-margins">
 										<tr>
 											<td style="background: #e0e0e0;"><small>月租</small></td>
-											<td><span id="monthlyRent">${fee.monthlyRent }元</span></td>
+											<td><span id="monthlyRent">${fee.monthlyRent / 1000000 }元</span></td>
 										</tr>
 										<tr>
 											<td style="background: #e0e0e0;"><small>月费功能</small></td>
-											<td><span id="mininumCharge">${fee.mininumCharge }</span>（每月1号扣除当月套餐费，消费额度低于低消的需要补扣）</td>
+											<td><span id="mininumCharge">${fee.mininumCharge / 1000000 }</span>（每月1号扣除当月套餐费，消费额度低于低消的需要补扣）</td>
 										</tr>
 										<tr>
 											<td style="background: #e0e0e0;">套餐内包含条数或分钟数</td>
@@ -100,10 +100,10 @@
 											<td style="background: #e0e0e0;"><small>套餐外扣费规则</small></td>
 											<td id="feeRule"><c:if
 													test="${data.productType == 3 || data.productType == 4}">
-												按条扣费，每条${fee.oncePrice }元
+												按条扣费，每条${fee.oncePrice / 1000000 }元
 											</c:if> <c:if
 													test="${data.productType == 0 || data.productType == 1 || data.productType == 2}">
-											长途：${fee.dddPrice }元/${fee.billingUnit }秒，短途：${fee.localPrice }元/${fee.billingUnit }秒，国际：${fee.iddPrice }元/${fee.billingUnit }秒。 实时扣费，不满${fee.billingUnit }秒按${fee.billingUnit }秒计算
+											长途：${fee.dddPrice / 1000000 }元/${fee.billingUnit }秒，短途：${fee.localPrice / 1000000 }元/${fee.billingUnit }秒，国际：${fee.iddPrice / 1000000 }元/${fee.billingUnit }秒。 实时扣费，不满${fee.billingUnit }秒按${fee.billingUnit }秒计算
 										</c:if></td>
 										</tr>
 									</table>

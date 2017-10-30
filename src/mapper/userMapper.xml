@@ -146,4 +146,10 @@
 		 `enterpriseMaterial`, `enterpriseMaterialId`, `status`, `createTime`)
 		 VALUES (#{userId}, #{userName}, #{authenticationType}, #{webSite}, #{enterpriseMaterial}, #{enterpriseMaterialId}, #{status}, now()); 
 	</insert>
+	
+	<insert id="saveAddUserBalance">
+		INSERT INTO `tb_caas_balance` (`userId`, `balance`, `frozenBalance`, `frozenCreationTime`, `validityTime`, 
+		`creditType`, `creditMoney`, `balanceRemidType`, `remindMoney`, `remindType`, `creationTime`, `updateTime`)
+		 VALUES (#{userId}, '5000000', '0', now(), now(), '1', '0', '0', '0', '0', now(), now());
+	</insert>
 </mapper> 

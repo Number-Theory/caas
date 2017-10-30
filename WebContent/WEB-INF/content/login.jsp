@@ -37,7 +37,7 @@
 
 <script src="<%=path%>/resources/js/login/login.js"></script>
 
-<title>VBOSSCloud平台</title>
+<title>欢迎使用云掌互联</title>
 <!--给title添加一个小图标-->
 <link rel="Shortcut Icon" href="<%=path%>/resources/img/title.ico"
 	type="/image/x-icon" />
@@ -50,12 +50,12 @@
 	<!--头部信息开始-->
 	<div class="header">
 		<div class="logo width_980">
-			<h1 class="title">VBOSSCloud平台</h1>
+			<h1 class="title">云掌互联云平台</h1>
 			<div class="header_nav">
 				<ul>
-					<li><a href="<%=path%>/">概览</a></li>
-					<li><a href="<%=path%>/home/about">联系我们</a></li>
-					<li class="header_selected"><a href="<%=path%>/login">立即登录</a></li>
+					<%-- 					<li><a href="<%=path%>/">概览</a></li> --%>
+					<%-- 					<li><a href="<%=path%>/home/about">联系我们</a></li> --%>
+<%-- 					<li class="header_selected"><a href="<%=path%>/login">立即登录</a></li> --%>
 				</ul>
 			</div>
 		</div>
@@ -74,7 +74,7 @@
 			style="width: 500px;">
 			<div
 				style="background-color: white; border-radius: 5px; padding: 35px;">
-				<h3>欢迎使用云之讯</h3>
+				<h3>欢迎使用云掌互联</h3>
 
 				<form class="form-horizontal m-t" role="form"
 					action="<%=path%>/index" method="post" id="form-login">
@@ -86,6 +86,8 @@
 						</div>
 					</div>
 
+					<div class="form-group"></div>
+
 					<div class="form-group">
 						<div class="col-sm-12">
 							<input type="password" class="form-control" placeholder="密码"
@@ -93,7 +95,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<%-- 					<div class="form-group">
 						<div class="col-sm-12">
 							<input type="text" class="form-control" placeholder="验证码"
 								id="checkCode" name="checkCode" required="">
@@ -104,18 +106,22 @@
 							<img src="<%=path%>/checkCode" id="randCheckCode_img"
 								onclick="$(this).attr('src','<%=path%>/checkCode?' + Math.random())">
 						</div>
-					</div>
+					</div> --%>
+
+					<div class="form-group"></div>
+
 					<div class="form-group">
 						<span style="color: red">${msg }</span>
 					</div>
-
 					<button type="button" onclick="loginSubmit()"
 						class="btn btn-success btn-block col-sm-10">登 录</button>
 					<input id="projectPath" value="<%=basePath%>" type="hidden">
 
+					<div class="form-group"></div>
+					<div class="form-group"></div>
 					<p class="text-muted text-center">
-						<a href="<%=path%>/welcome"><small>忘记密码了？</small></a> | <a
-							href="<%=path%>/register">注册一个新账号</a>
+<%-- 						<a href="<%=path%>/welcome"><small>忘记密码了？</small></a> | <a --%>
+<%-- 							href="<%=path%>/register">注册一个新账号</a> --%>
 					</p>
 
 				</form>
