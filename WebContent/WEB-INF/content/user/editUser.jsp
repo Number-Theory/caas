@@ -33,9 +33,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">SID：</label>
+                                <label class="col-sm-4 control-label">UserId：</label>
                                 <div class="col-sm-3">
-                                    <input id="url" name="url" value="${returnMap.sid }" minlength="1" readonly="readonly" type="text" class="form-control" required="" aria-required="true" >
+                                    <input id="userId" name="userId" value="${returnMap.userId }" minlength="1" readonly="readonly" type="text" class="form-control" required="" aria-required="true" >
                                 </div>
                             </div>
                             <div class="form-group">

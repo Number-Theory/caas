@@ -110,6 +110,7 @@
 											<th data-field="numberType">号码类型</th>
 											<th data-field="applyDate">开号日期</th>
 											<th data-field="serverProduct">业务类型</th>
+											<th data-field="apiName">所属资源</th>
 											<th data-field="attribute">号码属性</th>
 											<th data-field="status">号码状态</th>
 											<th data-field="remark">备注</th>
@@ -253,6 +254,9 @@
 													return "语音通知";
 												}
 											}
+										},
+										{
+											field : 'apiName',
 										},
 										{
 											field : 'attribute',

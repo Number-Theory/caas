@@ -29,7 +29,9 @@ import com.caas.util.StrutsUtils;
 @Controller
 @Results({ @Result(name = "userList", location = "/WEB-INF/content/user/listUser.jsp"),
 	@Result(name = "addUser", location = "/WEB-INF/content/user/addUser.jsp"),
-	@Result(name = "editUser", location = "/WEB-INF/content/user/editUser.jsp") })
+	@Result(name = "editUser", location = "/WEB-INF/content/user/editUser.jsp"),
+	@Result(name = "chargeUser", location = "/WEB-INF/content/user/chargeUser.jsp"),
+	@Result(name = "repasswd", location = "/WEB-INF/content/user/repasswdUser.jsp") })
 public class UserAction extends BaseAction {
 
 	/**
@@ -110,6 +112,22 @@ public class UserAction extends BaseAction {
 		StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 		return "editUser";
 	}
+	
+	@Action("/user/chargeUser")
+	public String chargeUser() {
+		data = StrutsUtils.getFormDataObj();
+		Map<String, Object> returnMap = service.getUser(data);
+		StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
+		return "chargeUser";
+	}
+	
+	@Action("/user/repasswd")
+	public String repasswd() {
+		data = StrutsUtils.getFormDataObj();
+		Map<String, Object> returnMap = service.getUser(data);
+		StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
+		return "repasswd";
+	}
 
 	@Action("/user/saveEditUser")
 	public void saveEditUser() {
@@ -117,6 +135,34 @@ public class UserAction extends BaseAction {
 		try {
 			service.saveEditUser(map);
 			Map<String, Object> returnMap = service.getUser(map);
+			StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
+			StrutsUtils.renderText("true");
+		} catch (Exception e) {
+			logger.error("{}", e);
+			StrutsUtils.renderText("false");
+		}
+	}
+	
+	@Action("/user/saveChargeUser")
+	public void saveChargeUser() {
+		data = StrutsUtils.getFormData();
+		try {
+			service.saveChargeUser(data);
+			Map<String, Object> returnMap = service.getUser(data);
+			StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
+			StrutsUtils.renderText("true");
+		} catch (Exception e) {
+			logger.error("{}", e);
+			StrutsUtils.renderText("false");
+		}
+	}
+	
+	@Action("/user/saveRepasswdUser")
+	public void saveRepasswdUser() {
+		data = StrutsUtils.getFormData();
+		try {
+			service.saveRepasswdUser(data);
+			Map<String, Object> returnMap = service.getUser(data);
 			StrutsUtils.getRequest().setAttribute("returnMap", returnMap);
 			StrutsUtils.renderText("true");
 		} catch (Exception e) {

@@ -163,4 +163,8 @@
 	<select id="getUserAuthStatus" resultType="string">
 		select status from tb_caas_authentication where userId=#{userId}; 
 	</select>
+	
+	<select id="getAllApi" resultType="map">
+		select t.id,t.apiName,t.productType from tb_caas_api t;
+	</select>
 </mapper> 

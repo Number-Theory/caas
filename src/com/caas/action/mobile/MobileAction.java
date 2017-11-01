@@ -85,6 +85,9 @@ public class MobileAction extends BaseAction {
 	public String addMobile() {
 		List<Map<String, Object>> cityMap = dao.selectList("number.getAllCity", null);
 		StrutsUtils.getRequest().setAttribute("cityMap", cityMap);
+		
+		List<Map<String, Object>> apiMap = dao.selectList("number.getAllApi", null);
+		StrutsUtils.getRequest().setAttribute("apiMap", apiMap);
 		return "addMobile";
 	}
 

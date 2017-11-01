@@ -23,6 +23,10 @@ public interface UserService {
 	Map<String, Object> getUser(Map<String, Object> map);
 
 	void saveEditUser(Map<String, Object> map);
+	
+	void saveChargeUser(Map<String, Object> map);
+	
+	void saveRepasswdUser(Map<String, Object> map);
 
 	void updateUserStatus(Map<String, Object> map);
 }

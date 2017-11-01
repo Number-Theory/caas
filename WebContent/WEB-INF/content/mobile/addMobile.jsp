@@ -53,6 +53,96 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-4 control-label">业务类型：</label>
+								<div class="col-md-3">
+									<select id="serverProduct" name="serverProduct"
+										data-placeholder="业务类型" class="chosen-select"
+										style="width: 330px;" tabindex="2">
+										<option value="0" hassubinfo="true"
+											<c:if test="${returnMap.serverProduct == 0}">selected="selected"</c:if>>隐号业务</option>
+										<option value="1" hassubinfo="true"
+											<c:if test="${returnMap.serverProduct == 1}">selected="selected"</c:if>>小号业务</option>
+										<option value="2" hassubinfo="true"
+											<c:if test="${returnMap.serverProduct == 2}">selected="selected"</c:if>>回拨业务</option>
+										<option value="3" hassubinfo="true"
+											<c:if test="${returnMap.serverProduct == 3}">selected="selected"</c:if>>语音验证码</option>
+										<option value="4" hassubinfo="true"
+											<c:if test="${returnMap.serverProduct == 4}">selected="selected"</c:if>>语音通知</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group select_api" id="select_api_0">
+								<label class="col-sm-4 control-label">所属API资源：</label>
+								<div class="col-sm-3">
+									<select id="apiId_0" name="apiId" data-placeholder="所属API资源" style="width: 330px;"
+										class="chosen-select" tabindex="2">
+										<c:forEach items="${apiMap}" var="api">
+											<c:if test="${api.productType == 0 }">
+												<option value="${api.id }" cityName="${api.apiName }"
+													hassubinfo="true">${api.apiName }</option>
+											</c:if>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="form-group select_api" id="select_api_1">
+								<label class="col-sm-4 control-label">所属API资源：</label>
+								<div class="col-sm-3">
+									<select id="apiId_1" name="apiId" data-placeholder="所属API资源" style="width: 330px;"
+										class="chosen-select" tabindex="2">
+										<c:forEach items="${apiMap}" var="api">
+											<c:if test="${api.productType == 1 }">
+												<option value="${api.id }" cityName="${api.apiName }"
+													hassubinfo="true">${api.apiName }</option>
+											</c:if>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="form-group select_api" id="select_api_2">
+								<label class="col-sm-4 control-label">所属API资源：</label>
+								<div class="col-sm-3">
+									<select id="apiId_2" name="apiId" data-placeholder="所属API资源" style="width: 330px;"
+										class="chosen-select" tabindex="2">
+										<c:forEach items="${apiMap}" var="api">
+											<c:if test="${api.productType == 2 }">
+												<option value="${api.id }" cityName="${api.apiName }"
+													hassubinfo="true">${api.apiName }</option>
+											</c:if>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="form-group select_api" id="select_api_3">
+								<label class="col-sm-4 control-label">所属API资源：</label>
+								<div class="col-sm-3">
+									<select id="apiId_3" name="apiId" data-placeholder="所属API资源" style="width: 330px;"
+										class="chosen-select" tabindex="2">
+										<c:forEach items="${apiMap}" var="api">
+											<c:if test="${api.productType == 3 }">
+												<option value="${api.id }" cityName="${api.apiName }"
+													hassubinfo="true">${api.apiName }</option>
+											</c:if>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="form-group select_api" id="select_api_4">
+								<label class="col-sm-4 control-label">所属API资源：</label>
+								<div class="col-sm-3">
+									<select id="apiId_4" name="apiId" data-placeholder="所属API资源" style="width: 330px;"
+										class="chosen-select" tabindex="2">
+										<c:forEach items="${apiMap}" var="api">
+											<c:if test="${api.productType == 4 }">
+												<option value="${api.id }" cityName="${api.apiName }"
+													hassubinfo="true">${api.apiName }</option>
+											</c:if>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label class="col-sm-4 control-label">运营商：</label>
 								<div class="col-sm-3">
 									<input id="operator" name="operator"
@@ -91,25 +181,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label">业务类型：</label>
-								<div class="col-md-3">
-									<select id="serverProduct" name="serverProduct"
-										data-placeholder="业务类型" class="chosen-select"
-										style="width: 330px;" tabindex="2">
-										<option value="0" hassubinfo="true"
-											<c:if test="${returnMap.serverProduct == 0}">selected="selected"</c:if>>隐号业务</option>
-										<option value="1" hassubinfo="true"
-											<c:if test="${returnMap.serverProduct == 1}">selected="selected"</c:if>>小号业务</option>
-										<option value="2" hassubinfo="true"
-											<c:if test="${returnMap.serverProduct == 2}">selected="selected"</c:if>>回拨业务</option>
-										<option value="3" hassubinfo="true"
-											<c:if test="${returnMap.serverProduct == 3}">selected="selected"</c:if>>语音验证码</option>
-										<option value="4" hassubinfo="true"
-											<c:if test="${returnMap.serverProduct == 4}">selected="selected"</c:if>>语音通知</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-4 control-label">号码状态：</label>
 								<div class="col-sm-3">
 									<div class="input-group">
@@ -131,33 +202,41 @@
 										aria-required="true">
 								</div>
 							</div>
-
-							<div class="form-group">
-								<div class="col-sm-6 col-sm-offset-5">
-									<button class="btn btn-primary" type="button"
-										onclick="addUser()">提交添加</button>
-									<p id="addText"></p>
-								</div>
-							</div>
 						</form>
 					</div>
-				</div>
 
+
+					<div class="form-group">
+						<div class="col-sm-6 col-sm-offset-5">
+							<button class="btn btn-primary" type="button" onclick="addUser()">提交添加</button>
+							<p id="addText"></p>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
-	</div>
 
+	</div>
 </body>
 <script type="text/javascript">
 	$(function() {
 		$("#cityCode").change(function() {
-			debugger;
-			$(this).find("option:selected");
 			$("#city").val($(this).find("option:selected").attr("cityName"));
 		})
 
 		$("#city").val($("#cityCode").find("option:selected").attr("cityName"));
+
+		$("#serverProduct").change(
+				function() {
+					debugger;
+					$("#select_api_" + $("#serverProduct").val()).siblings(
+							".select_api").css("display", "none");
+					$("#select_api_" + $("#serverProduct").val()).css(
+							"display", "block");
+				});
+		$("#select_api_" + $("#serverProduct").val()).siblings(".select_api")
+				.css("display", "none");
 	})
 	function addUser() {
 		var phoneNumber = $('#phoneNumber').val();
@@ -166,6 +245,7 @@
 		var operator = $('#operator').val();
 		var numberType = $('#numberType').val();
 		var serverProduct = $('#serverProduct').val();
+		var apiId = $('#apiId_' + serverProduct).val();
 		var attribute = $('#attribute').val();
 		var status = $('#status').val();
 		var remark = $('#remark').val();
@@ -182,6 +262,7 @@
 			data : {
 				phoneNumber : phoneNumber,
 				city : city,
+				apiId : apiId,
 				cityCode : cityCode,
 				operator : operator,
 				numberType : numberType,

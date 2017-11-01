@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.caas.dao.CaasDao;
 import com.caas.model.PageContainer;
+import com.caas.util.MD5Util;
 
 /**
  * 
@@ -88,6 +89,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveEditUser(Map<String, Object> map) {
 		dao.update("user.saveEditUser", map);
+	}
+	
+	@Override
+	public void saveChargeUser(Map<String, Object> map) {
+		dao.update("user.saveChargeUser", map);
+	}
+	
+	@Override
+	public void saveRepasswdUser(Map<String, Object> map) {
+		String passwd = (String) map.get("passwd");
+		map.put("passwd", MD5Util.string2MD5(passwd));
+		dao.update("user.saveRepasswdUser", map);
 	}
 
 	@Override

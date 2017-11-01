@@ -6,9 +6,9 @@
 
     <select id="mobileListData" resultType="map">
 		select (@i:=@i+1)
-		rownum,n.*,f.*
+		rownum,n.*,f.*,b.apiName
 		from 
-		tb_caas_phonenumber n left join tb_caas_fee f on n.rateId = f.id ,
+		tb_caas_phonenumber n left join tb_caas_fee f on n.rateId = f.id left join tb_caas_api b on n.apiId=b.id ,
 		(select @i:=#{start} )it where 1=1
 		<if test="condition != null">
 			and (n.phoneNumber like concat('%',#{condition},'%')
@@ -83,9 +83,9 @@
 	</update>
 	
 	<insert id="saveAddMobile">
-		INSERT INTO `tb_caas_phonenumber` (`phoneNumber`, `city`, `cityCode`, `operator`, `numberType`, `applyDate`,
+		INSERT INTO `tb_caas_phonenumber` (`phoneNumber`, `city`, `apiId`, `cityCode`, `operator`, `numberType`, `applyDate`,
 		`serverProduct`,`attribute`,`status`,`remark`,`allotStatus`) VALUES
-		 (#{phoneNumber}, #{city}, #{cityCode}, #{operator}, #{numberType}, now(),
+		 (#{phoneNumber}, #{city}, #{apiId}, #{cityCode}, #{operator}, #{numberType}, now(),
 		 #{serverProduct}, #{attribute}, #{status}, #{remark}, '0');
 	</insert>
 	

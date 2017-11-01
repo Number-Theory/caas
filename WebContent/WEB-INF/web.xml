@@ -30,7 +30,7 @@
     </init-param>
     <init-param>
       <param-name>excludeEqualUrls</param-name>
-      <param-value>/index,/home,/home/about,/login,/logout,/checkCode,/register,/register.jsp,/login.jsp,/monitor,/table/view,/checkCodeValid,/welcome,/pkgLossRate</param-value>
+      <param-value>/index,/home,/home/about,/login,/logout,/checkCode,/register,/register.jsp,/login.jsp,/monitor,/table/view,/checkCodeValid,/welcome,/pkgLossRate,/homePage/portal,/homePage/aboutUs</param-value>
     </init-param>
     <init-param>
       <param-name>excludeStartUrls</param-name>

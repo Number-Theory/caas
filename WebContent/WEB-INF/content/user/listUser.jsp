@@ -233,7 +233,11 @@
 													index) {
 												var edit = "/user/editUser?id="
 														+ row.id;
-												var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;';
+												var charge = "/user/chargeUser?id="
+														+ row.id;
+												var repasswd = "/user/repasswd?id="
+														+ row.id;
+												var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;<a href="' + charge + '" >充值</a> &nbsp;&nbsp;<a href="' + repasswd + '" >更改密码</a> &nbsp;&nbsp;';
 												return d;
 											}
 										}, ]
