@@ -17,10 +17,6 @@
 <div class="container demo-1">
     <div class="content">
         <div id="large-header" class="large-header">
-        <div style="margin-top: 550px">
-			<h2 style="text-align: center;color: white;">持续提升</h2>
-			<h2 style="text-align: center;color: white;">通信行业与通信服务效率</h2>
-		</div>
             <canvas id="demo-canvas"></canvas>
         </div>
     </div>
