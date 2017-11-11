@@ -18,6 +18,12 @@ body{
 	width: 60%;
 	line-height: 100px;
 }
+.homeLogo img{
+	padding: 5px;
+	margin-left: 40px;
+	height: 90%;
+	width: auto;
+}
 .homeLogo h1{
 	padding-left: 5%;
 }
@@ -84,7 +90,6 @@ body{
 	text-align: center;
 }
 .homePageContent{
-	height: 100%;
 	width: 100%;
 }
 .homePageContent table{
@@ -95,14 +100,18 @@ body{
 .contentTitle td{
 	font-size: 36px;
 	padding-top: 40px;
+	height: 40px;
 }
 .productIcon td{
+	height: 100px;
 	padding-top: 40px;
 }
 .productIcon td img{
 	margin:0 auto;
+	cursor: pointer;
 }
 .productTitle td{
+	height: 80px;
 	padding-top: 20px;
 	font-size: 20px;
 }
@@ -120,7 +129,7 @@ body{
 	width: 80%;
 	background-size:100% auto;
 	background-repeat: no-repeat;  
-	background-image: url(../img/homePage/map.png) ;
+	background-image: url(../img/homePage/map.jpg) ;
 }
 .homePageFoot{
 	padding-top: 20px;
@@ -277,14 +286,14 @@ img{
 	background-size:100% auto;
 	background-repeat: no-repeat;  
 	background-image: url(../img/homePage/company.png) ;
-	margin-bottom: 30px;
 }
 #ourMap{
-	margin-top: 40px;
 	height: 400px;
 	width: 100%;
 	margin:0px;
 	padding:0px;
+	padding-top: 30px;
+	background-color: white;
 }
 #container{
 	height: 100%;
@@ -294,6 +303,11 @@ img{
 .contact{
 	height: 200px;
 	width: 100%;
+	background-color: white;
+}
+.contact h2{
+	margin: 0px;
+	padding-top: 10px;
 }
 .contact span{
 	border-bottom: 1px solid #2e8ae6;
@@ -306,8 +320,103 @@ img{
 .contact p{
 	width: 60%;
 	margin-left: 20%;
-	padding-top:10px;
+	padding-top: 20px;
 	color:#999;
 }
 
 /* 关于我们 end*/
+
+/*产品 start*/
+.productDiv{
+	text-align: left;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.ptitle{
+	height: auto;
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+}
+.picon{
+	background: url(../img/homePage/pic_ico1.png) no-repeat;
+	background-position: 0 -128px;
+    display: inline-block;
+    margin: 20px 0;
+    width: 406px;
+    height: 11px;
+}
+.ptitle h1{
+	color:#3f4857;
+	font-size: 48px;
+	letter-spacing:2px;
+	font-weight: normal;
+}
+.pintro{
+	color: #999;
+	font-size: 20px;
+	width: 50%;
+	margin-left: 25%;
+}
+.pscene{
+	font-size: 26px;
+	padding: 5px;
+	text-align: center;
+}
+.pp{
+	text-align: left;
+	padding: 10px;
+}
+
+.box1{
+    width: 600px;
+    margin: 20px;
+    padding: 10px;
+    min-height: 200px;
+    position:relative;
+    display: inline-block;
+    background: -webkit-gradient(linear, 0% 20%, 0% 1000%, from(#fff), to(#fff), color-stop(.1,#f3f3f3));
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0px 3px 30px rgba(0, 0, 0, 0.1) inset;
+    -webkit-border-bottom-right-radius: 6px 50px;    
+}
+
+.box1:before{
+    content: '';
+    width: 50px;
+    height: 100px;
+    position:absolute;
+    bottom:0; right:0;
+    -webkit-box-shadow: 20px 20px 10px rgba(0, 0, 0, 0.1);
+    z-index:-1;
+    -webkit-transform: translate(-35px,-40px)
+                        skew(0deg,30deg)
+                        rotate(-25deg);
+}
+
+.box1:after{
+    content: '';
+    width: 100px;
+    height: 100px;
+    top:0; left:0;
+    position:absolute;
+    display: inline-block;
+    z-index:-1;
+    -webkit-box-shadow: -10px -10px 10px rgba(0, 0, 0, 0.2);
+    -webkit-transform: rotate(2deg)
+                        translate(20px,25px)
+                        skew(20deg);
+}
+
+.box1 img {
+    width: 100%;
+    margin-top: 15px;
+}
+
+p{ 
+    margin-top: 15px;
+    text-align: justify;
+}
+
+/*产品 end*/
