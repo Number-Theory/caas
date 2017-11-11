@@ -29,7 +29,7 @@ h2 {
 }
 
 input {
-	height: 34px!important;
+	height: 34px !important;
 }
 
 .crumbs-menu .crumbs {
@@ -76,7 +76,7 @@ input {
 								<div class="col-sm-3">
 									<input id="statusUrl" name="statusUrl"
 										value="${appMap.statusUrl }" minlength="1" type="text"
-										class="form-control" required="" aria-required="true">
+										class="form-control" required="" aria-required="">
 								</div>
 							</div>
 							<div class="form-group">
@@ -84,7 +84,7 @@ input {
 								<div class="col-sm-3">
 									<input id="hangupUrl" name="hangupUrl"
 										value="${appMap.hangupUrl }" minlength="1" type="text"
-										class="form-control" required="" aria-required="true">
+										class="form-control" required="" aria-required="">
 								</div>
 							</div>
 							<div class="form-group">
@@ -92,7 +92,7 @@ input {
 								<div class="col-sm-3">
 									<input id="recordUrl" name="recordUrl"
 										value="${appMap.recordUrl }" minlength="1" type="text"
-										class="form-control" required="" aria-required="true">
+										class="form-control" required="" aria-required="">
 								</div>
 							</div>
 							<div class="form-group">
