@@ -16,7 +16,8 @@ import com.caas.action.BaseAction;
 @Controller
 @Results({ 
 	@Result(name = "portal", location = "/WEB-INF/content/homePage.jsp"),
-	@Result(name = "aboutUs", location = "/WEB-INF/content/aboutUs.jsp")
+	@Result(name = "aboutUs", location = "/WEB-INF/content/aboutUs.jsp"),
+	@Result(name = "production", location = "/WEB-INF/content/production.jsp")
 })
 public class PortalAction extends BaseAction{
 
@@ -28,5 +29,10 @@ public class PortalAction extends BaseAction{
 	@Action("/homePage/aboutUs")
 	public String aboutUs(){
 		return "aboutUs";
+	}
+	
+	@Action("/homePage/production")
+	public String production(){
+		return "production";
 	}
 }

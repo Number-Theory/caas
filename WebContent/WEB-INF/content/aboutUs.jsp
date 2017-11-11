@@ -22,11 +22,11 @@
 <body>
 <!-- 导航条 -->
 <div class="homePageTop">
-	<div class="homeLogo"><h1>云掌互联LOGO</h1></div>
+	<div class="homeLogo"><img src="<%=path%>/resources/img/homePage/logo.png" alt="云掌互联"></div>
 	<div class="homeMenu">
 		<ul class="homeUl">
 			<li><a href="<%=path%>/homePage/portal">首页</a></li>
-			<li>产品</li>
+			<li><a href="<%=path%>/homePage/production">产品</a></li>
 			<li class="on"><a href="<%=path%>/homePage/aboutUs">联系我们</a></li>
 			<li class="homeBtn"><a>注册</a></li>
 			<li class="homeBtn"><a>登录</a></li>
