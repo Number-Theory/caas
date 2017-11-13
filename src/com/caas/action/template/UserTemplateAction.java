@@ -50,7 +50,7 @@ public class UserTemplateAction extends BaseAction {
 
 	@Action("/userTemplate/templateListData")
 	public void templateListData() {
-		deal("template.templateListData", "template.templateListDataCount");
+		deal("userTemplate.templateListData", "userTemplate.templateListDataCount");
 	}
 
 	@Action("/userTemplate/deleteTemplate")

@@ -19,6 +19,9 @@
 		<if test="status != null">
 			and n.status=#{status}
 		</if>
+		<if test="userId != null">
+			and n.userId=#{userId}
+		</if>
 		${limit}
 	</select>
 
@@ -32,6 +35,9 @@
 		</if>
 		<if test="status != null">
 			and n.status=#{status}
+		</if>
+		<if test="userId != null">
+			and n.userId=#{userId}
 		</if>
 	</select>
 

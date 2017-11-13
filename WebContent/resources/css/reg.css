@@ -26,8 +26,8 @@ color: #506470;
 color: #506470; 
 } 
 /*注册*/
-.reg-wrap{background-color: #e9ecf0;width: 100%;height: 100%;}
-.reg-con{background: #e9ecf0 url(../../images/reg/reg-bg.png) center bottom no-repeat;position: absolute;top: 0px;bottom: 0;left: 0;right: 0;z-index: 1;border-top: 3px solid #2ea967;}
+.reg-wrap{background-color: #e9ecf0;width: 100%;}
+.reg-con{/*background: #e9ecf0 url(../img/bg-new.jpg) center bottom no-repeat;*/position: absolute;top: 0px;bottom: 0;left: 0;right: 0;z-index: 1;background-size: cover !important;}
 .reg-con .reg-info{width: 1200px;margin: 0 auto;padding-top: 4.4rem;padding-bottom: 3.5rem;}
 .reg-con .reg-info .reg-logo{text-align: center;}
 .reg-con .reg-info h1{font-size: 3.4rem;text-align: center;padding: 1.2rem 0 3rem;}

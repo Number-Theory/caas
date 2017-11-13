@@ -159,8 +159,8 @@ h2 {
 									aria-expanded="false">号码申请记录</a></li>
 								<li class=""><a data-toggle="tab" href="#tab-4"
 									aria-expanded="false">模板申请</a></li>
-								<li class=""><a data-toggle="tab" href="#tab-5"
-									aria-expanded="false">接口说明</a></li>
+<!-- 								<li class=""><a data-toggle="tab" href="#tab-5" -->
+<!-- 									aria-expanded="false">接口说明</a></li> -->
 							</ul>
 							<div class="tab-content">
 <!-- 								<div id="tab-1" class="tab-pane active"> -->

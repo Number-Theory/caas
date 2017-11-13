@@ -74,7 +74,7 @@ public class AuthorityFilter implements Filter {
 			paramFilterChain.doFilter(paramServletRequest, paramServletResponse);
 			return;
 		}
-		response.sendRedirect("/index");
+		response.sendRedirect("/homePage/portal");
 		return;
 	}
 
