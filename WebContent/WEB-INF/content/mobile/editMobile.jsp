@@ -132,24 +132,22 @@
 										aria-required="true">
 								</div>
 							</div>
-							<c:if test="${returnMap.allotStatus == 1 }">
-								<div class="form-group">
-									<label class="col-sm-4 control-label">套餐：</label>
-									<div class="col-sm-3">
-										<div class="input-group">
-											<select id="rateId" name="rateId" data-placeholder="套餐"
-												class="chosen-select" style="width: 330px;" tabindex="2">
-												<option value="" hassubinfo="true">请选择套餐</option>
-												<c:forEach items="${rateMap}" var="rate">
-													<option value="${rate.id }"
-														<c:if test="${returnMap.rateId == rate.id}">selected="selected"</c:if>
-														hassubinfo="true">${rate.Id }-${rate.rateName }</option>
-												</c:forEach>
-											</select>
-										</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">套餐：</label>
+								<div class="col-sm-3">
+									<div class="input-group">
+										<select id="rateId" name="rateId" data-placeholder="套餐"
+											class="chosen-select" style="width: 330px;" tabindex="2">
+											<option value="" hassubinfo="true">请选择套餐</option>
+											<c:forEach items="${rateMap}" var="rate">
+												<option value="${rate.id }"
+													<c:if test="${returnMap.rateId == rate.id}">selected="selected"</c:if>
+													hassubinfo="true">${rate.Id }-${rate.rateName }</option>
+											</c:forEach>
+										</select>
 									</div>
 								</div>
-							</c:if>
+							</div>
 							<div class="form-group">
 								<div class="col-sm-4 col-sm-offset-3">
 									<button class="btn btn-primary" type="button"

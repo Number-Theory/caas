@@ -70,7 +70,7 @@
 	</select>
 	
 	<select id="getMobileByMobile" resultType="map">
-		select t.* from tb_caas_phonenumber t where t.phoneNumber =#{phoneNumber} limit 1
+		select t.* from tb_caas_phonenumber t where t.phoneNumber =#{phoneNumber} and t.serverProduct=#{serverProduct} limit 1
 	</select>
 	
 	<select id="getAllMobile" resultType="map">
@@ -83,11 +83,16 @@
 	</update>
 	
 	<insert id="saveAddMobile">
-		INSERT INTO `tb_caas_phonenumber` (`phoneNumber`, `city`, `apiId`, `cityCode`, `operator`, `numberType`, `applyDate`,
+		INSERT INTO `tb_caas_phonenumber` (`phoneNumber`, `city`, `apiId`, `cityCode`, `operator`, `numberType`, `applyDate`, `rateId`,
 		`serverProduct`,`attribute`,`status`,`remark`,`allotStatus`) VALUES
-		 (#{phoneNumber}, #{city}, #{apiId}, #{cityCode}, #{operator}, #{numberType}, now(),
+		 (#{phoneNumber}, #{city}, #{apiId}, #{cityCode}, #{operator}, #{numberType}, now(), #{rateId},
 		 #{serverProduct}, #{attribute}, #{status}, #{remark}, '0');
 	</insert>
+	
+	<update id="recoverMobile">
+		update tb_caas_phonenumber t set t.allotStatus='0', t.userName='', t.userId='', t.productType = '',
+		t.ratisUnit = 0, t.employUnit = 0, t.reSidueUnit = 0 where id = #{id};
+	</update>
 	
 	<update id="updateMobileStatus">
 		update tb_caas_phonenumber set `status`=#{status} where id=#{id};

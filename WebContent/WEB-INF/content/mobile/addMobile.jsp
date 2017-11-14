@@ -195,6 +195,22 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-4 control-label">套餐：</label>
+								<div class="col-sm-3">
+									<div class="input-group">
+										<select id="rateId" name="rateId" data-placeholder="套餐"
+											class="chosen-select" style="width: 330px;" tabindex="2">
+											<option value="" hassubinfo="true">请选择套餐</option>
+											<c:forEach items="${rateMap}" var="rate">
+												<option value="${rate.id }"
+													<c:if test="${returnMap.rateId == rate.id}">selected="selected"</c:if>
+													hassubinfo="true">${rate.Id }-${rate.rateName }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-4 control-label">备注：</label>
 								<div class="col-sm-3">
 									<input id="remark" name="remark" value="${returnMap.remark }"
@@ -249,6 +265,7 @@
 		var attribute = $('#attribute').val();
 		var status = $('#status').val();
 		var remark = $('#remark').val();
+		var rateId = $('#rateId').val();
 		var p = document.getElementById("addText");
 
 		var flag = notice_add.validateData();
@@ -269,6 +286,7 @@
 				attribute : attribute,
 				status : status,
 				remark : remark,
+				rateId : rateId,
 				serverProduct : serverProduct
 			},
 			dataType : "json",

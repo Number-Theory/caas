@@ -12,9 +12,11 @@ public interface MobileService {
 	PageContainer csmData(Map<String, Object> map, String sqlData, String sqlDataCount);
 
 	/*
-	 * 用户管理
+	 * 号码管理
 	 */
 	void deleteMobile(Map<String, Object> param);
+	
+	void recoverMobile(Map<String, Object> param);
 
 	void batchDeleteMobile(Map<String, Object> param);
 

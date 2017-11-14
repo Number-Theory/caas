@@ -7,9 +7,9 @@
     <!-- 角色配置管理 -->
     <select id="userListData" resultType="map">
 		select (@i:=@i+1)
-		rownum,n.*
+		rownum,n.*, m.balance, m.creditType, m.creditMoney
 		from
-		tb_caas_user n ,
+		tb_caas_user n left join tb_caas_balance m on n.userId = m.userId,
 		(select
 		@i:=#{start} )it where 1=1 and id != '1'
 		<if test="condition != null">

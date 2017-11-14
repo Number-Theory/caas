@@ -83,6 +83,9 @@
 											<th data-field="mobile">手机号码</th>
 											<th data-field="email">邮箱</th>
 											<th data-field="roleName">角色名称</th>
+											<th data-field="balance">余额</th>
+											<th data-field="creditType">透支状态</th>
+											<th data-field="creditMoney">透支额度</th>
 											<th data-field="status">状态</th>
 											<th data-field="createType">开户类型</th>
 											<th data-field="userType">付费模式</th>
@@ -146,7 +149,7 @@
 								// pageNumber:1, //初始化加载第一页，默认第一页
 								pageSize : 20, // 每页的记录行数（*）
 								showColumns : true, // 是否显示所有的列
-								pageList : [ 10, 20, 50 ], // 可供选择的每页的行数（*）
+								pageList : [ 10, 20, 50, 100 ], // 可供选择的每页的行数（*）
 								strictSearch : true,
 								clickToSelect : false, // 是否启用点击选中行
 								height : 540, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
@@ -186,6 +189,31 @@
 											field : 'roleName',
 										},
 										{
+											field : 'balance',
+											formatter : function(value, row,
+													index) {
+												return row.balance / 1000000;
+											}
+										},
+										{
+											field : 'creditType',
+											formatter : function(value, row,
+													index) {
+												if (row.creditType == 1) {
+													return "可透支";
+												} else {
+													return "不可透支";
+												}
+											}
+										},
+										{
+											field : 'creditMoney',
+											formatter : function(value, row,
+													index) {
+												return row.creditMoney / 1000000;
+											}
+										},
+										{
 											field : 'status',
 											formatter : function(value, row,
 													index) {
@@ -212,7 +240,7 @@
 											field : 'userType',
 											formatter : function(value, row,
 													index) {
-												return row.status == 0 ? '预付费'
+												return row.userType == 0 ? '预付费'
 														: '后付费';
 											}
 										},
