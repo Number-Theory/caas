@@ -15,7 +15,7 @@ body{
 .homeLogo{
 	float: left;
 	height: 100%;
-	width: 60%;
+	width: 50%;
 	line-height: 100px;
 }
 .homeLogo img{
@@ -30,7 +30,7 @@ body{
 .homeMenu{
 	float: right;
 	height: 100%;
-	width: 40%;
+	width: 50%;
 }
 .homeUl{
 	padding: 0;
@@ -56,7 +56,7 @@ body{
 	text-decoration: none;
 }
 .homeBtn{
-	
+	width: 100px;
 }
 .homeBtn a{
 	border: solid 1px black;
