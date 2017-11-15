@@ -1,6 +1,7 @@
 package com.caas.action.login;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,9 +14,11 @@ import org.springframework.stereotype.Controller;
 
 import com.caas.action.BaseAction;
 import com.caas.service.login.LoginService;
+import com.caas.service.user.UserService;
 import com.caas.util.AuthorityUtils;
 import com.caas.util.CheckCodeUtil;
 import com.caas.util.JsonUtil;
+import com.caas.util.MD5Util;
 import com.caas.util.StrutsUtils;
 
 /**
@@ -36,6 +39,9 @@ public class LoginAction extends BaseAction {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Action("/checkCode")
 	public void checkCode() {
@@ -109,6 +115,26 @@ public class LoginAction extends BaseAction {
 	public String logout() {
 		AuthorityUtils.setLogoutUser();
 		return "login";
+	}
+	
+	@Action("/saveUser")
+	public String saveUser(){
+		Map<String, Object> param = StrutsUtils.getFormData();
+		param.put("userId", UUID.randomUUID().toString().replaceAll("-", ""));
+		param.put("token", UUID.randomUUID().toString().replaceAll("-", ""));
+		param.put("createType", "1");
+		param.put("roleId", "4");
+		param.put("userType", "0");
+		param.put("status", "0");
+		param.put("userPwd", MD5Util.string2MD5(param.get("userPwd").toString()).toUpperCase());
+		param.put("creationUser", param.get("userName").toString());
+		Map<String, Object> resultMap = (Map<String, Object>) userService.saveAddUser(param);
+		StrutsUtils.setAttribute("resultMap", resultMap);
+		if(resultMap.get("result").toString().equals("true")){
+			return "login";
+		}else {
+			return "register";
+		}
 	}
 
 }
