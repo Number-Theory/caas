@@ -25,6 +25,7 @@ public class PortalAction extends BaseAction{
 	@Action("/homePage/portal")
 	public String portal(){
 		return "portal";
+		
 	}
 	
 	@Action("/homePage/aboutUs")
