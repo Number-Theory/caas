@@ -51,20 +51,20 @@ public class UserServiceImpl implements UserService {
 			;
 			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
-				result.put("msg", ",用户名已存在");
+				result.put("msg", "用户名已存在");
 				return result;
 			}
 			user = dao.getOneInfo("user.getUserByMobile", map);
 			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
-				result.put("msg", ",号码已被注册");
+				result.put("msg", "号码已被注册");
 				return result;
 			}
 
 			user = dao.getOneInfo("user.getUserByEmail", map);
 			if (user != null && !user.isEmpty()) {
 				result.put("result", "false");
-				result.put("msg", ",邮箱已被注册");
+				result.put("msg", "邮箱已被注册");
 				return result;
 			}
 

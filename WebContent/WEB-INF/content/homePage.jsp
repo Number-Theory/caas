@@ -57,7 +57,7 @@
 						<li class="on"><a href="<%=path%>/homePage/portal">首页</a></li>
 						<li><a href="<%=path%>/homePage/production">产品</a></li>
 						<li><a href="<%=path%>/homePage/aboutUs">联系我们</a></li>
-<!-- 						<li class="homeBtn"><a>注册</a></li> -->
+						<li class="homeBtn"><a href="<%=path%>/homePage/register">注册</a></li>
 						<li class="homeBtn"><a href="<%=path%>/index">登录</a></li>
 					</ul>
 				</div>
