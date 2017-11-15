@@ -46,7 +46,6 @@
 										<i class="fa fa-warning"></i>&nbsp;&nbsp;<span class="bold">删除</span>
 									</button>
 									&nbsp;&nbsp;
-
 								</p>
 								<div class="alert alert-success alert-dismissable"
 									id="operateNote"></div>
@@ -191,7 +190,7 @@
 								// pageNumber:1, //初始化加载第一页，默认第一页
 								pageSize : 20, // 每页的记录行数（*）
 								showColumns : true, // 是否显示所有的列
-								pageList : [ 10, 20, 50 ], // 可供选择的每页的行数（*）
+								pageList : [ 10, 20, 50, 100 ], // 可供选择的每页的行数（*）
 								strictSearch : true,
 								clickToSelect : false, // 是否启用点击选中行
 								height : 540, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
@@ -400,7 +399,12 @@
 												var edit = "/mobile/editMobile?id="
 														+ row.id;
 												var d = '<a href="' + edit + '" >修改</a> &nbsp;&nbsp;';
-												return d;
+												var e = '<a href="javascript:;" onclick=\'recoverdata(\"/mobile/recoverMobile\",\"'+row.id+'\")\' >回收</a> &nbsp;&nbsp;';
+												if(row.allotStatus == 1) {
+													return d + e;
+												} else {
+													return d;
+												}
 											}
 										}, ]
 							});
@@ -425,6 +429,65 @@
 		var p = document.getElementById("operateNote");
 		//	p.style.display = "none";
 		// p.innerHTML="加载完成";
+	}
+	
+	function recoverdata(url, id) {
+		swal({
+			title : "确定回收选中号码吗？",
+			text : "",
+			type : "warning",
+			showCancelButton : true,
+			confirmButtonColor : "#9fc5e8",
+			confirmButtonText : "是的，我要回收选中号码！",
+			cancelButtonText : "让我再考虑一下…",
+			closeOnConfirm : false,
+			closeOnCancel : false
+		}, function(isConfirm) {
+			if (isConfirm) {
+				$.ajax({
+					type : "POST",
+					url : url,
+					data : {
+						id : id
+					},
+					dataType : "json",
+					success : function(data) {
+
+						if (data == true) {
+							swal({
+								title : "回收选中号码成功",
+								text : "",
+								type : "success",
+								confirmButtonColor : "#9fc5e8",
+								confirmButtonText : "OK",
+								closeOnConfirm : false
+							}, function(isConfirm) {
+								if (isConfirm) {
+									window.location.reload();
+								}
+							});
+						} else {
+							swal({
+								title : "回收选中号码失败",
+								text : "回收选中号码失败！",
+								type : "error"
+							});
+						}
+
+					},
+					error : function(data) {
+						swal({
+							title : "回收选中号码失败",
+							text : JSON.stringify(data),
+							type : "error"
+						});
+					}
+				});
+
+			} else {
+				swal("已取消", "您取消了回收操作！", "error")
+			}
+		});
 	}
 </script>
 </html>

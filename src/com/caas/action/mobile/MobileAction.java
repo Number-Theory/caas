@@ -68,6 +68,18 @@ public class MobileAction extends BaseAction {
 			StrutsUtils.renderJson(false);
 		}
 	}
+	
+	@Action("/mobile/recoverMobile")
+	public void recoverMobile() {
+		data = StrutsUtils.getFormData();
+		try {
+			service.recoverMobile(data);
+			StrutsUtils.renderJson(true);
+		} catch (Exception e) {
+			logger.error("{}", e);
+			StrutsUtils.renderJson(false);
+		}
+	}
 
 	@Action("/mobile/batchDeleteMobile")
 	public void batchDeleteMobile() {
@@ -88,6 +100,9 @@ public class MobileAction extends BaseAction {
 		
 		List<Map<String, Object>> apiMap = dao.selectList("number.getAllApi", null);
 		StrutsUtils.getRequest().setAttribute("apiMap", apiMap);
+		
+		List<Map<String, Object>> rateMap = dao.selectList("mobile.getAllRate", null);
+		StrutsUtils.getRequest().setAttribute("rateMap", rateMap);
 		return "addMobile";
 	}
 

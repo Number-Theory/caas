@@ -77,4 +77,9 @@ public class MobileServiceImpl implements MobileService {
 	public void updateMobileStatus(Map<String, Object> map) {
 		dao.update("mobile.updateMobileStatus", map);
 	}
+
+	@Override
+	public void recoverMobile(Map<String, Object> param) {
+		dao.update("mobile.recoverMobile", param);
+	}
 }
