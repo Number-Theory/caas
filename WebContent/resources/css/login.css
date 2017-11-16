@@ -15,10 +15,10 @@ body{
 	padding-top:10%;
 }
 .content{
-	margin-top:30px;
-	height: 550px;
-	width: 700px;
-	margin-left:25%;
+	height: 350px;
+	width: 600px;
+	margin-top:70px;
+	margin-left:30%;
 	text-align: center;
 	background-color:#336699;
 /* 	filter:alpha(Opacity=60); */
@@ -51,7 +51,7 @@ body{
 .mainContent ul li img{
 	position: relative;
     top: 27px;
-    left: 116px;
+    left: 62px;
 }
 input{
 	height: 30px;

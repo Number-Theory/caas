@@ -11,10 +11,25 @@
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/register.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/resources/css/homePage.css" />
 <title>注册</title>
 
 </head>
 <body>
+	<div class="homePageTop">
+		<div class="homeLogo">
+			<img src="<%=path%>/resources/img/homePage/logo.png" alt="云掌互联">
+		</div>
+		<div class="homeMenu">
+			<ul class="homeUl">
+				<li><a href="<%=path%>/homePage/portal">首页</a></li>
+				<li><a href="<%=path%>/homePage/production">产品</a></li>
+				<li><a href="<%=path%>/homePage/aboutUs">联系我们</a></li>
+				<li class="homeBtn"><a href="<%=path%>/homePage/register">注册</a></li>
+				<li class="homeBtn"><a href="<%=path%>/index">登录</a></li>
+			</ul>
+		</div>
+	</div>
 	<div class="content">
 		<div class="title">云掌互联注册</div>
 		<form action="<%=path%>/saveUser" method="post" id="register" onsubmit="return validate()">
@@ -62,5 +77,4 @@
 		$("#msg").text("");
 	}
 </script>
->>>>>>> branch 'master' of git@github.com:Number-Theory/caas.git
 </html>

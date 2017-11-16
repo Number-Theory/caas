@@ -86,7 +86,8 @@
 					</div>
 				</div>
 			</div>
-
+		</div>
+		<div class="section">
 			<!-- 产品内容 -->
 			<div class="homePageContent">
 				<table>
@@ -131,6 +132,8 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div class="section">
 			<!-- 地图 -->
 			<div class="homePageMap"></div>
 			<!-- footerList -->
@@ -219,5 +222,4 @@
 		});
 	</script>
 </body>
->>>>>>> branch 'master' of git@github.com:Number-Theory/caas.git
 </html>
