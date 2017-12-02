@@ -419,5 +419,14 @@ p{
     margin-top: 15px;
     text-align: justify;
 }
-
+.pic{
+	width: 100%;
+	height: 300px;
+}
+.pic img{
+	padding-top:10px;
+	width: 50%;
+	margin-left:25%;
+	height: 100%;
+}
 /*浜у搧 end*/
