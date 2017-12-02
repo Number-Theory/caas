@@ -9,7 +9,7 @@ ul,li{
 body{
 	background-image: url("../img/bg-new.jpg");
 	background-size:100% auto;
-	overflow:hidden;
+/* 	overflow:hidden; */
 	margin: 0px;
 	padding: 0px;
 	padding-top:10%;

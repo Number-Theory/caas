@@ -28,8 +28,8 @@
 			<li><a href="<%=path%>/homePage/portal">首页</a></li>
 			<li class="on"><a href="<%=path%>/homePage/production">产品</a></li>
 			<li><a href="<%=path%>/homePage/aboutUs">联系我们</a></li>
-			<li class="homeBtn"><a>注册</a></li>
-			<li class="homeBtn"><a>登录</a></li>
+			<li class="homeBtn"><a href="<%=path%>/homePage/register">注册</a></li>
+			<li class="homeBtn"><a href="<%=path%>/index">登录</a></li>
 		</ul>
 	</div>
 </div>
@@ -45,12 +45,15 @@
 		<p class="pp">4、O2O行业二手车商家在O2O平台发布二手车信息，留下虚拟服务号码，客户拨打商家的虚拟号码，双方号码不可见，保护了O2O平台客户信息。</p>
 	</div>
 </div>
-<div class="productDiv">
-<!-- 	<div>点击呼叫(回拨)</div> -->
-<!-- 	<div>点击拨号是同时将主叫号码和被叫号码通过IP网络发送给服务器，由服务器呼叫主叫和被叫，使主叫和被叫能够互相通话。</div> -->
-<!-- 	<div></div> -->
-<!-- 	<p></p> -->
-</div>
+<!-- <div class="productDiv"> -->
+<!-- 	<div class="ptitle"><h1>回拨</h1></div> -->
+<!-- 	<p class="picon"></p> -->
+<!-- 	<div class="pintro">用户通过PC或者APP一键拨号，业务系统调用云掌互联API接口，平台发起两路呼叫，实现双方通 -->
+<!-- 话。</div> -->
+<!-- 	<div> -->
+<%-- 		<img src="<%=path%>/resources/img/homePage/l.png"> --%>
+<!-- 	</div> -->
+<!-- </div> -->
 <div class="productDiv">
 	
 </div>
